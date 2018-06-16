@@ -75,6 +75,28 @@ function embed_style_header() {
         right: 20px;
         font-size: 12px;
       }
+
+      .google-map-title > h5 {
+	      color: #303030;
+	      font-weight: 400;
+	      margin-bottom: 15px;
+      }
+
+	    /**
+	      Single property
+	     */
+      .acf-map {
+	      width: 100%;
+	      height: 400px;
+	      border: #ccc solid 1px;
+	      margin: 20px 0;
+      }
+
+      /* fixes potential theme css conflict */
+      .acf-map img {
+	      max-width: inherit !important;
+      }
+
     </style>
   <?php
 }

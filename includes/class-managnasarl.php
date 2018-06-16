@@ -41,6 +41,11 @@ if ( ! class_exists( 'ManagnaSarl' ) ) :
 				$cols = 6;
 				return $cols;
 			}
+
+			// Add acf google map api
+			add_filter('acf/init', function () {
+				acf_update_setting('google_api_key', __google_api__);
+			});
 		}
 
 		public function init() {

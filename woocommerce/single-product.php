@@ -41,6 +41,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
+global $managnaSarl;
+wp_enqueue_script( 'google-map', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBx7-RJlipme4c3-LaVRNhFxbW_qXnCQxc');
+wp_enqueue_script( 'map-acf', get_template_directory_uri() . '/assets/js/map.js', array('google-map'), $managnaSarl->version, true );
+wp_localize_script('map-acf', 'acfParam', [
+	'template_image_directory_uri' => get_template_directory_uri() . '/img/'
+]);
 get_header( 'shop' ); ?>
 	<div class="feature-property properties-list pt-130">
 		<div class="container">
@@ -66,7 +72,6 @@ get_header( 'shop' ); ?>
 	<?php
 		/**
 		 * woocommerce_after_main_content hook.
-		 *
 		 * @hooked woocommerce_output_content_wrapper_end - 10 (outputs closing divs for the content)
 		 */
 		do_action( 'woocommerce_after_main_content' );
@@ -77,7 +82,6 @@ get_header( 'shop' ); ?>
 	          <?php
 	          /**
 	           * woocommerce_sidebar hook.
-	           *
 	           * @hooked woocommerce_get_sidebar - 10
 	           */
 	          do_action( 'woocommerce_sidebar' );
@@ -90,4 +94,3 @@ get_header( 'shop' ); ?>
 
 <?php get_footer( 'shop' );
 
-/* Omit closing PHP tag at the end of PHP files to avoid "headers already sent" issues. */
