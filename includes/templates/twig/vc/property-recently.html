@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<!--
+  ~ Copyright (c) 2018 Tiafeno Finel
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy
+  ~ of this software and associated documentation files, to deal
+  ~ in the Software without restriction, including without limitation the rights
+  ~ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  ~ copies of the Software, and to permit persons to whom the Software is
+  ~ furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in all
+  ~ copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  ~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  ~ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  ~ SOFTWARE.
+  -->
+
+<div class="property-area fadeInUp wow ptb-40" data-wow-delay="0.2s" >
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="feature-property-title">
+          <h3>{{title}}</h3>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active">
+          <div class="property-list">
+          {% for post in posts %}
+            <div class="col-md-4">
+              <div class="single-property">
+                <div class="property-img">
+                  <a href="{{post.post_url}}">
+                    <img src="{{post.post_thumbnail[0]}}" alt="">
+                  </a>
+                </div>
+                <div class="property-desc">
+                  <div class="property-desc-top">
+                    <h6>
+                      <a href="{{post.post_url}}">
+                        {{post.post_title}}
+                      </a>
+                    </h6>
+                    <h4 class="price euroMoney">{{post.price}}</h4>
+                    <p class="mg-price mgaMoney"></p>
+                    <div class="property-location">
+                      <p><img src="{{get_template_directory_uri}}/img/icons/icon-5.png" alt="">{{post.location}}</p>
+                    </div>
+                  </div>
+                  <div class="property-desc-bottom">
+                    <div class="property-bottom-list">
+                      <ul>
+                        <li>
+                          <img src="{{get_template_directory_uri}}/img/icons/icon-1.png" alt="">
+                          <span>{{post.surface}} sqft</span>
+                        </li>
+                        <li>
+                          <img src="{{get_template_directory_uri}}/img/icons/icon-2.png" alt="">
+                          <span>{{post.bedroom}}</span>
+                        </li>
+                        <li>
+                          <img src="{{get_template_directory_uri}}/img/icons/icon-3.png" alt="">
+                          <span>{{post.bathroom}}</span>
+                        </li>
+                        <li>
+                          <img src="{{get_template_directory_uri}}/img/icons/icon-4.png" alt="">
+                          <span>{{post.garage}}</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<!--
+  ~ Copyright (c) 2018 Tiafeno Finel
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy
+  ~ of this software and associated documentation files, to deal
+  ~ in the Software without restriction, including without limitation the rights
+  ~ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  ~ copies of the Software, and to permit persons to whom the Software is
+  ~ furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in all
+  ~ copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  ~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  ~ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  ~ SOFTWARE.
+  -->
+
+<!--slider section start-->
+<div class="slider-container overlay">
+    <!-- Slider Image -->
+    <div id="mainSlider" class="nivoSlider slider-image managnaSlider">
+      {% for slider in sliders %}
+        <img src="{{slider.image_url}}" alt="" title="#{{slider.layout}}">
+      {% endfor %}
+    </div>
+
+  <!-- Slider -->
+  {% for slider in sliders %}
+    <div id="{{slider.layout}}" class="nivo-html-caption slider-caption-1">
+      <div class="display-table">
+        <div class="display-tablecell">
+          <div class="container ">
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="slide1-text">
+                  <div class="middle-text">
+
+                    <div class="desc wow fadeUp animated" data-wow-duration="1.4s" data-wow-delay="0.4s"
+                         style="visibility: visible; animation-duration: 1.4s; animation-delay: 0.4s; animation-name: fadeUp;">
+                      {{slider.desc|raw}}
+                    </div>
+
+                    {% if slider.link is not empty  %}
+                    <div class="contact-us wow fadeUp animated" data-wow-duration="1.5s" data-wow-delay=".5s"
+                         style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.5s; animation-name: fadeUp;">
+                      <a href="{{slider.link}}">CONTACT US</a>
+                    </div>
+                    {% endif %}
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+
+</div>
+<!--slider section end-->
