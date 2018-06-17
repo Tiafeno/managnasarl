@@ -87,19 +87,19 @@ if ( ! class_exists( 'ManagnaSarl' ) ) :
 		}
 
 		public function scripts() {
-			global $managnaSarlVersion, $managnaSarl;
+			global $managnaSarl;
 
 			/**
 			 * Styles
 			 */
-			wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/assets/css/bootstrap.min.css', '', $managnaSarlVersion );
-			wp_enqueue_style( 'core', get_template_directory_uri() . '/assets/css/core.css', '', $managnaSarlVersion );
-			wp_enqueue_style( 'shortcode', get_template_directory_uri() . '/assets/css/shortcode/shortcodes.css', '', $managnaSarlVersion );
-			wp_enqueue_style( 'managnasarl-style', get_stylesheet_uri(), array(), $managnaSarlVersion );
-			wp_enqueue_style( 'managnasarl-override-style', get_template_directory_uri() . '/assets/css/managna-sarl.override.css', '', $managnaSarlVersion );
-			wp_enqueue_style( 'responsive', get_template_directory_uri() . '/assets/css/responsive.css', '', $managnaSarlVersion );
+			wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/assets/css/bootstrap.min.css', '', $managnaSarl->version );
+			wp_enqueue_style( 'core', get_template_directory_uri() . '/assets/css/core.css', '', $managnaSarl->version );
+			wp_enqueue_style( 'shortcode', get_template_directory_uri() . '/assets/css/shortcode/shortcodes.css', '', $managnaSarl->version );
+			wp_enqueue_style( 'managnasarl-style', get_stylesheet_uri(), array(), $managnaSarl->version );
+			wp_enqueue_style( 'managnasarl-override-style', get_template_directory_uri() . '/assets/css/managna-sarl.override.css', '', $managnaSarl->version );
+			wp_enqueue_style( 'responsive', get_template_directory_uri() . '/assets/css/responsive.css', '', $managnaSarl->version );
 			/** customizer style css */
-			wp_enqueue_style( 'customizer', get_template_directory_uri() . '/assets/css/style-customizer.css', '', $managnaSarlVersion );
+			wp_enqueue_style( 'customizer', get_template_directory_uri() . '/assets/css/style-customizer.css', '', $managnaSarl->version );
 
 			/**
 			 * Scripts
@@ -108,17 +108,17 @@ if ( ! class_exists( 'ManagnaSarl' ) ) :
 			wp_enqueue_script('underscore');
 			wp_enqueue_script('jquery');
 
-			wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/assets/js/bootstrap.min.js', array('jquery'), $managnaSarlVersion, true );
-			wp_enqueue_script( 'jquery-nivo', get_template_directory_uri() . '/assets/js/jquery/jquery.nivo.slider.pack.js', array('jquery'), $managnaSarlVersion, true );
-			wp_enqueue_script( 'waypoints', get_template_directory_uri() . '/assets/js/waypoints.min.js', array('jquery'), $managnaSarlVersion, true );
-			wp_enqueue_script( 'jquery-counterup', get_template_directory_uri() . '/assets/js/jquery/jquery.counterup.min.js', array('jquery'), $managnaSarlVersion, true );
-			wp_enqueue_script( 'owl-carousel', get_template_directory_uri() . '/assets/js/owl.carousel.min.js', array('jquery'), $managnaSarlVersion, true );
-			wp_enqueue_script( 'jquery-magnific', get_template_directory_uri() . '/assets/js/jquery/jquery.magnific-popup.js', array('jquery'), $managnaSarlVersion, true );
-			wp_enqueue_script( 'managnasarl-customizer', get_template_directory_uri() . '/assets/js/style-customizer.js', array('jquery'), $managnaSarlVersion, true );
-			wp_enqueue_script( 'managnasarl-plugins', get_template_directory_uri() . '/assets/js/plugins.js', array('jquery'), $managnaSarlVersion, true );
-			wp_enqueue_script( 'managnasarl-main', get_template_directory_uri() . '/assets/js/main.js', array('jquery', 'jquery-nivo', 'owl-carousel'), $managnaSarlVersion, true );
-			wp_enqueue_script( 'moment', get_template_directory_uri() . '/assets/js/moment.min.js', array(), $managnaSarlVersion, true );
-			wp_enqueue_script( 'principal', get_template_directory_uri() . '/assets/js/managna-immo.js', array('jquery', 'moment'), $managnaSarlVersion, true );
+			wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/assets/js/bootstrap.min.js', array('jquery'), $managnaSarl->version, true );
+			wp_enqueue_script( 'jquery-nivo', get_template_directory_uri() . '/assets/js/jquery/jquery.nivo.slider.pack.js', array('jquery'), $managnaSarl->version, true );
+			wp_enqueue_script( 'waypoints', get_template_directory_uri() . '/assets/js/waypoints.min.js', array('jquery'), $managnaSarl->version, true );
+			wp_enqueue_script( 'jquery-counterup', get_template_directory_uri() . '/assets/js/jquery/jquery.counterup.min.js', array('jquery'), $managnaSarl->version, true );
+			wp_enqueue_script( 'owl-carousel', get_template_directory_uri() . '/assets/js/owl.carousel.min.js', array('jquery'), $managnaSarl->version, true );
+			wp_enqueue_script( 'jquery-magnific', get_template_directory_uri() . '/assets/js/jquery/jquery.magnific-popup.js', array('jquery'), $managnaSarl->version, true );
+			wp_enqueue_script( 'managnasarl-customizer', get_template_directory_uri() . '/assets/js/style-customizer.js', array('jquery'), $managnaSarl->version, true );
+			wp_enqueue_script( 'managnasarl-plugins', get_template_directory_uri() . '/assets/js/plugins.js', array('jquery'), $managnaSarl->version, true );
+			wp_enqueue_script( 'managnasarl-main', get_template_directory_uri() . '/assets/js/main.js', array('jquery', 'jquery-nivo', 'owl-carousel'), $managnaSarl, true );
+			wp_enqueue_script( 'moment', get_template_directory_uri() . '/assets/js/moment.min.js', array(), $managnaSarl->version, true );
+			wp_enqueue_script( 'principal', get_template_directory_uri() . '/assets/js/managna-immo.js', array('jquery', 'moment'), $managnaSarl->version, true );
 			wp_localize_script('principal', 'jManagna',
 					[
 						'currency' => $managnaSarl->services->getCurrencyMGA(),

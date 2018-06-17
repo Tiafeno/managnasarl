@@ -29,11 +29,9 @@ define( '__google_api__', base64_decode('QUl6YVN5Qng3LVJKbGlwbWU0YzMtTGFWUk5oRnh
 define( '__SITENAME__', 'ManagnaImmo' );
 define( 'TWIG_TEMPLATE_PATH', get_template_directory() . '/includes/templates/twig' );
 
-$theme              = wp_get_theme( 'managnasarl' );
-$managnaSarlVersion = $theme->get( 'Version' );
-
+$theme = wp_get_theme( 'managnasarl' );
 $managnaSarl = (object) array(
-	'version'  => &$managnaSarlVersion,
+	'version'  => $theme->get( 'Version' ),
 	'main'     => require 'includes/class-managnasarl.php',
 	'services' => require 'includes/class-services.php',
 );
