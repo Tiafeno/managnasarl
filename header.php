@@ -89,7 +89,7 @@
 				<div class="row">
 					<div class="col-md-2 col-sm-4 col-xs-6">
 						<div class="logo">
-							<a href="/"><img src="<?= get_template_directory_uri() . '/img/logo.png' ?>" alt=""></a>
+							<a href="<?= home_url('/') ?>"><img src="<?= get_template_directory_uri() . '/img/logo.png' ?>" alt=""></a>
 						</div>
 					</div>
 					<div class="col-md-10 hidden-sm hidden-xs">
