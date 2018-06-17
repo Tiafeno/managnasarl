@@ -20,22 +20,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
-
 get_header();
-while ( have_posts() ) : the_post();
-	?>
-
-  <div class="content-property">
-    <div class="container">
-      <header class="entry-header">
-        <?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
-      </header><!-- .entry-header -->
-	<?php
-	the_content();
-endwhile;
+  while ( have_posts() ) : the_post();
+    the_content();
+  endwhile;
 ?>
-    </div>
-  </div>
 </div> <!-- .end wrapper white_bg -->
 <?php get_footer(); ?>
