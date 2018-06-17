@@ -53,6 +53,17 @@ function set_property_bottom_list($condition) {
 function embed_style_header() {
   ?>
     <style type="text/css">
+	    /**
+	    Menu
+	    */
+	    .mean-container a.meanmenu-reveal span {
+		    background: #b01d36;
+	    }
+	    .mean-container a.meanmenu-reveal {
+		    color: #b01d36;
+	    }
+
+
       /**
       Feature property
        */

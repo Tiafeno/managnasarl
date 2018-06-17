@@ -20,3 +20,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
+class Primary_Walker extends Walker_Nav_Menu {
+	var $db_fields = [
+		'parent' => 'menu_item_parent',
+		'id' => 'db_id'
+	];
+	public function end_lvl( &$output, $depth = 0, $args = array() ) {
+		if ( isset( $args->item_spacing ) && 'discard' === $args->item_spacing ) {
+			$t = '';
+			$n = '';
+		} else {
+			$t = "\t";
+			$n = "\n";
+		}
+		$indent  = str_repeat( $t, $depth );
+		$output .= "$indent</ul>{$n}";
+	}
+
+
+	public function start_lvl( &$output, $depth = 0, $args = array() ) {
+		if ( isset( $args->item_spacing ) && 'discard' === $args->item_spacing ) {
+			$t = '';
+			$n = '';
+		} else {
+			$t = "\t";
+			$n = "\n";
+		}
+		$indent = str_repeat( $t, $depth );
+
+		$classes = array( 'dropdown_menu' );
+		$class_names = join( ' ', apply_filters( 'nav_menu_submenu_css_class', $classes, $args, $depth ) );
+		$class_names = $class_names ? ' class="' . esc_attr( $class_names ) . '"' : '';
+		$output .= "{$n}{$indent}<ul$class_names>{$n}";
+	}
+}

@@ -107,9 +107,14 @@ if ( post_password_required() ) {
 						</div>
 						<div class="amenities-list">
 							<ul>
-								<?php foreach ($amenities as $amenitie): ?>
-									<li><i class="fa fa-check-square-o"></i> <span><?= $amenitie['label'] ?></span></li>
-								<?php endforeach; ?>
+								<?php
+								if ($amenities):
+									foreach ($amenities as $amenitie): ?>
+										<li><i class="fa fa-check-square-o"></i> <span><?= $amenitie['label'] ?></span></li>
+									<?php
+									endforeach;
+								endif;
+								?>
 							</ul>
 						</div>
 					</div>
@@ -125,7 +130,7 @@ if ( post_password_required() ) {
 					<div class="google-map-content">
 						<?php
 						$location = get_field('map', $product->ID);
-						if( !empty($location) ):
+						if( ! empty($location) ):
 							?>
 							<div class="acf-map">
 								<div class="marker" data-lat="<?php echo $location['lat']; ?>" data-lng="<?php echo $location['lng']; ?>"></div>

@@ -46,7 +46,6 @@ if ( ! class_exists( 'msServices' ) ) :
 		 * Récuperer l'echange en cours pour EUR en MGA
 		 */
 		public function getCurrency() {
-			echo 'Loading cUrl';
 			$fields_string = '';
 			$fields = (object)[
 					'access_key' => __fixer_io_api__,
@@ -66,6 +65,14 @@ if ( ! class_exists( 'msServices' ) ) :
 			// Close the connection, release resources used
 			curl_close($ch);
 			$this->fixerIOData = json_decode($response);
+			$rates = $this->fixerIOData->rates;
+
+			add_filter('add_message_alert', function($messageAlert) use ($rates) {
+				if (is_null($messageAlert))
+					$messageAlert = "Initialisation de la cours d'echange pour un Euro: " . $rates->MGA . "Ar";
+				return $messageAlert;
+			}, 10, 1);
+
 			return $this->updateCurrencyMGA();
 		}
 

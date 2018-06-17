@@ -20,3 +20,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
+function managna_alert() {
+	$messageAlert = null;
+	$messageAlert = apply_filters('add_message_alert', $messageAlert);
+	if (is_null($messageAlert)) return;
+	return '
+<div class="pt-50">
+	<div class="container">
+		<div class="alert alert-success" role="alert">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+			'. $messageAlert .'
+		</div>
+	</div>
+</div>';
+}
