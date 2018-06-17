@@ -25,7 +25,7 @@ define( '__fixer_io_api__', '28ad6224266d9afb599d399476fe0aed' );
 /**
  * Google API (ref: Web API)
  */
-define( '__google_api__', 'AIzaSyBx7-RJlipme4c3-LaVRNhFxbW_qXnCQxc');
+define( '__google_api__', base64_decode('QUl6YVN5Qng3LVJKbGlwbWU0YzMtTGFWUk5oRnhiV19xWG5DUXhj'));
 define( '__SITENAME__', 'ManagnaImmo' );
 define( 'TWIG_TEMPLATE_PATH', get_template_directory() . '/includes/templates/twig' );
 
