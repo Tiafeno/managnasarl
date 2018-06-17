@@ -31,19 +31,20 @@ global $product;
  */
 do_action( 'woocommerce_before_single_product' );
 
-if (function_exists('get_field')):
-	$basic_information = get_field('basic_information', $product->ID);
-	$location = $basic_information['location'];
-	$status = $basic_information['status'] ? $basic_information['status'] : false;
+if ( function_exists( 'get_field' ) ):
+	$basic_information = get_field( 'basic_information', $product->ID );
+	$location          = $basic_information['location'];
+	$status            = $basic_information['status'] ? $basic_information['status'] : false;
 
-	$condition = get_field('condition', $product->ID);
+	$condition  = get_field( 'condition', $product->ID );
 	$conditions = (object) $condition;
 
-	$amenities = get_field('amenities', $product->ID);
+	$amenities = get_field( 'amenities', $product->ID );
 endif;
 $main_thumbnail = wp_get_attachment_image_src( $product->get_image_id(), 'large' );
 if ( post_password_required() ) {
 	echo get_the_password_form(); // WPCS: XSS ok.
+
 	return;
 }
 
@@ -51,19 +52,24 @@ if ( post_password_required() ) {
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class(); ?>>
 	<div class="single-property-details">
 		<div class="property-details-img">
-			<?php  woocommerce_show_product_sale_flash() ?>
+			<?php woocommerce_show_product_sale_flash() ?>
 			<img src="<?= $main_thumbnail[0] ?>" alt="">
 		</div>
-		<div class="single-property-description">
-			<div class="desc-title">
-				<h5>Description</h5>
-			</div>
-			<div class="description-inner">
-				<p>
-					<?= $product->get_description(); ?>
-				</p>
+
+		<div class="property-desc">
+			<div class="property-desc-top">
+				<h6>
+					<?= $product->get_title() ?>
+				</h6>
+				<h4 class="price euroMoney"><?= $product->get_price() ?></h4>
+				<p class="mg-price mgaMoney"></p>
+				<div class="property-location">
+					<p><img src="<?= get_template_directory_uri() . '/img/icons/icon-5.png' ?>" alt=""><?= $location ?></p>
+				</div>
 			</div>
 		</div>
+
+		<!-- Condition & Amenities -->
 		<div class="condition-amenities">
 			<div class="row">
 				<div class="col-md-6 col-sm-12 col-xs-12">
@@ -75,28 +81,25 @@ if ( post_password_required() ) {
 							<ul>
 								<li>
 									<img src="<?= get_template_directory_uri() . '/img/icons/icon-6.png' ?>" alt="">
-									<span>Area <?= $conditions->surface  ? $conditions->surface  : 0 ?> sqft</span>
+									<span>Area <?= $conditions->surface ? $conditions->surface : 0 ?> sqft</span>
 								</li>
 								<li>
 									<img src="<?= get_template_directory_uri() . '/img/icons/icon-7.png' ?>" alt="">
-									<span>Bedroom <?= $conditions->bedroom  ? $conditions->bedroom  : 0 ?></span>
+									<span>Bedroom <?= $conditions->bedroom ? $conditions->bedroom : 0 ?></span>
 								</li>
 								<li>
 									<img src="<?= get_template_directory_uri() . '/img/icons/icon-8.png' ?>" alt="">
-									<span>Bathroom <?= $conditions->bathroom  ? $conditions->bathroom  : 0 ?></span>
+									<span>Bathroom <?= $conditions->bathroom ? $conditions->bathroom : 0 ?></span>
 								</li>
 								<li>
 									<img src="<?= get_template_directory_uri() . '/img/icons/icon-9.png' ?>" alt="">
-									<span>Garage <?= $conditions->garage  ? $conditions->garage  : 0 ?></span>
+									<span>Garage <?= $conditions->garage ? $conditions->garage : 0 ?></span>
 								</li>
 								<li>
 									<img src="<?= get_template_directory_uri() . '/img/icons/icon-10.png' ?>" alt="">
-									<span>Kitchen <?= $conditions->kitchen  ? $conditions->kitchen  : 0 ?></span>
+									<span>Kitchen <?= $conditions->kitchen ? $conditions->kitchen : 0 ?></span>
 								</li>
 							</ul>
-							<div class="property-location">
-								<p><img src="<?= get_template_directory_uri() . '/img/icons/icon-11.png' ?>" alt=""> <?= $location  ?></p>
-							</div>
 						</div>
 					</div>
 				</div>
@@ -108,9 +111,9 @@ if ( post_password_required() ) {
 						<div class="amenities-list">
 							<ul>
 								<?php
-								if ($amenities):
-									foreach ($amenities as $amenitie): ?>
-										<li><i class="fa fa-check-square-o"></i> <span><?= $amenitie['label'] ?></span></li>
+								if ( $amenities ):
+									foreach ( $amenities as $amenitie ): ?>
+										<li><i class="fa fa-check-circle"></i> <span><?= $amenitie['label'] ?></span></li>
 									<?php
 									endforeach;
 								endif;
@@ -121,22 +124,40 @@ if ( post_password_required() ) {
 				</div>
 			</div>
 		</div>
+		<!-- Condition & Amenities end-->
+
+		<!-- Description -->
+		<div class="single-property-description">
+			<div class="desc-title">
+				<h5>Description</h5>
+			</div>
+			<div class="description-inner">
+				<p>
+					<?= $product->get_description(); ?>
+				</p>
+			</div>
+		</div>
+		<!-- descriotion .end -->
+
 		<div class="planning">
 			<div class="row">
-				<div class="google-map">
-					<div class="google-map-title">
-						<h5>Voir l'adresse sur la carte</h5>
-					</div>
-					<div class="google-map-content">
-						<?php
-						$location = get_field('map', $product->ID);
-						if( ! empty($location) ):
-							?>
-							<div class="acf-map">
-								<div class="marker" data-lat="<?php echo $location['lat']; ?>" data-lng="<?php echo $location['lng']; ?>"></div>
+				<div class="col-md-12">
+					<?php
+					if ( ! empty( $location ) ):
+						$location = get_field( 'map', $product->ID );
+						?>
+						<div class="google-map">
+							<div class="google-map-title">
+								<h5>Sur la carte</h5>
 							</div>
-						<?php endif; ?>
-					</div>
+							<div class="google-map-content">
+								<div class="acf-map">
+									<div class="marker" data-lat="<?= $location['lat']; ?>"
+									     data-lng="<?= $location['lng']; ?>"></div>
+								</div>
+							</div>
+						</div>
+					<?php endif; ?>
 				</div>
 			</div>
 		</div>

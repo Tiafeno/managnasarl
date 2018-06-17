@@ -52,7 +52,7 @@ if ( ! class_exists( 'msServices' ) ) :
 					'base' => 'EUR',
 					'symbols'   => 'MGA',
 			];
-			foreach($fields as $key=>$value) { $fields_string .= $key.'='.$value.'&'; }
+			foreach ($fields as $key=>$value) { $fields_string .= $key.'='.$value.'&'; }
 			rtrim($fields_string, '&');
 			// Open connection
 			$ch = curl_init();

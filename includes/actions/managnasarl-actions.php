@@ -103,7 +103,24 @@ function embed_style_header() {
 	      margin: 20px 0;
       }
 
-      /* fixes potential theme css conflict */
+      .single-property-details .price {
+	      font-size: 30px !important;
+      }
+      .single-property-details .property-condition-list,
+      .single-property-details .amenities-list {
+	      background: #E7E7E7 none repeat scroll 0 0;
+      }
+	    .amenities-list ul li {
+		    font-size: 13px;
+		    margin-bottom: 15px;
+	    }
+	    .property-condition-list li span {
+		    font-size: 13px;
+	    }
+	    .property-condition-list li {
+		    margin-bottom: 20px;
+	    }
+	      /* fixes potential theme css conflict */
       .acf-map img {
 	      max-width: inherit !important;
       }
