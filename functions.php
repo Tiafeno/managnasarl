@@ -75,7 +75,11 @@ add_action( 'after_setup_theme', function () {
 	add_theme_support( 'title-tag' );
 
 	// Render this template compatible with woocommerce
-	add_theme_support( 'woocommerce' );
+	add_theme_support( 'woocommerce', [
+		'thumbnail_image_width' => 300,
+		'gallery_thumbnail_image_width' => 100,
+		'single_image_width' => 600,
+	] );
 
 	/** Register menu location */
 	register_nav_menus( array(

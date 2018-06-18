@@ -33,14 +33,14 @@ do_action( 'woocommerce_before_single_product' );
 
 if ( function_exists( 'get_field' ) ):
 	// View acf.php file
-	$property          = get_field( 'property', $product->ID ); // 0:house, 1:ground
-	$basic_information = get_field( 'basic_information', $product->ID );
+	$property          = get_field( 'property', $product->get_id() ); // 0:house, 1:ground
+	$basic_information = get_field( 'basic_information', $product->get_id() );
 	$location          = $basic_information['location'];
 	$status            = $basic_information['status'] ? $basic_information['status'] : false;
 
-	$condition  = get_field( 'condition', $product->ID );
+	$condition  = get_field( 'condition', $product->get_id() );
 	$conditions = (object) $condition;
-	$amenities  = get_field( 'amenities', $product->ID );
+	$amenities  = get_field( 'amenities', $product->get_id() );
 endif;
 $main_thumbnail = wp_get_attachment_image_src( $product->get_image_id(), 'large' );
 if ( post_password_required() ) {
@@ -155,7 +155,7 @@ if ( post_password_required() ) {
 				<div class="col-md-12">
 					<?php
 					if ( ! empty( $location ) ):
-						$location = get_field( 'map', $product->ID );
+						$location = get_field( 'map', $product->get_id() );
 						?>
 						<div class="google-map">
 							<div class="google-map-title">

@@ -33,7 +33,7 @@ if ( ! class_exists( 'vcOurOffersBox' ) ) :
 		private function get_product_params( $posts ) {
 			array_walk($posts, function (&$post) {
 				$post->post_url       = get_the_permalink( $post->ID );
-				$post->post_thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'large' );
+				$post->post_thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'woocommerce_thumbnail');
 
 				$product     = wc_get_product( $post->ID );
 				$post->price = $product->get_price();

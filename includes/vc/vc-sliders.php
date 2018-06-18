@@ -69,7 +69,6 @@ class vcSlidersBox extends WPBakeryShortCode {
 
 				$description = $information['description'];
 				$link        = $information['link'];
-
 				$container->image_url = $image;
 				$container->desc      = $description;
 				$container->link      = $link ? $link : '';

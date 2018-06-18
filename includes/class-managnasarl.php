@@ -175,6 +175,7 @@ if ( ! class_exists( 'ManagnaSarl' ) ) :
 			wp_enqueue_style( 'responsive', get_template_directory_uri() . '/assets/css/responsive.css', '', $managnaSarl->version );
 			/** customizer style css */
 			wp_enqueue_style( 'customizer', get_template_directory_uri() . '/assets/css/style-customizer.css', '', $managnaSarl->version );
+			wp_enqueue_style('PT-sans', "//fonts.googleapis.com/css?family=PT+Sans:400,400i,700,700i");
 
 			/**
 			 * Scripts

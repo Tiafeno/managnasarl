@@ -10,11 +10,11 @@ $status_values = [
   'for_rent' => "FOR RENT"
 ];
 if (function_exists('get_field')):
-  $basic_information = get_field('basic_information', $product->ID);
+  $basic_information = get_field('basic_information', $product->get_id());
   $location = $basic_information['location'];
   $status = $basic_information['status'] ? $basic_information['status'] : false;
 
-  $condition = get_field('condition', $product->ID);
+  $condition = get_field('condition', $product->get_id());
   $conditions = (object) $condition;
 endif;
 

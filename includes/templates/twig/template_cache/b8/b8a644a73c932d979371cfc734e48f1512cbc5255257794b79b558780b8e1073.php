@@ -16,7 +16,7 @@ class __TwigTemplate_f9cec453e4e3cca61eef57623a2e80f44ab7857327cf902038f560c1502
     protected function doDisplay(array $context, array $blocks = array())
     {
         // line 1
-        echo "<!DOCTYPE html>
+        echo "
 <!--
   ~ Copyright (c) 2018 Tiafeno Finel
   ~
@@ -39,13 +39,14 @@ class __TwigTemplate_f9cec453e4e3cca61eef57623a2e80f44ab7857327cf902038f560c1502
   ~ SOFTWARE.
   -->
 
+<!-- Property recently section start-->
 <div class=\"property-area fadeInUp wow ptb-40\" data-wow-delay=\"0.2s\" >
   <div class=\"container\">
     <div class=\"row\">
       <div class=\"col-md-12\">
         <div class=\"feature-property-title\">
           <h3>";
-        // line 29
+        // line 30
         echo twig_escape_filter($this->env, (isset($context["title"]) ? $context["title"] : null), "html", null, true);
         echo "</h3>
         </div>
@@ -56,20 +57,20 @@ class __TwigTemplate_f9cec453e4e3cca61eef57623a2e80f44ab7857327cf902038f560c1502
         <div role=\"tabpanel\" class=\"tab-pane active\">
           <div class=\"property-list\">
           ";
-        // line 37
+        // line 38
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["posts"]) ? $context["posts"] : null));
         foreach ($context['_seq'] as $context["_key"] => $context["post"]) {
-            // line 38
+            // line 39
             echo "            <div class=\"col-md-4\">
               <div class=\"single-property\">
                 <div class=\"property-img\">
                   <a href=\"";
-            // line 41
+            // line 42
             echo twig_escape_filter($this->env, $this->getAttribute($context["post"], "post_url", array()), "html", null, true);
             echo "\">
                     <img src=\"";
-            // line 42
+            // line 43
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($context["post"], "post_thumbnail", array()), 0, array(), "array"), "html", null, true);
             echo "\" alt=\"\">
                   </a>
@@ -78,23 +79,25 @@ class __TwigTemplate_f9cec453e4e3cca61eef57623a2e80f44ab7857327cf902038f560c1502
                   <div class=\"property-desc-top\">
                     <h6>
                       <a href=\"";
-            // line 48
+            // line 49
             echo twig_escape_filter($this->env, $this->getAttribute($context["post"], "post_url", array()), "html", null, true);
+            echo "\" title=\"";
+            echo twig_escape_filter($this->env, $this->getAttribute($context["post"], "post_title", array()), "html", null, true);
             echo "\">
                         ";
-            // line 49
-            echo twig_escape_filter($this->env, $this->getAttribute($context["post"], "post_title", array()), "html", null, true);
+            // line 50
+            echo twig_escape_filter($this->env, twig_slice($this->env, $this->getAttribute($context["post"], "post_title", array()), 0, 30), "html", null, true);
             echo "
                       </a>
                     </h6>
                     <h4 class=\"price euroMoney\">";
-            // line 52
+            // line 53
             echo twig_escape_filter($this->env, $this->getAttribute($context["post"], "price", array()), "html", null, true);
             echo "</h4>
                     <p class=\"mg-price mgaMoney\"></p>
                     <div class=\"property-location\">
                       <p><img src=\"";
-            // line 55
+            // line 56
             echo twig_escape_filter($this->env, (isset($context["get_template_directory_uri"]) ? $context["get_template_directory_uri"] : null), "html", null, true);
             echo "/img/icons/icon-5.png\" alt=\"\">";
             echo twig_escape_filter($this->env, $this->getAttribute($context["post"], "location", array()), "html", null, true);
@@ -106,41 +109,41 @@ class __TwigTemplate_f9cec453e4e3cca61eef57623a2e80f44ab7857327cf902038f560c1502
                       <ul>
                         <li>
                           <img src=\"";
-            // line 62
+            // line 63
             echo twig_escape_filter($this->env, (isset($context["get_template_directory_uri"]) ? $context["get_template_directory_uri"] : null), "html", null, true);
             echo "/img/icons/icon-1.png\" alt=\"\">
                           <span>";
-            // line 63
+            // line 64
             echo twig_escape_filter($this->env, $this->getAttribute($context["post"], "surface", array()), "html", null, true);
             echo " sqft</span>
                         </li>
                         <li>
                           <img src=\"";
-            // line 66
+            // line 67
             echo twig_escape_filter($this->env, (isset($context["get_template_directory_uri"]) ? $context["get_template_directory_uri"] : null), "html", null, true);
             echo "/img/icons/icon-2.png\" alt=\"\">
                           <span>";
-            // line 67
+            // line 68
             echo twig_escape_filter($this->env, $this->getAttribute($context["post"], "bedroom", array()), "html", null, true);
             echo "</span>
                         </li>
                         <li>
                           <img src=\"";
-            // line 70
+            // line 71
             echo twig_escape_filter($this->env, (isset($context["get_template_directory_uri"]) ? $context["get_template_directory_uri"] : null), "html", null, true);
             echo "/img/icons/icon-3.png\" alt=\"\">
                           <span>";
-            // line 71
+            // line 72
             echo twig_escape_filter($this->env, $this->getAttribute($context["post"], "bathroom", array()), "html", null, true);
             echo "</span>
                         </li>
                         <li>
                           <img src=\"";
-            // line 74
+            // line 75
             echo twig_escape_filter($this->env, (isset($context["get_template_directory_uri"]) ? $context["get_template_directory_uri"] : null), "html", null, true);
             echo "/img/icons/icon-4.png\" alt=\"\">
                           <span>";
-            // line 75
+            // line 76
             echo twig_escape_filter($this->env, $this->getAttribute($context["post"], "garage", array()), "html", null, true);
             echo "</span>
                         </li>
@@ -155,14 +158,15 @@ class __TwigTemplate_f9cec453e4e3cca61eef57623a2e80f44ab7857327cf902038f560c1502
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['post'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 84
+        // line 85
         echo "
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>";
+</div>
+<!-- Property recently section end-->";
     }
 
     public function getTemplateName()
@@ -177,7 +181,7 @@ class __TwigTemplate_f9cec453e4e3cca61eef57623a2e80f44ab7857327cf902038f560c1502
 
     public function getDebugInfo()
     {
-        return array (  159 => 84,  144 => 75,  140 => 74,  134 => 71,  130 => 70,  124 => 67,  120 => 66,  114 => 63,  110 => 62,  98 => 55,  92 => 52,  86 => 49,  82 => 48,  73 => 42,  69 => 41,  64 => 38,  60 => 37,  49 => 29,  19 => 1,);
+        return array (  162 => 85,  147 => 76,  143 => 75,  137 => 72,  133 => 71,  127 => 68,  123 => 67,  117 => 64,  113 => 63,  101 => 56,  95 => 53,  89 => 50,  83 => 49,  74 => 43,  70 => 42,  65 => 39,  61 => 38,  50 => 30,  19 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */

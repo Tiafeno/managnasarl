@@ -112,10 +112,10 @@ if ( ! class_exists( 'msServices' ) ) :
 		}
 
 		/**
-		 * @return int|mixed|void
+		 * @return mixed
 		 */
 		public function getCurrencyMGA() {
-			if ($this->EUR2MGA == 0) return $this->getCurrency();
+			if ( ! $this->EUR2MGA instanceof stdClass) return $this->getCurrency();
 			return $this->EUR2MGA;
 		}
 	}

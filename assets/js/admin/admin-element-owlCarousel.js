@@ -24,8 +24,9 @@
   $(document).ready(function () {
 
     $(".property-list").owlCarousel({
-      autoPlay: false,
+      autoPlay: true,
       slideSpeed: 2000,
+      autoWidth: true,
       pagination: false,
       navigation: true,
       items: 3,

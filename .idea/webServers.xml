@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="9be0db9c-f41a-44a0-9de9-c2e108d9e453" name="Managna Immo" url="http://ftp.mikeamada.com">
+        <fileTransfer host="ftp.mikeamada.com" port="22" rootFolder="/home/mikeamad/public_html/managna-immo/wp-content/themes/managnasarl" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
