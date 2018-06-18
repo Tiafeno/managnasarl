@@ -99,22 +99,6 @@
   ----------------------*/
     $('.parallax').parallax("50%", 0.5);
 
-    /*------------------
-        5. Price Slider
-    --------------------------*/
-    $("#slider-range").slider({
-      range: true,
-      min: 20,
-      max: 2500,
-      values: [600, 2000],
-      slide: function (event, ui) {
-        $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
-      }
-    });
-    $("#amount").val("$" + $("#slider-range").slider("values", 0) +
-      " - $" + $("#slider-range").slider("values", 1));
-
-
     /*--------------------------
       Counter Up
     ---------------------------- */
