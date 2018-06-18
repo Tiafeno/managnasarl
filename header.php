@@ -29,9 +29,11 @@
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+
 	<!--[if lt IE 9]>
-	<script src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/js/html5.js"></script>
+		<script src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/js/html5.js"></script>
 	<![endif]-->
+
 	<!-- Place favicon.ico in the root directory -->
 
 	<!-- All css files are included here. -->

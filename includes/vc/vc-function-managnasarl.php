@@ -27,4 +27,5 @@ function vc_before_init_actions() {
 	// Require new custom Element
 	require_once( get_template_directory() . '/includes/vc/vc-property-recently.php' );
 	require_once( get_template_directory() . '/includes/vc/vc-sliders.php' );
+	require_once( get_template_directory() . '/includes/vc/vc-our-offers.php' );
 }

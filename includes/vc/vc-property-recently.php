@@ -34,50 +34,29 @@ class vcPropertyRecentlyBox extends WPBakeryShortCode {
 		add_shortcode( 'vc_property_recently', array( $this, 'vc_propertyrecent_html' ) );
 	}
 
-	private function acfParams( $posts ) {
-		array_walk($posts, function (&$value) {
-
-			// Get condition ACF fields
-			$conditions = get_field('condition', $value->ID);
-			$value->surface  = $conditions['surface'] ? $conditions['surface'] : 0;
-			$value->bedroom  = $conditions['bedroom'] ? $conditions['bedroom'] : 0;
-			$value->bathroom = $conditions['bathroom'] ? $conditions['bathroom'] : 0;
-			$value->garage   = $conditions['garage'] ? $conditions['garage'] : 0;
-
-			// Get basic informations ACF fields
-			$basic_information = get_field('basic_information', $value->ID);
-			$value->location = $basic_information['location'];
-			$value->status = $basic_information['status'];
-
-			// Get Amenities field
-			$value->amenities = get_field('amenities', $value->ID);
-		});
-		return $posts;
-	}
-
 	/**
 	 * @return array - List of posts
 	 */
 	private function getContents() {
-		$args = [
-				'post_type'      => 'product',
-				'post_status'    => 'publish',
-				'numberposts' => 10
+		$args  = [
+			'post_type'   => 'product',
+			'post_status' => 'publish',
+			'numberposts' => 10
 		];
 		$posts = get_posts( $args );
-		array_walk($posts, function (&$value, $key) {
-			$value->post_url = get_the_permalink($value->ID);
+		array_walk( $posts, function ( &$value, $key ) {
+			$value->post_url       = get_the_permalink( $value->ID );
 			$value->post_thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $value->ID ), 'large' );
 
-			$product = wc_get_product($value->ID);
+			$product      = wc_get_product( $value->ID );
 			$value->price = $product->get_price();
-		});
-		return $this->acfParams( $posts );
+		} );
+
+		return msServices::acfParams( $posts );
 	}
 
 	// Element Mapping
 	public function vc_propertyrecently_mapping() {
-		global $managnaSarl;
 
 		// Stop all if VC is not enabled
 		if ( ! defined( 'WPB_VC_VERSION' ) ) {
@@ -85,31 +64,30 @@ class vcPropertyRecentlyBox extends WPBakeryShortCode {
 		}
 		// Map the block with vc_map()
 		vc_map(
-				array(
-						'name'        => __( 'VC Recently Added', __SITENAME__ ),
-						'base'        => 'vc_property_recently',
-						'description' => __( 'Affiche les nouvelles propriétés récemment ajouter.', __SITENAME__ ),
-						'category'    => __( 'Managna Immo', __SITENAME__ ),
-						/*'front_enqueue_js' => array(
-								get_template_directory_uri().'/assets/js/main-admin.js'
-						),
-						*/
-						'params'      => array(
-								array(
-										'type'        => 'textfield',
-										'holder'      => 'h3',
-										'class'       => 'title-class',
-										'heading'     => __( 'Title', 'text-domain' ),
-										'param_name'  => 'title',
-										'value'       => __( 'Default value', 'text-domain' ),
-										'description' => __( 'Box Title', 'text-domain' ),
-										'admin_label' => false,
-										'weight'      => 0,
-										'group'       => 'Général',
-								),
+			array(
+				'name'        => __( 'VC Recently Added', __SITENAME__ ),
+				'base'        => 'vc_property_recently',
+				'description' => __( 'Affiche les nouvelles propriétés récemment ajouter.', __SITENAME__ ),
+				'category'    => __( 'Managna Immo', __SITENAME__ ),
+				/*'front_enqueue_js' => array(
+						get_template_directory_uri().'/assets/js/main-admin.js'
+				),
+				*/
+				'params'      => array(
+					array(
+						'type'        => 'textfield',
+						'holder'      => 'h3',
+						'class'       => 'title-class',
+						'heading'     => __( 'Title', __SITENAME__ ),
+						'param_name'  => 'title',
+						'value'       => __( 'Default value', __SITENAME__ ),
+						'description' => __( 'Box Title', __SITENAME__ ),
+						'admin_label' => false,
+						'weight'      => 0
+					),
 
-						)
 				)
+			)
 		);
 
 	}
@@ -120,20 +98,31 @@ class vcPropertyRecentlyBox extends WPBakeryShortCode {
 
 		// Params extraction
 		extract(
-				shortcode_atts(
-						array(
-								'title' => ''
-						),
-						$atts
-				)
+			shortcode_atts(
+				array(
+					'title' => ''
+				),
+				$atts
+			)
 		);
-		wp_enqueue_script( 'admin-element-owlCarousel', get_template_directory_uri() . '/assets/js/admin/admin-element-owlCarousel.js', array('jquery', 'owl-carousel'), $managnaSarl->version, true );
+		wp_enqueue_script( 'admin-element-owlCarousel', get_template_directory_uri() . '/assets/js/admin/admin-element-owlCarousel.js', array(
+			'jquery',
+			'owl-carousel'
+		), $managnaSarl->version, true );
 		$contents = $this->getContents();
-		return $twig->render('@VC/property-recently.html', [
-				'posts' => $contents,
+
+		/** @var string $title */
+		try {
+			return $twig->render( '@VC/property-recently.html', [
+				'posts'                      => $contents,
 				'get_template_directory_uri' => get_template_directory_uri(),
-				'title' => $title
-		]);
+				'title'                      => $title
+			] );
+		} catch ( Twig_Error_Loader $e ) {
+		} catch ( Twig_Error_Runtime $e ) {
+		} catch ( Twig_Error_Syntax $e ) {
+			echo $e->getRawMessage();
+		}
 
 	}
 

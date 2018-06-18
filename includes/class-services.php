@@ -43,6 +43,33 @@ if ( ! class_exists( 'msServices' ) ) :
 		}
 
 		/**
+		 * @param array $posts Liste d'objet WP_Post
+		 *
+		 * @return array
+		 */
+		public static function acfParams( $posts ) {
+			array_walk( $posts, function ( &$value ) {
+
+				// Get condition ACF fields
+				$conditions      = get_field( 'condition', $value->ID );
+				$value->surface  = $conditions['surface'] ? $conditions['surface'] : 0;
+				$value->bedroom  = $conditions['bedroom'] ? $conditions['bedroom'] : 0;
+				$value->bathroom = $conditions['bathroom'] ? $conditions['bathroom'] : 0;
+				$value->garage   = $conditions['garage'] ? $conditions['garage'] : 0;
+
+				// Get basic informations ACF fields
+				$basic_information = get_field( 'basic_information', $value->ID );
+				$value->location   = $basic_information['location'];
+				$value->status     = $basic_information['status'];
+
+				// Get Amenities field
+				$value->amenities = get_field( 'amenities', $value->ID );
+			} );
+
+			return $posts;
+		}
+
+		/**
 		 * Récuperer l'echange en cours pour EUR en MGA
 		 */
 		public function getCurrency() {
