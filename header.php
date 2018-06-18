@@ -157,6 +157,7 @@
 	</header>
 	<!--Header section end-->
 
+
 	<!-- Alert -->
 		<?= managna_alert() ?>
 	<!-- Alert end-->

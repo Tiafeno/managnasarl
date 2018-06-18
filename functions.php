@@ -36,6 +36,8 @@ $managnaSarl = (object) array(
 	'services' => require 'includes/class-services.php',
 );
 
+$managnaSarl->main->search_filter_query();
+
 require 'includes/managnasarl-functions.php';
 require 'includes/walker-menu.php';
 require 'includes/acf.php'; // ACF
