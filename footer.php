@@ -47,7 +47,7 @@
 										'menu_class'      => "",
 										'theme_location'  => 'menu-footer',
 										'container'       => 'div',
-										'container_id' => 'dropdown'
+										'container_class' => 'footer-menu'
 									] );
 								endif;
 								?>
