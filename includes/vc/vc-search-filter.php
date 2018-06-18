@@ -70,10 +70,7 @@ if ( ! class_exists( 'vcSearchFilterBox' ) ) :
 				)
 			);
 
-			wp_enqueue_script( 'admin-element-search-filter', get_template_directory_uri() . '/assets/js/admin/admin-search-filter.js', array(
-				'jquery',
-				'managnasarl-plugins'
-			), $managnaSarl->version, true );
+			wp_enqueue_script('admin-element-search-filter');
 
 			/** @var string $title */
 			try {

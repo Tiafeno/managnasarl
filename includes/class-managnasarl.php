@@ -32,6 +32,9 @@ if ( ! class_exists( 'ManagnaSarl' ) ) :
 			add_action( 'widgets_init', array( $this, 'widgets_init' ) );
 			add_action( 'wp_enqueue_scripts', array( $this, 'scripts' ) );
 			add_action( 'init', array( $this, 'init' ) );
+			add_action( 'widgets_init', function () {
+				register_widget('SearchFilterWidget');
+			});
 
 			add_filter( 'body_class', array( $this, 'body_classes' ) );
 
@@ -151,14 +154,21 @@ if ( ! class_exists( 'ManagnaSarl' ) ) :
 			) );
 
 			register_sidebar( array(
-				'name'          => 'Sidebar Right',
-				'id'            => 'sidebar-right',
-				'description'   => 'Add widgets here to appear in search position.',
-				'before_widget' => '<div id="%1$s" class="%2$s uk-text-meta menu-area">',
-				'after_widget'  => '</div>',
-				'before_title'  => '<div class="">',
-				'after_title'   => '</div>'
+				'name'          => 'Sidebar Shop',
+				'id'            => 'sidebar-shop',
+				'description'   => 'Add widgets here to appear in shop right position.',
+				'before_widget' => '<aside id="%1$s" class="%2$s single-side-box">',
+				'after_widget'  => '</aside>',
+				'before_title'  => '<div class="aside-title"><h5>',
+				'after_title'   => '</h5></div>'
 			) );
+		}
+
+		private function register_scripts($version) {
+			wp_register_script( 'admin-element-search-filter', get_template_directory_uri() . '/assets/js/admin/admin-search-filter.js', array(
+				'jquery',
+				'managnasarl-plugins'
+			), $version, true );
 		}
 
 		public function scripts() {
@@ -175,7 +185,7 @@ if ( ! class_exists( 'ManagnaSarl' ) ) :
 			wp_enqueue_style( 'responsive', get_template_directory_uri() . '/assets/css/responsive.css', '', $managnaSarl->version );
 			/** customizer style css */
 			wp_enqueue_style( 'customizer', get_template_directory_uri() . '/assets/css/style-customizer.css', '', $managnaSarl->version );
-			wp_enqueue_style('PT-sans', "//fonts.googleapis.com/css?family=PT+Sans:400,400i,700,700i");
+			wp_enqueue_style( 'PT-sans', "//fonts.googleapis.com/css?family=PT+Sans:400,400i,700,700i" );
 
 			/**
 			 * Scripts
@@ -208,6 +218,8 @@ if ( ! class_exists( 'ManagnaSarl' ) ) :
 					'templateUrl' => get_template_directory_uri(),
 					'ajax_url'    => admin_url( 'admin-ajax.php' )
 				] );
+
+			$this->register_scripts($managnaSarl->version);
 		}
 
 		/**

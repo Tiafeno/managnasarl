@@ -30,6 +30,11 @@ define( '__SITENAME__', 'ManagnaImmo' );
 define( 'TWIG_TEMPLATE_PATH', get_template_directory() . '/includes/templates/twig' );
 
 $theme = wp_get_theme( 'managnasarl' );
+
+// Widgets files
+require 'includes/widgets/widget-contact-form.php';
+require 'includes/widgets/widget-search-form.php';
+
 $managnaSarl = (object) array(
 	'version'  => $theme->get( 'Version' ),
 	'main'     => require 'includes/class-managnasarl.php',
@@ -50,8 +55,9 @@ require 'vendor/autoload.php';
 try {
 
 	$loader = new Twig_Loader_Filesystem();
-	$loader->addPath( TWIG_TEMPLATE_PATH . '/front', 'front' );
 	$loader->addPath( TWIG_TEMPLATE_PATH . '/admin', 'admin' );
+	$loader->addPath( TWIG_TEMPLATE_PATH . '/widgets/front', 'WIDGETS_FRONT' );
+	$loader->addPath( TWIG_TEMPLATE_PATH . '/widgets/back', 'WIDGETS_BACK' );
 	$loader->addPath( TWIG_TEMPLATE_PATH . '/vc', 'VC' );
 	$twig = new Twig_Environment( $loader, array(
 		'debug'       => WP_DEBUG,

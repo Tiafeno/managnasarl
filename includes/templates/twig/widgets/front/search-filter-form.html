@@ -1,0 +1,62 @@
+<div class="find_home-box">
+  <div class="find_home-box-inner">
+    <form role="search" method="get" action="{{ search['action'] }}">
+      <div class="find-home-cagtegory">
+        <div class="row">
+
+          <div class="col-md-6">
+            <div class="find-home-item custom-select ">
+              <select name="property" class="selectpicker" title="Type de bien" data-hide-disabled="true" data-live-search="false">
+                <option value="">Type de bien</option>
+                <option value="house">Maison</option>
+                <option value="ground">Terrain</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="find-home-item custom-select">
+              <select name="status" class="selectpicker" title="Louer / Acheter" data-hide-disabled="true" data-live-search="false">
+                <option value="">Louer / Acheter</option>
+                <option value="for_rent">A Louer</option>
+                <option value="for_sale">A Vendre</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="find-home-item">
+              <input type="number" name="area" placeholder="Nombre de pièces">
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="find-home-item no-caret  custom-select">
+              <input type="search" class="search-field" value="{{ search['search_query'] }}" name="s" placeholder="Votre recherche ici">
+            </div>
+          </div>
+
+          <div class="find-home_bottom">
+            <div class="col-md-12">
+              <div class="find-home-item">
+                <!-- shop-filter -->
+                <div class="shop-filter">
+                  <div class="price_filter">
+                    <div class="price_slider_amount">
+                      <input type="submit" value="Echelle des prix"/>
+                      <input type="text" id="amount" name="price" placeholder="Add Your Price"/>
+                    </div>
+                    <div id="slider-range"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="find-home-item">
+                <input type="hidden" name="post_type" value="product" />
+                <button type="submit">RECHERCHE</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

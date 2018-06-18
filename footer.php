@@ -21,7 +21,7 @@
  * SOFTWARE.
  */
 ?>
-		<footer class="footer wow fadeIn" data-wow-duration="1.3s" data-wow-delay="0.5s">
+		<footer class="footer">
 			<div class="footer-top">
 				<div class="footer-top">
 					<div class="container">
@@ -54,7 +54,7 @@
 							</div>
 							<div class="col-md-5 col-sm-12 col-xs-12">
 								<div class="copyright">
-									<p>Copyright <i class="fa fa-copyright"></i> 2018 <a href="#falicrea">Falicrea</a>. All rights reserved.</p>
+									<p>Copyright <i class="fa fa-copyright"></i> 2018. All rights reserved.</p>
 								</div>
 							</div>
 						</div>

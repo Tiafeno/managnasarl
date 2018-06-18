@@ -80,11 +80,7 @@ get_header( 'shop' ); ?>
         <div class="col-md-4 col-sm-6 col-xs-12">
           <div class="sidebar right-side">
 	          <?php
-	          /**
-	           * woocommerce_sidebar hook.
-	           * @hooked woocommerce_get_sidebar - 10
-	           */
-	          do_action( 'woocommerce_sidebar' );
+	          get_sidebar('shop');
 	          ?>
           </div>
         </div>

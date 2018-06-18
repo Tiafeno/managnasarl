@@ -20,8 +20,8 @@
  * SOFTWARE.
  */
 
-(function($) {
-  $(document).ready(function() {
+(function ($) {
+  $(document).ready(function () {
     var euroMoney = $('.euroMoney');
 
     $.each(euroMoney, function (key, element) {
@@ -31,18 +31,37 @@
         return new Intl.NumberFormat('de-DE', {
           style: 'currency',
           currency: 'EUR'
-        }).format( curValue );
+        }).format(curValue);
       });
       var parent = $(element).parents('.property-desc-top');
       parent
         .find('.mgaMoney')
-        .text(function() {
+        .text(function () {
           var curValue = price * jManagna.currency.rates.MGA;
           return new Intl.NumberFormat('de-DE', {
             style: 'currency',
             currency: 'MGA'
-          }).format( curValue );
+          }).format(curValue);
         });
+    });
+
+    var fluidContainerJs = $('.vc-js-container');
+    var __container__ = $('.container').eq(0);
+    var __window__ = $(window);
+
+    function syncContainerFluid() {
+      var containerWidth = __container__.width();
+      var windowInnerWidth = __window__.innerWidth();
+      fluidContainerJs.each(function (i, element) {
+        var mgl = Math.abs(windowInnerWidth - containerWidth) / 2;
+        $(element).css({'padding-left': parseInt(mgl) });
+      });
+    }
+
+    syncContainerFluid();
+    __window__.resize(function () {
+      syncContainerFluid();
     })
+
   })
 })(jQuery);

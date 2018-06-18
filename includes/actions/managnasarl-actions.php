@@ -157,6 +157,30 @@ function embed_style_header() {
 	      max-width: inherit !important;
       }
 
+      /**
+      Find
+      */
+			.find-home {
+				padding: 50px 0;
+			}
+			.find_home-box .price_filter {
+				width: 100%;
+			}
+
+			/**
+			Sidebar
+			*/
+			.aside-title h5 {
+				color: #000;
+				font-weight: 300;
+				text-transform: uppercase;
+			}
+			.aside-title h5::before {
+				background: #101010 none repeat scroll 0 0;
+				height: 1px;
+				width: 100%;
+			}
+
 	    /**
 	    Footer
 	     */
