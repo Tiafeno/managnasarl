@@ -125,6 +125,13 @@ function embed_style_header() {
 	      max-width: inherit !important;
       }
 
+	    /**
+	    Footer
+	     */
+	    .footer-bottom {
+		    background: #575757 none repeat scroll 0 0;
+	    }
+
     </style>
   <?php
 }

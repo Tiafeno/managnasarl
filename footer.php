@@ -41,15 +41,16 @@
 					<div class="container">
 						<div class="row">
 							<div class="col-md-7 col-sm-12 col-xs-12">
-								<div class="footer-menu">
-									<ul>
-										<li><a href="https://devitems.com/html/haven-preview/haven/index.html">Home</a></li>
-										<li><a href="https://devitems.com/html/haven-preview/haven/about-us.html">About</a></li>
-										<li><a href="https://devitems.com/html/haven-preview/haven/services.html">Services</a></li>
-										<li><a href="https://devitems.com/html/haven-preview/haven/blog.html">BLog </a></li>
-										<li><a href="https://devitems.com/html/haven-preview/haven/contact.html">Contact </a></li>
-									</ul>
-								</div>
+								<?php
+								if ( has_nav_menu( "menu-footer" ) ) :
+									wp_nav_menu( [
+										'menu_class'      => "",
+										'theme_location'  => 'menu-footer',
+										'container'       => 'div',
+										'container_id' => 'dropdown'
+									] );
+								endif;
+								?>
 							</div>
 							<div class="col-md-5 col-sm-12 col-xs-12">
 								<div class="copyright">
