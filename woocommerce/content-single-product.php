@@ -32,14 +32,15 @@ global $product;
 do_action( 'woocommerce_before_single_product' );
 
 if ( function_exists( 'get_field' ) ):
+	// View acf.php file
+	$property          = get_field( 'property', $product->ID ); // 0:house, 1:ground
 	$basic_information = get_field( 'basic_information', $product->ID );
 	$location          = $basic_information['location'];
 	$status            = $basic_information['status'] ? $basic_information['status'] : false;
 
 	$condition  = get_field( 'condition', $product->ID );
 	$conditions = (object) $condition;
-
-	$amenities = get_field( 'amenities', $product->ID );
+	$amenities  = get_field( 'amenities', $product->ID );
 endif;
 $main_thumbnail = wp_get_attachment_image_src( $product->get_image_id(), 'large' );
 if ( post_password_required() ) {
@@ -83,61 +84,71 @@ if ( post_password_required() ) {
 									<img src="<?= get_template_directory_uri() . '/img/icons/icon-6.png' ?>" alt="">
 									<span>Area <?= $conditions->surface ? $conditions->surface : 0 ?> sqft</span>
 								</li>
-								<li>
-									<img src="<?= get_template_directory_uri() . '/img/icons/icon-7.png' ?>" alt="">
-									<span>Bedroom <?= $conditions->bedroom ? $conditions->bedroom : 0 ?></span>
-								</li>
-								<li>
-									<img src="<?= get_template_directory_uri() . '/img/icons/icon-8.png' ?>" alt="">
-									<span>Bathroom <?= $conditions->bathroom ? $conditions->bathroom : 0 ?></span>
-								</li>
-								<li>
-									<img src="<?= get_template_directory_uri() . '/img/icons/icon-9.png' ?>" alt="">
-									<span>Garage <?= $conditions->garage ? $conditions->garage : 0 ?></span>
-								</li>
-								<li>
-									<img src="<?= get_template_directory_uri() . '/img/icons/icon-10.png' ?>" alt="">
-									<span>Kitchen <?= $conditions->kitchen ? $conditions->kitchen : 0 ?></span>
-								</li>
+								<?php if ( $property != 'ground' ): ?>
+									<li>
+										<img src="<?= get_template_directory_uri() . '/img/icons/icon-7.png' ?>" alt="">
+										<span>Bedroom <?= $conditions->bedroom ? $conditions->bedroom : 0 ?></span>
+									</li>
+									<li>
+										<img src="<?= get_template_directory_uri() . '/img/icons/icon-8.png' ?>" alt="">
+										<span>Bathroom <?= $conditions->bathroom ? $conditions->bathroom : 0 ?></span>
+									</li>
+									<li>
+										<img src="<?= get_template_directory_uri() . '/img/icons/icon-9.png' ?>" alt="">
+										<span>Garage <?= $conditions->garage ? $conditions->garage : 0 ?></span>
+									</li>
+									<li>
+										<img src="<?= get_template_directory_uri() . '/img/icons/icon-10.png' ?>" alt="">
+										<span>Kitchen <?= $conditions->kitchen ? $conditions->kitchen : 0 ?></span>
+									</li>
+								<?php endif; ?>
 							</ul>
 						</div>
 					</div>
 				</div>
-				<div class="col-md-6 col-sm-12 col-xs-12">
-					<div class="amenities">
-						<div class="amenities-title">
-							<h5>Équipements</h5>
-						</div>
-						<div class="amenities-list">
-							<ul>
-								<?php
-								if ( $amenities ):
-									foreach ( $amenities as $amenitie ): ?>
-										<li><i class="fa fa-check-circle"></i> <span><?= $amenitie['label'] ?></span></li>
+
+				<?php if ( $property != 'ground' && ! empty( $amenities ) ): ?>
+					<div class="col-md-6 col-sm-12 col-xs-12">
+						<div class="amenities">
+							<div class="amenities-title">
+								<h5>Équipements</h5>
+							</div>
+							<div class="amenities-list">
+								<ul>
 									<?php
-									endforeach;
-								endif;
-								?>
-							</ul>
+									if ( $amenities ):
+										foreach ( $amenities as $amenitie ): ?>
+											<li><i class="fa fa-check-circle"></i> <span><?= $amenitie['label'] ?></span></li>
+										<?php
+										endforeach;
+									endif;
+									?>
+								</ul>
+							</div>
 						</div>
 					</div>
-				</div>
+				<?php endif; ?>
 			</div>
 		</div>
 		<!-- Condition & Amenities end-->
 
 		<!-- Description -->
-		<div class="single-property-description">
-			<div class="desc-title">
-				<h5>Description</h5>
+		<?php
+		$description = $product->get_description();
+		if ( ! empty( $description ) ) :
+			?>
+			<div class="single-property-description">
+				<div class="desc-title">
+					<h5>Description</h5>
+				</div>
+				<div class="description-inner">
+					<p>
+						<?= $description ?>
+					</p>
+				</div>
 			</div>
-			<div class="description-inner">
-				<p>
-					<?= $product->get_description(); ?>
-				</p>
-			</div>
-		</div>
-		<!-- descriotion .end -->
+		<?php endif; ?>
+		<!-- Description .end -->
 
 		<div class="planning">
 			<div class="row">
