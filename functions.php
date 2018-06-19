@@ -70,7 +70,7 @@ try {
 		'auto_reload' => true
 	) );
 } catch ( Twig_Error_Loader $e ) {
-	echo $e->getRawMessage();
+	die($e->getRawMessage());
 }
 
 // Custom action
