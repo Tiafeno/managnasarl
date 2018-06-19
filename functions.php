@@ -21,6 +21,10 @@
  * SOFTWARE.
  */
 
+/**
+ * https://codex.wordpress.org/Global_Variables
+ */
+
 define( '__fixer_io_api__', '28ad6224266d9afb599d399476fe0aed' );
 /**
  * Google API (ref: Web API)
@@ -58,6 +62,7 @@ try {
 	$loader->addPath( TWIG_TEMPLATE_PATH . '/admin', 'admin' );
 	$loader->addPath( TWIG_TEMPLATE_PATH . '/widgets/front', 'WIDGETS_FRONT' );
 	$loader->addPath( TWIG_TEMPLATE_PATH . '/widgets/back', 'WIDGETS_BACK' );
+	$loader->addPath( TWIG_TEMPLATE_PATH . '/mail', 'MAIL' );
 	$loader->addPath( TWIG_TEMPLATE_PATH . '/vc', 'VC' );
 	$twig = new Twig_Environment( $loader, array(
 		'debug'       => WP_DEBUG,

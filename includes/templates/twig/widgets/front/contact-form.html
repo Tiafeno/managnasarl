@@ -1,0 +1,87 @@
+<style>
+  .message-editor {
+    border: 1px solid rgba(144, 144, 144, 0.3803921568627451);
+    padding-top: 20px;
+  }
+  .message-editor p {
+  }
+  .mce-widget.mce-notification.mce-notification-info{
+    display: none;
+  }
+</style>
+<script type="text/javascript">
+  (function ($) {
+    $(document).ready(function () {
+      $('#contactformproperty')
+        .form({
+          fields: {
+            firstname     : {
+              identifier : 'firstname',
+              rules: [
+                {
+                  type: 'empty',
+                  prompt : 'Votre nom est obligatoire'
+                }
+              ]
+            },
+            email   : {
+              identifier: 'email',
+              rules:[
+                {
+                  type: 'email',
+                  prompt: 'Veuillez entrer un adresse e-mail valide'
+                }
+              ]
+            },
+          }
+        })
+      ;
+
+      console.log('TinyMCE is Ready!');
+      tinymce.init({
+        selector: '.message-editor',
+        theme: 'inlite',
+        height: 500,
+        plugins: 'image media table link paste contextmenu autolink ',
+        insert_toolbar: 'quickimage quicktable media ',
+        selection_toolbar: 'bold italic | quicklink h2 h3 h4 blockquote',
+        inline: true,
+        paste_data_images: true,
+        content_css: [
+          '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+          '//www.tinymce.com/css/codepen.min.css']
+      });
+    });
+  })(jQuery)
+</script>
+<form id="contactformproperty" class="ui form" role="form" method="post" action="{{ form['action'] }}">
+  <div class="two fields">
+    <div class="field">
+      <input name="firstname" placeholder="Votre nom" type="text">
+    </div>
+    <div class="field">
+
+    </div>
+  </div>
+  <div class="inline field">
+    <div class="ui left icon input">
+      <input name="email" type="text" placeholder="Adresse E-mail">
+      <i class="envelope icon"></i>
+    </div>
+  </div>
+  <div class="inline field ">
+    <div class="ui toggle checkbox">
+      <input type="checkbox" name="newsletter">
+      <label>Abonnez-vous à la newsletter</label>
+    </div>
+  </div>
+  <div class="inline field">
+    <div class="message-editor" id="message-editor"></div>
+  </div>
+  <div class="inline find-home-item">
+    <input type="hidden" name="post_id" value="{{form['post'].ID}}"/>
+    <input type="hidden" name="form" value="contact_form"/>
+    <button type="submit">ENVOYER</button>
+    <div class="ui error message"></div>
+  </div>
+</form>

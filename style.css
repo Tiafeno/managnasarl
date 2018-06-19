@@ -4,7 +4,7 @@ Theme URI:    http://managna-immo.com
 Author:       Falicrea Inc.
 Author URI:   https://falicrea.com/
 Description:  Designed and developed by Falicrea , it features a bespoke integration with WooCommerce itself plus many of the most popular customer facing WooCommerce extensions.
-Version:      1.0.32
+Version:      1.0.35
 License:      GNU General Public License v2 or later
 License URI:  https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain:  managnasarl
@@ -1295,7 +1295,6 @@ img{max-width: 100%}
     18. Breadcrumbs css here
 ----------------*/
 .breadcrumbs{
-    background: url(img/common/breadcrumbs.jpg)no-repeat scroll center center / cover;
     padding: 176px 0 19px;
     position: relative;
 }
@@ -2843,19 +2842,11 @@ article blockquote {
     31. Welcome fixd text css here
 ---------------*/
 .welcome-fixed-area{
-    background: url(img/slider/3.jpg)no-repeat scroll center center / cover;
     position: relative;
     height: 700px;
 }
-.welcome-fixed-area.parallax{
-    background: url(img/slider/3.jpg)no-repeat fixed center center / cover;
-}
-.welcome-fixed-area.youtube-bg{
-    background: url(img/slider/5.jpg)no-repeat fixed center center / cover;
-}
 
 .dotted-overlay::after {
-    background: url("img/icon/grid.png") repeat scroll 0 0;
     content: "";
     height: 100%;
     left: 0;

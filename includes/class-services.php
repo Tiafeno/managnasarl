@@ -31,14 +31,16 @@ if ( ! class_exists( 'msServices' ) ) :
 		private $fixerIOData = null;
 
 		public function __construct() {
-			$this->EUR2MGA = get_option('EUR2MGA', false);
-			if ( ! $this->EUR2MGA)
+			$this->EUR2MGA = get_option( 'EUR2MGA', false );
+			if ( ! $this->EUR2MGA ) {
 				$this->getCurrency();
-			if ($this->EUR2MGA instanceof stdClass) {
-				$optionDate = strtotime($this->EUR2MGA->date);
-				$today = strtotime(date('Y-m-d'));
-				if ($optionDate != $today)
+			}
+			if ( $this->EUR2MGA instanceof stdClass ) {
+				$optionDate = strtotime( $this->EUR2MGA->date );
+				$today      = strtotime( date( 'Y-m-d' ) );
+				if ( $optionDate != $today ) {
 					$this->getCurrency();
+				}
 			}
 		}
 
@@ -69,36 +71,85 @@ if ( ! class_exists( 'msServices' ) ) :
 			return $posts;
 		}
 
+		public static function sendMessage( $form ) {
+			if ( ! is_array( $form ) ) {
+				return;
+			}
+			add_filter( 'send_contact_property', function ( $contact_alert ) use ( $form ) {
+				global $twig;
+				if ( empty( $form['post_id'] ) ) {
+					return null;
+				}
+				$post_id = &$form['post_id'];
+				$product = wc_get_product( $post_id );
+				$product_thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ), 'woocommerce_thumbnail');
+
+				$content = $twig->render( '@MAIL/index.html', [
+					'firstname' => $form['firstname'],
+					'content'   => esc_html($form['message']),
+					'template_directory_uri' => get_template_directory_uri(),
+					'home_url' => home_url('/'),
+
+					'product_title'       => $product->get_title(),
+					'product_description' => $product->get_description(),
+					'product_price'       => $product->get_price(),
+					'product_thumbnail_url' => $product_thumbnail[0],
+					'product_url'         => get_the_permalink( $product->get_id() )
+
+				] );
+				/* Prepare to send mail */
+				$subject   = "Contact - " . $product->get_title();
+				$to        = 'contact@falicrea.com'; // Mode teste
+				$body      = &$content;
+				$headers[] = 'Content-Type: text/html; charset=UTF-8';
+				$headers[] = 'From: ' . esc_html( $form['firstname'] ) . ' <contact@managna-immo.com>';
+				$headers[] = 'Cc: contact@falicrea.com';
+				$headers[] = 'Cc: ' . $form['email'];
+
+				if ( wp_mail( $to, $subject, $body, $headers ) ) :
+					$contact_alert .= 'Votre message a étés bien envoyer';
+				else:
+					$contact_alert .= 'Une erreur est survenue lors de l\'envoi';
+				endif;
+
+				return $contact_alert;
+			}, 10, 1 );
+		}
+
 		/**
 		 * Récuperer l'echange en cours pour EUR en MGA
 		 */
 		public function getCurrency() {
 			$fields_string = '';
-			$fields = (object)[
-					'access_key' => __fixer_io_api__,
-					'base' => 'EUR',
-					'symbols'   => 'MGA',
+			$fields        = (object) [
+				'access_key' => __fixer_io_api__,
+				'base'       => 'EUR',
+				'symbols'    => 'MGA',
 			];
-			foreach ($fields as $key=>$value) { $fields_string .= $key.'='.$value.'&'; }
-			rtrim($fields_string, '&');
+			foreach ( $fields as $key => $value ) {
+				$fields_string .= $key . '=' . $value . '&';
+			}
+			rtrim( $fields_string, '&' );
 			// Open connection
 			$ch = curl_init();
-			curl_setopt($ch,CURLOPT_URL, "http://data.fixer.io/api/latest?access_key={$fields->access_key}&base={$fields->base}&symbols={$fields->symbols}");
-			curl_setopt_array($ch, [
-					CURLOPT_RETURNTRANSFER => 1
-			]);
+			curl_setopt( $ch, CURLOPT_URL, "http://data.fixer.io/api/latest?access_key={$fields->access_key}&base={$fields->base}&symbols={$fields->symbols}" );
+			curl_setopt_array( $ch, [
+				CURLOPT_RETURNTRANSFER => 1
+			] );
 			// Execute!
-			$response = curl_exec($ch);
+			$response = curl_exec( $ch );
 			// Close the connection, release resources used
-			curl_close($ch);
-			$this->fixerIOData = json_decode($response);
-			$rates = $this->fixerIOData->rates;
+			curl_close( $ch );
+			$this->fixerIOData = json_decode( $response );
+			$rates             = $this->fixerIOData->rates;
 
-			add_filter('add_message_alert', function($messageAlert) use ($rates) {
-				if (is_null($messageAlert))
+			add_filter( 'add_message_alert', function ( $messageAlert ) use ( $rates ) {
+				if ( is_null( $messageAlert ) ) {
 					$messageAlert = "Initialisation de la cours d'echange pour un Euro: " . $rates->MGA . "Ar";
+				}
+
 				return $messageAlert;
-			}, 10, 1);
+			}, 10, 1 );
 
 			return $this->updateCurrencyMGA();
 		}
@@ -107,7 +158,8 @@ if ( ! class_exists( 'msServices' ) ) :
 		 * Mettre à jours la valeur de l'echange
 		 */
 		public function updateCurrencyMGA() {
-			update_option('EUR2MGA', $this->fixerIOData);
+			update_option( 'EUR2MGA', $this->fixerIOData );
+
 			return $this->fixerIOData;
 		}
 
@@ -115,7 +167,10 @@ if ( ! class_exists( 'msServices' ) ) :
 		 * @return mixed
 		 */
 		public function getCurrencyMGA() {
-			if ( ! $this->EUR2MGA instanceof stdClass) return $this->getCurrency();
+			if ( ! $this->EUR2MGA instanceof stdClass ) {
+				return $this->getCurrency();
+			}
+
 			return $this->EUR2MGA;
 		}
 	}

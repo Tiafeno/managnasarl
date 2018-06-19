@@ -33,14 +33,15 @@ if ( ! class_exists( 'ManagnaSarl' ) ) :
 			add_action( 'wp_enqueue_scripts', array( $this, 'scripts' ) );
 			add_action( 'init', array( $this, 'init' ) );
 			add_action( 'widgets_init', function () {
-				register_widget('SearchFilterWidget');
-			});
+				register_widget( 'SearchFilterWidget' );
+				register_widget( 'ContactPropertyFormWidget' );
+			} );
 
 			add_filter( 'body_class', array( $this, 'body_classes' ) );
 
 			// Change shop product view per page
-			add_filter( 'loop_shop_per_page', 'new_loop_shop_per_page', 20 );
-			function new_loop_shop_per_page( $cols ) {
+			add_filter( 'loop_shop_per_page', 'override_loop_shop_per_page', 20 );
+			function override_loop_shop_per_page( $cols ) {
 				$cols = 6;
 
 				return $cols;
@@ -164,11 +165,23 @@ if ( ! class_exists( 'ManagnaSarl' ) ) :
 			) );
 		}
 
-		private function register_scripts($version) {
-			wp_register_script( 'admin-element-search-filter', get_template_directory_uri() . '/assets/js/admin/admin-search-filter.js', array(
+		private function register_scripts( $version ) {
+			wp_register_script( 'semantic-checkbox', get_template_directory_uri() . '/assets/js/semantic/checkbox.min.js', [ 'jquery' ], $version, true );
+			wp_register_script( 'semantic-form', get_template_directory_uri() . '/assets/js/semantic/form.min.js', [ 'jquery' ], $version, true );
+			wp_register_script( 'admin-element-search-filter', get_template_directory_uri() . '/assets/js/admin/admin-search-filter.js', [
 				'jquery',
 				'managnasarl-plugins'
-			), $version, true );
+			], $version, true );
+
+			wp_register_style( 'semantic-form', get_template_directory_uri() . '/assets/css/semantic/form.min.css', [], $version );
+			wp_register_style( 'semantic-icon', get_template_directory_uri() . '/assets/css/semantic/icon.min.css', [], $version );
+			wp_register_style( 'semantic-message', get_template_directory_uri() . '/assets/css/semantic/message.min.css', [], $version );
+			wp_register_style( 'semantic-checkbox', get_template_directory_uri() . '/assets/css/semantic/checkbox.min.css', [], $version );
+			wp_register_style( 'semantic-input', get_template_directory_uri() . '/assets/css/semantic/input.min.css', [], $version );
+
+			wp_register_style( 'Lato', '//fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic&subset=latin' );
+			wp_register_script('tinyMCE', '//cloud.tinymce.com/stable/tinymce.min.js?apiKey=2grxn9iofnxolcaedqa399sh4ft6c1mg3e1kumgnyq6o0ap1');
+
 		}
 
 		public function scripts() {
@@ -219,7 +232,7 @@ if ( ! class_exists( 'ManagnaSarl' ) ) :
 					'ajax_url'    => admin_url( 'admin-ajax.php' )
 				] );
 
-			$this->register_scripts($managnaSarl->version);
+			$this->register_scripts( $managnaSarl->version );
 		}
 
 		/**

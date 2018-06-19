@@ -23,15 +23,44 @@
 
 function managna_alert() {
 	$messageAlert = null;
-	$messageAlert = apply_filters('add_message_alert', $messageAlert);
-	if (is_null($messageAlert)) return;
+	// Return null si la filtre n'est pas ajouter dans le site
+	$messageAlert = apply_filters( 'add_message_alert', $messageAlert );
+	if ( is_null( $messageAlert ) ) {
+		return;
+	}
+
 	return '
 <div class="pt-50">
 	<div class="container">
 		<div class="alert alert-success" role="alert">
 		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-			'. $messageAlert .'
+			' . $messageAlert . '
 		</div>
 	</div>
 </div>';
+}
+
+function managna_contact_property() {
+	$contact_alert = null;
+	$inputForm     = ManagnaSarl::getValue( 'form' );
+	if ( $inputForm ) {
+		if ( $inputForm == 'contact_form' ) {
+			$form = [
+				'message'   => ManagnaSarl::getValue( 'message-editor' ),
+				'firstname' => ManagnaSarl::getValue( 'firstname' ),
+				'email'     => ManagnaSarl::getValue( 'email' ),
+				'post_id'   => (int) ManagnaSarl::getValue( 'post_id' )
+			];
+			msServices::sendMessage( $form );
+			$contact_alert = apply_filters( 'send_contact_property', $contact_alert );
+			if ( is_null( $contact_alert ) ) {
+				return;
+			}
+
+			echo '<div class="ui info message">
+							  <div class="header"> Information </div>
+							  <p>' . $contact_alert . '</p>
+							</div>';
+		}
+	}
 }
