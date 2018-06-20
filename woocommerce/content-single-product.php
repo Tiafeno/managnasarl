@@ -42,7 +42,7 @@ if ( function_exists( 'get_field' ) ):
 	$conditions = (object) $condition;
 	$amenities  = get_field( 'amenities', $product->get_id() );
 endif;
-$main_thumbnail = wp_get_attachment_image_src( $product->get_image_id(), 'large' );
+
 if ( post_password_required() ) {
 	echo get_the_password_form(); // WPCS: XSS ok.
 
@@ -54,7 +54,7 @@ if ( post_password_required() ) {
 	<div class="single-property-details">
 		<div class="property-details-img">
 			<?php woocommerce_show_product_sale_flash() ?>
-			<img src="<?= $main_thumbnail[0] ?>" alt="">
+			<?= do_shortcode('[property-carousel-image]') ?>
 		</div>
 
 		<div class="property-desc">

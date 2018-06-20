@@ -39,6 +39,8 @@ $theme = wp_get_theme( 'managnasarl' );
 require 'includes/widgets/widget-contact-form.php';
 require 'includes/widgets/widget-search-form.php';
 
+require 'includes/shortcode/property-details-image.php';
+
 $managnaSarl = (object) array(
 	'version'  => $theme->get( 'Version' ),
 	'main'     => require 'includes/class-managnasarl.php',
@@ -64,6 +66,7 @@ try {
 	$loader->addPath( TWIG_TEMPLATE_PATH . '/widgets/back', 'WIDGETS_BACK' );
 	$loader->addPath( TWIG_TEMPLATE_PATH . '/mail', 'MAIL' );
 	$loader->addPath( TWIG_TEMPLATE_PATH . '/vc', 'VC' );
+	$loader->addPath( TWIG_TEMPLATE_PATH . '/shortcodes', 'Shortcodes' );
 	$twig = new Twig_Environment( $loader, array(
 		'debug'       => WP_DEBUG,
 		'cache'       => TWIG_TEMPLATE_PATH . '/template_cache',

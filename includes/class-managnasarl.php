@@ -208,6 +208,8 @@ if ( ! class_exists( 'ManagnaSarl' ) ) :
 				'jquery',
 				'managnasarl-plugins'
 			], $version, true );
+			wp_register_script('jquery-slick', get_template_directory_uri() . '/assets/js/jquery/jquery.slick.js', ['jquery'], $version, true);
+			wp_register_style( 'slick', get_template_directory_uri() . '/assets/css/slick.css', [], $version );
 
 			wp_register_style( 'semantic-form', get_template_directory_uri() . '/assets/css/semantic/form.min.css', [], $version );
 			wp_register_style( 'semantic-icon', get_template_directory_uri() . '/assets/css/semantic/icon.min.css', [], $version );
