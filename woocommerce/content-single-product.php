@@ -82,7 +82,7 @@ if ( post_password_required() ) {
 							<ul>
 								<li>
 									<img src="<?= get_template_directory_uri() . '/img/icons/icon-6.png' ?>" alt="">
-									<span><?= __('Area', __SITENAME__) ?> <?= $conditions->surface ? $conditions->surface : 0 ?> sqft</span>
+									<span><?= __('Area', __SITENAME__) ?> <?= $conditions->surface ? $conditions->surface : 0 ?> m<sup>2</sup></span>
 								</li>
 								<?php if ( $property != 'ground' ): ?>
 									<li>

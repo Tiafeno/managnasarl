@@ -31,7 +31,7 @@ function set_property_bottom_list($condition) {
     <ul>
       <li>
         <img src="<?= get_template_directory_uri() . '/img/icons/icon-1.png' ?>" alt="">
-        <span><?= $condition->surface  ? $condition->surface  : 0 ?> sqft</span>
+        <span><?= $condition->surface  ? $condition->surface  : 0 ?> m<sup>2</sup></span>
       </li>
       <li>
         <img src="<?= get_template_directory_uri() . '/img/icons/icon-2.png' ?>" alt="">
@@ -58,6 +58,9 @@ function embed_style_header() {
 			}
 			h1, h2, h3, h4, h5, h6 {
 				font-family: 'PT Sans', sans-serif;
+			}
+			sup {
+				font-size: 10px;
 			}
 
 				/**
