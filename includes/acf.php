@@ -148,6 +148,7 @@ if ( function_exists( 'acf_add_local_field_group' ) ):
 				'choices' => array(
 					'house' => __('House', __SITENAME__),
 					'ground' => __('Ground', __SITENAME__),
+					'apartment' => __('Apartment', __SITENAME__),
 				),
 				'default_value' => array(
 				),
@@ -205,8 +206,8 @@ if ( function_exists( 'acf_add_local_field_group' ) ):
 							array(
 								array(
 									'field' => 'field_5b27638a3da2d',
-									'operator' => '==',
-									'value' => 'house',
+									'operator' => '!=',
+									'value' => 'ground',
 								),
 							),
 						),
@@ -234,8 +235,8 @@ if ( function_exists( 'acf_add_local_field_group' ) ):
 							array(
 								array(
 									'field' => 'field_5b27638a3da2d',
-									'operator' => '==',
-									'value' => 'house',
+									'operator' => '!=',
+									'value' => 'ground',
 								),
 							),
 						),
@@ -263,8 +264,8 @@ if ( function_exists( 'acf_add_local_field_group' ) ):
 							array(
 								array(
 									'field' => 'field_5b27638a3da2d',
-									'operator' => '==',
-									'value' => 'house',
+									'operator' => '!=',
+									'value' => 'ground',
 								),
 							),
 						),
@@ -292,8 +293,8 @@ if ( function_exists( 'acf_add_local_field_group' ) ):
 							array(
 								array(
 									'field' => 'field_5b27638a3da2d',
-									'operator' => '==',
-									'value' => 'house',
+									'operator' => '!=',
+									'value' => 'ground',
 								),
 							),
 						),
@@ -385,8 +386,8 @@ if ( function_exists( 'acf_add_local_field_group' ) ):
 					array(
 						array(
 							'field' => 'field_5b27638a3da2d',
-							'operator' => '==',
-							'value' => 'house',
+							'operator' => '!=',
+							'value' => 'ground',
 						),
 					),
 				),
