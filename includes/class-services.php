@@ -97,14 +97,17 @@ if ( ! class_exists( 'msServices' ) ) :
 					'product_url'         => get_the_permalink( $product->get_id() )
 
 				] );
+
+				$users = get_users();
 				/* Prepare to send mail */
 				$subject   = "Contact - " . $product->get_title();
 				$to        = 'contact@falicrea.com'; // Mode teste
 				$body      = &$content;
 				$headers[] = 'Content-Type: text/html; charset=UTF-8';
 				$headers[] = 'From: ' . esc_html( $form['firstname'] ) . ' <contact@managna-immo.com>';
-				$headers[] = 'Cc: contact@falicrea.com';
 				$headers[] = 'Cc: ' . $form['email'];
+				foreach ($users as $user)
+					$headers[] = 'Cc: ' . $user->user_email;
 
 				if ( wp_mail( $to, $subject, $body, $headers ) ) :
 					$contact_alert .= 'Votre message a étés bien envoyer';

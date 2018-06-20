@@ -134,7 +134,7 @@ if ( function_exists( 'acf_add_local_field_group' ) ):
 		'fields' => array(
 			array(
 				'key' => 'field_5b27638a3da2d',
-				'label' => 'Property',
+				'label' => __('Property', __SITENAME__),
 				'name' => 'property',
 				'type' => 'select',
 				'instructions' => '',
@@ -146,8 +146,8 @@ if ( function_exists( 'acf_add_local_field_group' ) ):
 					'id' => '',
 				),
 				'choices' => array(
-					'house' => 'House',
-					'ground' => 'Ground',
+					'house' => __('House', __SITENAME__),
+					'ground' => __('Ground', __SITENAME__),
 				),
 				'default_value' => array(
 				),
@@ -189,7 +189,7 @@ if ( function_exists( 'acf_add_local_field_group' ) ):
 						'default_value' => '',
 						'placeholder' => '',
 						'prepend' => '',
-						'append' => 'sqft',
+						'append' => 'm<sup>2</sup>',
 						'min' => '',
 						'max' => '',
 						'step' => '',
@@ -360,8 +360,8 @@ if ( function_exists( 'acf_add_local_field_group' ) ):
 							'id' => '',
 						),
 						'choices' => array(
-							'for_sale' => 'For Sale',
-							'for_rent' => 'For Rent',
+							'for_sale' => __('For sale', __SITENAME__),
+							'for_rent' => __('For sent', __SITENAME__),
 						),
 						'default_value' => array(
 						),

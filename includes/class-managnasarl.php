@@ -51,6 +51,12 @@ if ( ! class_exists( 'ManagnaSarl' ) ) :
 			add_filter( 'acf/init', function () {
 				acf_update_setting( 'google_api_key', __google_api__ );
 			} );
+
+			// Sets the text domain used when translating field and field group settings.
+			// Defaults to ”. Strings will not be translated if this setting is empty
+			add_filter('acf/settings/l10n_textdomain', function () {
+				return __SITENAME__;
+			});
 		}
 
 		public static function getValue( $name, $def = false ) {

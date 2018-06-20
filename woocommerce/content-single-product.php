@@ -82,24 +82,24 @@ if ( post_password_required() ) {
 							<ul>
 								<li>
 									<img src="<?= get_template_directory_uri() . '/img/icons/icon-6.png' ?>" alt="">
-									<span>Area <?= $conditions->surface ? $conditions->surface : 0 ?> sqft</span>
+									<span><?= __('Area', __SITENAME__) ?> <?= $conditions->surface ? $conditions->surface : 0 ?> sqft</span>
 								</li>
 								<?php if ( $property != 'ground' ): ?>
 									<li>
 										<img src="<?= get_template_directory_uri() . '/img/icons/icon-7.png' ?>" alt="">
-										<span>Bedroom <?= $conditions->bedroom ? $conditions->bedroom : 0 ?></span>
+										<span><?= __('Bedroom', __SITENAME__) ?> <?= $conditions->bedroom ? $conditions->bedroom : 0 ?></span>
 									</li>
 									<li>
 										<img src="<?= get_template_directory_uri() . '/img/icons/icon-8.png' ?>" alt="">
-										<span>Bathroom <?= $conditions->bathroom ? $conditions->bathroom : 0 ?></span>
+										<span><?= __('Bathroom', __SITENAME__) ?> <?= $conditions->bathroom ? $conditions->bathroom : 0 ?></span>
 									</li>
 									<li>
 										<img src="<?= get_template_directory_uri() . '/img/icons/icon-9.png' ?>" alt="">
-										<span>Garage <?= $conditions->garage ? $conditions->garage : 0 ?></span>
+										<span><?= __('Garage', __SITENAME__)?>  <?= $conditions->garage ? $conditions->garage : 0 ?></span>
 									</li>
 									<li>
 										<img src="<?= get_template_directory_uri() . '/img/icons/icon-10.png' ?>" alt="">
-										<span>Kitchen <?= $conditions->kitchen ? $conditions->kitchen : 0 ?></span>
+										<span><?= __('Kitchen', __SITENAME__) ?> <?= $conditions->kitchen ? $conditions->kitchen : 0 ?></span>
 									</li>
 								<?php endif; ?>
 							</ul>
@@ -118,7 +118,7 @@ if ( post_password_required() ) {
 									<?php
 									if ( $amenities ):
 										foreach ( $amenities as $amenitie ): ?>
-											<li><i class="fa fa-check-circle"></i> <span><?= $amenitie['label'] ?></span></li>
+											<li><i class="fa fa-check-circle"></i> <span><?= __($amenitie['label'], __SITENAME__) ?></span></li>
 										<?php
 										endforeach;
 									endif;

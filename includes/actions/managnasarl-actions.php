@@ -113,6 +113,12 @@ function embed_style_header() {
         right: 20px;
         font-size: 12px;
       }
+      @media (max-width: 479px) {
+	      .property-desc-top .mg-price {
+		      position: static;
+		      margin-bottom: 0px;
+	      }
+      }
 	    .owl-item .property-img {
 		    background: #d2d2d2;
 		    display: flex;
@@ -160,11 +166,32 @@ function embed_style_header() {
       /**
       Find
       */
+			.search-box-area {
+				background: #b01d36 none repeat scroll 0 0;
+			}
 			.find-home {
 				padding: 50px 0;
 			}
 			.find_home-box .price_filter {
 				width: 100%;
+			}
+
+			#loginForm .bt-login {
+				background: #ffffff none repeat scroll 0 0;
+				border: 1px solid rgba(0, 0, 0, 0);
+				color: #b01d36;
+				font-weight: 700;
+				height: 40px;
+				line-height: 38px;
+				-webkit-transition: all 0.3s ease 0s;
+				transition: all 0.3s ease 0s;
+				width: 100%;
+			}
+
+			#loginForm .bt-login:hover {
+				background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+				border-color: #ffffff;
+				color: #ffffff;
 			}
 
 			/**

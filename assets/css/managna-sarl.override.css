@@ -75,7 +75,7 @@
 .header-search {
     padding: 12px 0;
     position: relative;
-    min-width: 10em;
+    padding-left: 2em;
     background: url(../../img/2x/account-bg@2x.png);
     background-position: top left;
     background-repeat: no-repeat;

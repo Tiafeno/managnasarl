@@ -31,7 +31,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<!--[if lt IE 9]>
-		<script src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/js/html5.js"></script>
+	<script src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/js/html5.js"></script>
 	<![endif]-->
 
 	<!-- Place favicon.ico in the root directory -->
@@ -75,9 +75,20 @@
 							?>
 
 							<div class="header-search">
-								<div class="search-icon">
-									<a href="#">Mon compte</a>
-								</div>
+								<?php if ( ! is_user_logged_in() ) : ?>
+									<div class="search-icon">
+										<a href="#">Mon compte</a>
+									</div>
+								<?php
+								else:
+									$adminUrl = esc_url( admin_url( '/' ) );
+									$user = wp_get_current_user();
+									?>
+									<div class="dashboard">
+										<a href="<?= $adminUrl ?>"> <?= $user->user_nicename ?></a>
+									</div>
+								<?php endif; ?>
+
 							</div>
 
 						</div>
@@ -91,7 +102,7 @@
 				<div class="row">
 					<div class="col-md-2 col-sm-4 col-xs-6">
 						<div class="logo">
-							<a href="<?= home_url('/') ?>"><img src="<?= get_template_directory_uri() . '/img/logo.png' ?>" alt=""></a>
+							<a href="<?= home_url( '/' ) ?>"><img src="<?= get_template_directory_uri() . '/img/logo.png' ?>" alt=""></a>
 						</div>
 					</div>
 					<div class="col-md-10 hidden-sm hidden-xs">
@@ -121,10 +132,10 @@
 						<?php
 						if ( has_nav_menu( "primary" ) ) :
 							wp_nav_menu( [
-								'menu_class'      => "",
-								'theme_location'  => 'primary',
-								'container'       => 'nav',
-								'container_id' => 'dropdown'
+								'menu_class'     => "",
+								'theme_location' => 'primary',
+								'container'      => 'nav',
+								'container_id'   => 'dropdown'
 							] );
 						endif;
 						?>
@@ -133,31 +144,60 @@
 			</div>
 			<!-- Mobile menu end -->
 		</div>
-		<!--Search box inner start-->
-		<div class="search-box-area">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="search-form">
-							<div class="search-form-inner">
-								<form action="#">
-									<input type="text" placeholder="Search..">
-									<button type="submit"><i class="icofont icofont-search-alt-1"></i></button>
-								</form>
-							</div>
-							<div class="search-close-btn">
-								<a href="#"><i class="zmdi zmdi-close"></i></a>
+
+
+		<?php
+		if ( ! is_user_logged_in() ) :
+			$actionForm = esc_url( site_url( 'wp-login.php', 'login_post' ) );
+			?>
+			<!--Login box inner start-->
+			<div class="search-box-area">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="search-form">
+								<div>
+									<form id="loginForm" method="post" action="<?= $actionForm ?>">
+
+										<div class="row search-form-inner">
+											<div class="col-md-12">
+												<h2 style="color: white;">SE CONNECTER</h2>
+											</div>
+										</div>
+
+										<div class="row search-form-inner ">
+											<div class="col-md-5 pt-10">
+												<input type="text" name="log" placeholder="Adresse E-mail">
+											</div>
+											<div class="col-md-5 pt-10">
+												<input type="password" name="pwd" placeholder="Mot de passe">
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="col-md-4 pt-20">
+												<button type="submit" class="bt-login">CONNEXION</button>
+											</div>
+										</div>
+
+									</form>
+								</div>
+								<div class="search-close-btn">
+									<a href="#"><i class="zmdi zmdi-close"></i></a>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<!--Search box inner end-->
+
+			<!--Login box inner end-->
+		<?php endif; ?>
+
 	</header>
 	<!--Header section end-->
 
 
 	<!-- Alert -->
-		<?= managna_alert() ?>
+	<?= managna_alert() ?>
 	<!-- Alert end-->

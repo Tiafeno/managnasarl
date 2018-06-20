@@ -34,7 +34,7 @@ get_header( 'shop' );
 // do_action( 'woocommerce_before_main_content' );
 woocommerce_output_content_wrapper();
 ?>
-	<div class="feature-property pt-130">
+	<div class="feature-property pt-40">
 		<?php if (is_search()): echo do_shortcode('[vc_search_filter]'); endif; ?>
 		<div class="container">
 			<div class="row">

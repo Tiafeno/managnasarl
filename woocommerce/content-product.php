@@ -6,8 +6,8 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 	return;
 }
 $status_values = [
-  'for_sale' => "FOR SALE",
-  'for_rent' => "FOR RENT"
+  'for_sale' => __("For sale", __SITENAME__),
+  'for_rent' => __("For rent", __SITENAME__)
 ];
 if (function_exists('get_field')):
   $basic_information = get_field('basic_information', $product->get_id());
