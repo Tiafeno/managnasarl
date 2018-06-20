@@ -29,21 +29,25 @@ if ( ! class_exists( 'ManagnaSarl' ) ) :
 	class ManagnaSarl {
 
 		public function __construct() {
-			add_action( 'widgets_init', array( $this, 'widgets_init' ) );
+
+			// Save scripts and styles
 			add_action( 'wp_enqueue_scripts', array( $this, 'scripts' ) );
 			add_action( 'init', array( $this, 'init' ) );
+
+			// Save widgets
 			add_action( 'widgets_init', function () {
+				$this->widgets_init();
 				register_widget( 'SearchFilterWidget' );
 				register_widget( 'ContactPropertyFormWidget' );
 			} );
 
+			// Add class name in body
 			add_filter( 'body_class', array( $this, 'body_classes' ) );
 
-			// Change shop product view per page
+			// Change shop post product view per page
 			add_filter( 'loop_shop_per_page', 'override_loop_shop_per_page', 20 );
 			function override_loop_shop_per_page( $cols ) {
 				$cols = 6;
-
 				return $cols;
 			}
 
