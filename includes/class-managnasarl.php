@@ -32,11 +32,15 @@ if ( ! class_exists( 'ManagnaSarl' ) ) :
 
 			// Save scripts and styles
 			add_action( 'wp_enqueue_scripts', array( $this, 'scripts' ) );
+
+			// Wordpress initialization
 			add_action( 'init', array( $this, 'init' ) );
 
 			// Save widgets
 			add_action( 'widgets_init', function () {
 				$this->widgets_init();
+
+				// @folder includes/widgets
 				register_widget( 'SearchFilterWidget' );
 				register_widget( 'ContactPropertyFormWidget' );
 			} );
@@ -78,6 +82,10 @@ if ( ! class_exists( 'ManagnaSarl' ) ) :
 				$meta_query = $q->get( 'meta_query' );
 
 				// The default relation for a meta query is AND
+
+				/**
+				 * Woocommerce post meta
+				 */
 				if ( self::getValue( 'price' ) ) {
 					$price = self::getValue( 'price' );
 
@@ -96,6 +104,11 @@ if ( ! class_exists( 'ManagnaSarl' ) ) :
 					);
 				}
 
+				/**
+				 * ACF post meta
+				 * @group basic_information
+				 * @field {text} status
+				 */
 				if ( self::getValue( 'status' ) ) {
 					$status       = self::getValue( 'status' );
 					$meta_query[] = array(
@@ -105,6 +118,11 @@ if ( ! class_exists( 'ManagnaSarl' ) ) :
 					);
 				}
 
+				/**
+				 * ACF post meta
+				 * @group condition
+				 * @field {number} bedroom
+				 */
 				if ( self::getValue( 'area' ) ) {
 					$area         = self::getValue( 'area' );
 					$meta_query[] = array(
@@ -114,6 +132,10 @@ if ( ! class_exists( 'ManagnaSarl' ) ) :
 					);
 				}
 
+				/**
+				 * ACF post meta
+				 * @field {text} property
+				 */
 				if ( self::getValue( 'property' ) ) {
 					$property     = self::getValue( 'property' );
 					$meta_query[] = array(
@@ -123,10 +145,14 @@ if ( ! class_exists( 'ManagnaSarl' ) ) :
 					);
 				}
 
+				// Set for global query
 				$q->set( 'meta_query', $meta_query );
 			} );
 		}
 
+		/**
+		 * Wordpress initialization function
+		 */
 		public function init() {
 			register_post_type( 'slider', array(
 				'label'           => _x( "Slider", 'General name for Slider post type' ),
