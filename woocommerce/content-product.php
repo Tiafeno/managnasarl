@@ -10,12 +10,7 @@ $status_values = [
   'for_rent' => __("For rent", __SITENAME__)
 ];
 if (function_exists('get_field')):
-  $basic_information = get_field('basic_information', $product->get_id());
-  $location = $basic_information['location'];
-  $status = $basic_information['status'] ? $basic_information['status'] : false;
-
-  $condition = get_field('condition', $product->get_id());
-  $conditions = (object) $condition;
+  msServices::setACFFields($product);
 endif;
 
 $limite_str = 30;
@@ -27,8 +22,8 @@ $title = strlen($product->get_title()) > $limite_str ?
 
 <div class="col-md-4 col-sm-6 col-xs-12">
   <div class="single-property mb-40 fadeInUp wow" data-wow-delay="0.2s">
-    <?php if ($status): ?>
-      <span><?= $status_values[$status] ?></span>
+    <?php if ($product->status): ?>
+      <span><?= $status_values[$product->status] ?></span>
     <?php endif; ?>
     <div class="property-img">
       <a href="<?= get_the_permalink() ?>">
@@ -44,11 +39,11 @@ $title = strlen($product->get_title()) > $limite_str ?
         <h4 class="price euroMoney"><?= $product->get_price() ?></h4>
         <p class="mg-price mgaMoney"></p>
         <div class="property-location">
-          <p><img src="<?= get_template_directory_uri() . '/img/icons/icon-5.png' ?>" alt=""><?= $location ?></p>
+          <p><img src="<?= get_template_directory_uri() . '/img/icons/icon-5.png' ?>" alt=""><?= $product->location ?></p>
         </div>
       </div>
       <div class="property-desc-bottom">
-        <?php do_action('action_property_bottom_list', $conditions); ?>
+        <?php do_action('action_property_bottom_list', $product); ?>
       </div>
     </div>
   </div>

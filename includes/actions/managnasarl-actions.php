@@ -24,27 +24,29 @@
 /**
  * @param object $condition
  */
-function set_property_bottom_list($condition) {
-  if ( ! is_object($condition)) return;
+function set_property_bottom_list($post) {
+  if ( ! is_object($post)) return;
 	?>
 	<div class="property-bottom-list">
     <ul>
       <li>
         <img src="<?= get_template_directory_uri() . '/img/icons/icon-1.png' ?>" alt="">
-        <span><?= $condition->surface  ? $condition->surface  : 0 ?> m<sup>2</sup></span>
+        <span><?= $post->surface  ? $post->surface  : 0 ?> m<sup>2</sup></span>
       </li>
-      <li>
-        <img src="<?= get_template_directory_uri() . '/img/icons/icon-2.png' ?>" alt="">
-        <span><?= $condition->bedroom  ? $condition->bedroom  : 0 ?></span>
-      </li>
-      <li>
-        <img src="<?= get_template_directory_uri() . '/img/icons/icon-3.png' ?>" alt="">
-        <span><?= $condition->bathroom ? $condition->bathroom : 0 ?></span>
-      </li>
-      <li>
-        <img src="<?= get_template_directory_uri() . '/img/icons/icon-4.png' ?>" alt="">
-        <span><?= $condition->garage  ? $condition->garage  : 0?></span>
-      </li>
+	    <?php if ($post->property != 'ground'): ?>
+	      <li>
+	        <img src="<?= get_template_directory_uri() . '/img/icons/icon-2.png' ?>" alt="">
+	        <span><?= $post->bedroom  ? $post->bedroom  : 0 ?></span>
+	      </li>
+	      <li>
+	        <img src="<?= get_template_directory_uri() . '/img/icons/icon-3.png' ?>" alt="">
+	        <span><?= $post->bathroom ? $post->bathroom : 0 ?></span>
+	      </li>
+	      <li>
+	        <img src="<?= get_template_directory_uri() . '/img/icons/icon-4.png' ?>" alt="">
+	        <span><?= $post->garage  ? $post->garage  : 0?></span>
+	      </li>
+			<?php endif; ?>
     </ul>
   </div>
 <?php

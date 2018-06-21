@@ -55,6 +55,8 @@
     left: 0;
 
     display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 .slick-track:before,
 .slick-track:after
@@ -77,7 +79,7 @@
     display: none;
     float: left;
 
-    height: inherit;
+    height: 100%;
     min-height: 1px;
 }
 [dir='rtl'] .slick-slide

@@ -77,7 +77,7 @@
 							<div class="header-search">
 								<?php if ( ! is_user_logged_in() ) : ?>
 									<div class="search-icon">
-										<a href="#">Mon compte</a>
+										<a href="#">Connexion</a>
 									</div>
 								<?php
 								else:

@@ -362,7 +362,7 @@ if ( function_exists( 'acf_add_local_field_group' ) ):
 						),
 						'choices' => array(
 							'for_sale' => __('For sale', __SITENAME__),
-							'for_rent' => __('For sent', __SITENAME__),
+							'for_rent' => __('For rent', __SITENAME__),
 						),
 						'default_value' => array(
 						),

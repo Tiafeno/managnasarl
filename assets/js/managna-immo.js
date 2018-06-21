@@ -45,23 +45,5 @@
         });
     });
 
-    var fluidContainerJs = $('.vc-js-container');
-    var __container__ = $('.container').eq(0);
-    var __window__ = $(window);
-
-    function syncContainerFluid() {
-      var containerWidth = __container__.width();
-      var windowInnerWidth = __window__.innerWidth();
-      fluidContainerJs.each(function (i, element) {
-        var mgl = Math.abs(windowInnerWidth - containerWidth) / 2;
-        $(element).css({'padding-left': parseInt(mgl) });
-      });
-    }
-
-    syncContainerFluid();
-    __window__.resize(function () {
-      syncContainerFluid();
-    })
-
   })
 })(jQuery);

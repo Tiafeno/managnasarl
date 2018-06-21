@@ -57,8 +57,13 @@ if ( ! class_exists( 'ShortcodeProDetailsImage' ) ) :
 			foreach ($gallery_ids as $gallery_id) {
 				$galleries[] = $this->getContent($gallery_id);
 			}
-			wp_enqueue_script('jquery-slick');
+
 			wp_enqueue_style('slick');
+			wp_enqueue_style('lightbox');
+			wp_enqueue_style('slick-theme');
+			wp_enqueue_script('slick-script');
+			wp_enqueue_script('lightbox-script');
+
 			try {
 				return $twig->render( '@Shortcodes/property-details-gallery.html', [
 					'galleries' => $galleries,

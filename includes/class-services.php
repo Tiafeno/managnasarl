@@ -45,30 +45,40 @@ if ( ! class_exists( 'msServices' ) ) :
 		}
 
 		/**
+		 * Ajouter les
+		 * @param $product
+		 */
+		public static function setACFFields( &$product ) {
+			$id = $product instanceof WC_Product_Simple ? $product->get_id() : $product->ID;
+			$property = get_field('property', $id );
+			$product->property = $property;
+			// Get condition ACF fields
+			$conditions      = get_field( 'condition', $id );
+			$product->surface  = $conditions['surface'] ? $conditions['surface'] : 0;
+			$product->bedroom  = $conditions['bedroom'] ? $conditions['bedroom'] : 0;
+			$product->bathroom = $conditions['bathroom'] ? $conditions['bathroom'] : 0;
+			$product->garage   = $conditions['garage'] ? $conditions['garage'] : 0;
+
+			// Get basic informations ACF fields
+			$basic_information = get_field( 'basic_information', $id  );
+			$product->location   = $basic_information['location'];
+			$product->status     = $basic_information['status'];
+
+			// Get Amenities field
+			$product->amenities = get_field( 'amenities', $id  );
+		}
+
+		/**
 		 * @param array $posts Liste d'objet WP_Post
 		 *
 		 * @return array
 		 */
-		public static function acfParams( $posts ) {
-			array_walk( $posts, function ( &$value ) {
-
-				// Get condition ACF fields
-				$conditions      = get_field( 'condition', $value->ID );
-				$value->surface  = $conditions['surface'] ? $conditions['surface'] : 0;
-				$value->bedroom  = $conditions['bedroom'] ? $conditions['bedroom'] : 0;
-				$value->bathroom = $conditions['bathroom'] ? $conditions['bathroom'] : 0;
-				$value->garage   = $conditions['garage'] ? $conditions['garage'] : 0;
-
-				// Get basic informations ACF fields
-				$basic_information = get_field( 'basic_information', $value->ID );
-				$value->location   = $basic_information['location'];
-				$value->status     = $basic_information['status'];
-
-				// Get Amenities field
-				$value->amenities = get_field( 'amenities', $value->ID );
+		public static function acfParams( $products ) {
+			array_walk( $products, function ( &$product ) {
+				self::setACFFields( $product );
 			} );
 
-			return $posts;
+			return $products;
 		}
 
 		public static function sendMessage( $form ) {

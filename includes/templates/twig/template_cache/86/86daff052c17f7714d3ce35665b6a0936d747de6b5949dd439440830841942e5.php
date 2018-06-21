@@ -97,7 +97,7 @@ class __TwigTemplate_37344503093a29369e6c1c1e59faa542a6e088c9905f02b1d6c018c388c
                       <a href=\"";
                 // line 52
                 echo twig_escape_filter($this->env, $this->getAttribute($context["slider"], "link", array()), "html", null, true);
-                echo "\">CONTACT US</a>
+                echo "\">VOIR</a>
                     </div>
                     ";
             }
