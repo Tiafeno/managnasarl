@@ -172,6 +172,8 @@ if ( post_password_required() ) {
 				</div>
 			</div>
 		</div>
+
+		<?= do_shortcode('[vc_property_recently title="Propriété ajoutée récemment"]') ?>
 	</div>
 </div>
 
