@@ -111,11 +111,12 @@ if ( ! class_exists( 'msServices' ) ) :
 				$users = get_users();
 				/* Prepare to send mail */
 				$subject   = "Contact - " . $product->get_title();
-				$to        = 'contact@falicrea.com'; // Mode teste
+
+				/* TODO: Justifier le mail exacte pour envoyer la demande */
+				$to        = 'contact@falicrea.com';
 				$body      = &$content;
 				$headers[] = 'Content-Type: text/html; charset=UTF-8';
-				$headers[] = 'From: ' . esc_html( $form['firstname'] ) . ' <contact@managna-immo.com>';
-				$headers[] = 'Cc: ' . $form['email'];
+				$headers[] = 'From: ' . esc_html( $form['firstname'] ) . ' <' . $form['email'] . '>';
 				foreach ($users as $user)
 					$headers[] = 'Cc: ' . $user->user_email;
 
