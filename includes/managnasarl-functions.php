@@ -40,6 +40,17 @@ function managna_alert() {
 </div>';
 }
 
+/**
+ * @param string $text
+ * @param int $limite
+ *
+ * @return string
+ */
+function strLimite( $text = '', $limite = 30) {
+	if (empty($text)) return $text;
+	return strlen($text) > $limite ? substr($text , 0, $limite) . '...' : $text;
+}
+
 function managna_contact_property() {
 	$contact_alert = null;
 	$inputForm     = ManagnaSarl::getValue( 'form' );

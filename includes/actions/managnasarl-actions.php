@@ -130,6 +130,7 @@ function embed_style_header() {
 	    }
 	    .property-img > a {
 		    margin: auto;
+		    height: 20em;
 	    }
       .google-map-title > h5 {
 	      color: #303030;
@@ -146,13 +147,14 @@ function embed_style_header() {
 	      border: #ccc solid 1px;
 	      margin: 20px 0;
       }
-      .single-property-details .price {
-	      font-size: 30px !important;
-      }
+
       .single-property-details .property-condition-list,
       .single-property-details .amenities-list {
 	      background: #E7E7E7 none repeat scroll 0 0;
       }
+			.single-property > span.for_rent {
+				background: #2b3cb9 none repeat scroll 0 0;
+			}
 	    .amenities-list ul li {
 		    font-size: 13px;
 		    margin-bottom: 15px;

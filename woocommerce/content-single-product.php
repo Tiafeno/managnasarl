@@ -62,7 +62,7 @@ if ( post_password_required() ) {
 				<h6>
 					<?= $product->get_title() ?>
 				</h6>
-				<h4 class="price euroMoney"><?= $product->get_price() ?></h4>
+				<h4 class="price euroMoney" style="font-size: 30px"><?= $product->get_price() ?></h4>
 				<p class="mg-price mgaMoney"></p>
 				<div class="property-location">
 					<p><img src="<?= get_template_directory_uri() . '/img/icons/icon-5.png' ?>" alt=""><?= $location ?></p>

@@ -30,13 +30,13 @@
       range: true,
       min: 20,
       max: 900000,
-      values: [100313, 419846],
+      values: [20, 400000],
       slide: function (event, ui) {
-        $("#amount").val(ui.values[0] + "€ - " + ui.values[1] + "€");
+        $("#amount").val(ui.values[0] + "MGA - " + ui.values[1] + "MGA");
       }
     });
     $("#amount").val($("#slider-range").slider("values", 0) +
-      "€ - " + $("#slider-range").slider("values", 1) + "€");
+      "MGA - " + $("#slider-range").slider("values", 1) + "MGA");
 
   });
 })(jQuery);

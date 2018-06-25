@@ -24,6 +24,16 @@
   $(document).ready(function () {
     var euroMoney = $('.euroMoney');
 
+    $('.ariary').each(function (index, element) {
+      $(element).text(function () {
+        var value = parseInt($(element).text());
+        return new Intl.NumberFormat('de-DE', {
+          style: 'currency',
+          currency: 'MGA'
+        }).format(value);
+      })
+    });
+
     $.each(euroMoney, function (key, element) {
       var price = parseFloat($(element).text());
       $(element).text(function (index) {
