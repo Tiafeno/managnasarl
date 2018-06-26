@@ -30,6 +30,30 @@ if ( ! class_exists( 'ManagnaSarl' ) ) :
 
 		public function __construct() {
 
+			add_action( 'wp_loaded', function() {
+
+				// Rennomer les étiquettes d'Woocommerce (product) en "Annonce"
+				$p_object = get_post_type_object( 'product' );
+				if ( ! $p_object )
+					return false;
+				// see get_post_type_labels()
+				$p_object->labels->name               = 'Annonces';
+				$p_object->labels->singular_name      = 'Annonce';
+				$p_object->labels->add_new            = 'Ajouter une annonce';
+				$p_object->labels->add_new_item       = 'Ajouter une nouvelle annonce';
+				$p_object->labels->all_items          = 'Tous les annonces';
+				$p_object->labels->edit_item          = 'Modifier';
+				$p_object->labels->name_admin_bar     = 'Annonce';
+				$p_object->labels->menu_name          = 'Annonces';
+				$p_object->labels->new_item           = 'Nouvelle annonce';
+				$p_object->labels->not_found          = 'Aucune annonce trouvée';
+				$p_object->labels->not_found_in_trash = 'Aucune annonce trouvée dans la corbeille';
+				$p_object->labels->search_items       = 'Trouver une annonce';
+				$p_object->labels->view_item          = 'Afficher l\'annonce';
+
+				return true;
+			}, 20);
+
 			// Save scripts and styles
 			add_action( 'wp_enqueue_scripts', array( $this, 'scripts' ) );
 
@@ -202,6 +226,7 @@ if ( ! class_exists( 'ManagnaSarl' ) ) :
 		}
 
 		private function register_scripts( $version ) {
+			wp_register_script( 'semantic', get_template_directory_uri() . '/assets/js/semantic/semantic.min.js', [ 'jquery' ], $version, true );
 			wp_register_script( 'semantic-checkbox', get_template_directory_uri() . '/assets/js/semantic/checkbox.min.js', [ 'jquery' ], $version, true );
 			wp_register_script( 'semantic-form', get_template_directory_uri() . '/assets/js/semantic/form.min.js', [ 'jquery' ], $version, true );
 			wp_register_script( 'admin-element-search-filter', get_template_directory_uri() . '/assets/js/admin/admin-search-filter.js', [
@@ -209,17 +234,19 @@ if ( ! class_exists( 'ManagnaSarl' ) ) :
 				'managnasarl-plugins'
 			], $version, true );
 			wp_register_script('slick-script', get_template_directory_uri() . '/assets/js/jquery/slick.min.js', ['jquery'], $version, true);
-			wp_register_style( 'slick', get_template_directory_uri() . '/assets/css/slick.css', [], $version );
-			wp_register_style( 'slick-theme', get_template_directory_uri() . '/assets/css/slick-theme.css', [], $version );
+			wp_register_style( 'slick', get_template_directory_uri() . '/assets/css/slick.css', '', $version );
+			wp_register_style( 'slick-theme', get_template_directory_uri() . '/assets/css/slick-theme.css', '', $version );
 
-			wp_register_style( 'lightbox', get_template_directory_uri() . '/assets/css/lightbox.min.css', [], $version );
+			wp_register_style( 'lightbox', get_template_directory_uri() . '/assets/css/lightbox.min.css', '', $version );
 			wp_register_script('lightbox-script', get_template_directory_uri() . '/assets/js/lightbox.min.js', ['jquery'], $version, true);
 
-			wp_register_style( 'semantic-form', get_template_directory_uri() . '/assets/css/semantic/form.min.css', [], $version );
-			wp_register_style( 'semantic-icon', get_template_directory_uri() . '/assets/css/semantic/icon.min.css', [], $version );
-			wp_register_style( 'semantic-message', get_template_directory_uri() . '/assets/css/semantic/message.min.css', [], $version );
-			wp_register_style( 'semantic-checkbox', get_template_directory_uri() . '/assets/css/semantic/checkbox.min.css', [], $version );
-			wp_register_style( 'semantic-input', get_template_directory_uri() . '/assets/css/semantic/input.min.css', [], $version );
+			wp_register_style( 'semantic', get_template_directory_uri() . '/assets/css/semantic/semantic.min.css', '', $version );
+			wp_register_style( 'semantic-form', get_template_directory_uri() . '/assets/css/semantic/form.min.css', '', $version );
+			wp_register_style( 'semantic-button', get_template_directory_uri() . '/assets/css/semantic/button.min.css', '', $version );
+			wp_register_style( 'semantic-icon', get_template_directory_uri() . '/assets/css/semantic/icon.css', '', $version );
+			wp_register_style( 'semantic-message', get_template_directory_uri() . '/assets/css/semantic/message.min.css', '', $version );
+			wp_register_style( 'semantic-checkbox', get_template_directory_uri() . '/assets/css/semantic/checkbox.min.css', '', $version );
+			wp_register_style( 'semantic-input', get_template_directory_uri() . '/assets/css/semantic/input.min.css', '', $version );
 
 			wp_register_style( 'Lato', '//fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic&subset=latin' );
 			wp_register_script('tinyMCE', '//cloud.tinymce.com/stable/tinymce.min.js?apiKey=2grxn9iofnxolcaedqa399sh4ft6c1mg3e1kumgnyq6o0ap1');
