@@ -42,7 +42,7 @@ if ( ! class_exists( 'ManagnaSarl' ) ) :
 				$p_object->labels->add_new            = 'Ajouter une annonce';
 				$p_object->labels->add_new_item       = 'Ajouter une nouvelle annonce';
 				$p_object->labels->all_items          = 'Tous les annonces';
-				$p_object->labels->edit_item          = 'Modifier';
+				$p_object->labels->edit_item          = 'Modifier l\'annonce';
 				$p_object->labels->name_admin_bar     = 'Annonce';
 				$p_object->labels->menu_name          = 'Annonces';
 				$p_object->labels->new_item           = 'Nouvelle annonce';

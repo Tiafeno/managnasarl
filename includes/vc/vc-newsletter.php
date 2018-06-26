@@ -62,7 +62,7 @@ if ( ! class_exists( 'vcNewsletterBox' ) ):
 			}
 			$subscriber       = new stdClass();
 			$subscriber->mail = $mail;
-			$newsletters      = get_option( "managna_newsletters", [] );
+			$newsletters      = get_option( "managna_newsletter", [] );
 			array_push( $newsletters, $subscriber );
 
 			update_option('managna_newsletter', $newsletters);
@@ -164,8 +164,8 @@ if ( ! class_exists( 'vcNewsletterBox' ) ):
 
 			wp_enqueue_script( 'bluebird' );
 			wp_enqueue_script( 'semantic-form' );
-			//wp_enqueue_script('semantic');
-
+			// wp_enqueue_script('semantic');
+			// print_r(get_option('managna_newsletter'));
 			/** @var string $title */
 			try {
 				return $twig->render( '@VC/newsletter.html', [
