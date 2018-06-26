@@ -21,11 +21,95 @@
  * SOFTWARE.
  */
 
-if ( ! class_exists('vcNewsletterBox')):
+if ( ! class_exists( 'vcNewsletterBox' ) ):
 	class vcNewsletterBox extends WPBakeryShortCode {
 		public function __construct() {
-			add_action('init', [$this, 'vc_newsletter_mapping']);
-			add_shortcode('vc_newsletter', [$this, 'vc_newsletter_html']);
+			add_action( 'init', [ $this, 'vc_newsletter_mapping' ] );
+			add_shortcode( 'vc_newsletter', [ $this, 'vc_newsletter_html' ] );
+
+			add_action( 'wp_ajax_ajax_action_added_newsletter', [ $this, 'ajax_action_added_newsletter' ] );
+			add_action( 'wp_ajax_nopriv_ajax_action_added_newsletter', [ $this, 'ajax_action_added_newsletter' ] );
+		}
+
+		public static function create_newsletter() {
+			return update_option( "managna_newsletter", [] );
+		}
+
+		public static function isRegister( $mail ) {
+			$newsletters = get_option( "managna_newsletter", [] );
+			if ( empty( $newsletters ) ) {
+				return false;
+			}
+			// return array_search( $mail, array_column($newsletters, 'mail'), true ); // PHP 7
+			$filter = array_filter( $newsletters, function ( $value, $key ) use ( $mail ) {
+				return $value->mail === $mail;
+			}, ARRAY_FILTER_USE_BOTH );
+
+			return ! empty( $filter );
+		}
+
+		public static function remove_newsletter( $mail ) {
+			$newsletters = get_option( "managna_newsletter", [] );
+			if ( empty( $newsletters ) ) {
+				return false;
+			}
+			// TODO: Supprimer une adresse email d'un abonné
+		}
+
+		public static function added_newsletter( $mail ) {
+			if ( empty( $mail ) ) {
+				return false;
+			}
+			$subscriber       = new stdClass();
+			$subscriber->mail = $mail;
+			$newsletters      = get_option( "managna_newsletters", [] );
+			array_push( $newsletters, $subscriber );
+
+			update_option('managna_newsletter', $newsletters);
+			return true;
+		}
+
+		public function ajax_action_added_newsletter() {
+			/**
+			 * @func wp_doing_ajax
+			 * (bool) True if it's a WordPress Ajax request, false otherwise.
+			 */
+			if ( ! wp_doing_ajax() ) {
+				return;
+			}
+
+			if ( ! get_option('managna_newsletter', false) ) {
+				self::create_newsletter();
+			}
+			$mail = ManagnaSarl::getValue( 'mail' );
+
+			// @link http://php.net/manual/fr/filter.examples.validation.php
+			if ( ! filter_var($mail, FILTER_VALIDATE_EMAIL)) {
+				wp_send_json([
+					'success' => false,
+					'msg' => 'Error! Please verify your email address'
+				]);
+			}
+
+			if ( ! self::isRegister( $mail ) ) {
+				if ( ! self::added_newsletter( $mail ) ) {
+					wp_send_json([
+						'success' => false,
+						'msg' => 'Error! Please verify your email address'
+					]);
+				} else {
+					wp_send_json([
+						'success' => true,
+						'msg' => 'Your email address has been successfully added with success'
+					]);
+				}
+			} else {
+				wp_send_json([
+					'success' => true,
+					'msg' => 'The email address already exists'
+				]);
+			}
+
 		}
 
 		public function vc_newsletter_mapping() {
@@ -48,8 +132,8 @@ if ( ! class_exists('vcNewsletterBox')):
 							'class'       => 'title-class',
 							'heading'     => __( 'Title', __SITENAME__ ),
 							'param_name'  => 'title',
-							'value'       => __( 'Default value', __SITENAME__ ),
-							'description' => __( 'Box Title', __SITENAME__ ),
+							'value'       => '',
+							'description' => __( 'Ajouter une titre', __SITENAME__ ),
 							'admin_label' => false,
 							'weight'      => 0
 						),
@@ -72,20 +156,21 @@ if ( ! class_exists('vcNewsletterBox')):
 				)
 			);
 
-			wp_enqueue_style('semantic-button');
-			wp_enqueue_style('semantic-message');
-			wp_enqueue_style('semantic-input');
-			wp_enqueue_style('semantic-icon');
-			wp_enqueue_style('semantic-form');
+			wp_enqueue_style( 'semantic-button' );
+			wp_enqueue_style( 'semantic-message' );
+			wp_enqueue_style( 'semantic-input' );
+			wp_enqueue_style( 'semantic-icon' );
+			wp_enqueue_style( 'semantic-form' );
 
-			wp_enqueue_script('semantic-form');
+			wp_enqueue_script( 'bluebird' );
+			wp_enqueue_script( 'semantic-form' );
 			//wp_enqueue_script('semantic');
 
 			/** @var string $title */
 			try {
 				return $twig->render( '@VC/newsletter.html', [
 					'template_directory_uri' => get_template_directory_uri(),
-					'title'                      => $title
+					'title'                  => $title
 				] );
 			} catch ( Twig_Error_Loader $e ) {
 			} catch ( Twig_Error_Runtime $e ) {

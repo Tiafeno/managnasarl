@@ -226,6 +226,7 @@ if ( ! class_exists( 'ManagnaSarl' ) ) :
 		}
 
 		private function register_scripts( $version ) {
+			wp_register_script( 'bluebird', get_template_directory_uri() . '/assets/js/bluebird.min.js', [], $version, true );
 			wp_register_script( 'semantic', get_template_directory_uri() . '/assets/js/semantic/semantic.min.js', [ 'jquery' ], $version, true );
 			wp_register_script( 'semantic-checkbox', get_template_directory_uri() . '/assets/js/semantic/checkbox.min.js', [ 'jquery' ], $version, true );
 			wp_register_script( 'semantic-form', get_template_directory_uri() . '/assets/js/semantic/form.min.js', [ 'jquery' ], $version, true );

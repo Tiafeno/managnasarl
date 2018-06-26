@@ -21,11 +21,10 @@
  */
 
 (function ($) {
+  "use strict";
   $(document).ready(function () {
     var ariarySelectors = $('.ariary');
-    var ariaryNumber =  NaN;
-
-
+    var ariaryNumber = NaN;
     $.each(ariarySelectors, function (key, element) {
       $(element).text(function () {
         ariaryNumber = parseInt($(element).text());
