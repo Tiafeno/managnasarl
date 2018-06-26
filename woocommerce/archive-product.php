@@ -31,10 +31,10 @@ get_header( 'shop' );
  * @hooked woocommerce_breadcrumb - 20
  * @hooked WC_Structured_Data::generate_website_data() - 30
  */
-// do_action( 'woocommerce_before_main_content' );
+
 woocommerce_output_content_wrapper();
 ?>
-	<div class="feature-property property-archive pt-40">
+	<div class="feature-property property-archive pt-80">
 		<?php if (is_search()): echo do_shortcode('[vc_search_filter]'); endif; ?>
 		<div class="container">
 			<div class="row">

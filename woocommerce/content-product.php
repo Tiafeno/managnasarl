@@ -23,7 +23,7 @@ endif;
 		<div class="property-img">
 			<a href="<?= get_the_permalink() ?>">
 				<!-- <img src="img/property/7.jpg" alt=""> -->
-				<?php echo woocommerce_get_product_thumbnail(); ?>
+				<?= woocommerce_get_product_thumbnail(); ?>
 			</a>
 		</div>
 		<div class="property-desc">
