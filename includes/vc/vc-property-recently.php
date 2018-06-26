@@ -45,10 +45,10 @@ class vcPropertyRecentlyBox extends WPBakeryShortCode {
 		];
 		$posts = get_posts( $args );
 		array_walk( $posts, function ( &$value, $key ) {
-			$value->post_url       = get_the_permalink( $value->ID );
+			$value->post_url = get_the_permalink( $value->ID );
 
 			// @links https://docs.woocommerce.com/document/image-sizes-theme-developers/
-			$value->post_thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $value->ID ), 'woocommerce_thumbnail');
+			$value->post_thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $value->ID ), 'woocommerce_thumbnail' );
 
 			$product      = wc_get_product( $value->ID );
 			$value->price = $product->get_price();

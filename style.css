@@ -4,7 +4,7 @@ Theme URI:    http://managna-immo.com
 Author:       Falicrea Inc.
 Author URI:   https://falicrea.com/
 Description:  Designed and developed by Falicrea , it features a bespoke integration with WooCommerce itself plus many of the most popular customer facing WooCommerce extensions.
-Version:      1.0.47
+Version:      1.1.6
 License:      GNU General Public License v2 or later
 License URI:  https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain:  managnasarl
@@ -375,7 +375,7 @@ img{max-width: 100%}
     background: inherit;
 }
 .property-tab-menu ul li a:hover, .property-tab-menu ul li.active a {
-    color: #f9c322;
+    color: #b01d36;
 }
 /*-------------
     04. Welcome Haven css here

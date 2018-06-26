@@ -29,4 +29,5 @@ function vc_before_init_actions() {
 	require_once( get_template_directory() . '/includes/vc/vc-sliders.php' );
 	require_once( get_template_directory() . '/includes/vc/vc-our-offers.php' );
 	require_once( get_template_directory() . '/includes/vc/vc-search-filter.php' );
+	require_once( get_template_directory() . '/includes/vc/vc-newsletter.php' );
 }

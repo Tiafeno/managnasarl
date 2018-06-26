@@ -85,6 +85,21 @@ function embed_style_header() {
 	    .nivoSlider .middle-text h6 {
 		    text-transform: uppercase;
 	    }
+
+	    @media (max-width: 767px) {
+		    .nivoSlider .middle-text h1, .nivoSlider .middle-text h2,
+		    .nivoSlider .middle-text h3, .nivoSlider .middle-text h4,
+		    .nivoSlider .middle-text h5, .nivoSlider .middle-text h6,
+		    .nivoSlider .middle-text strong {
+			    font-size: calc(100% + 4px);
+			    font-size: -webkit-calc(100% + 4px);
+		    }
+
+		    .logo > a {
+			    top: 15px;
+		    }
+	    }
+
 	    /**
 	    Menu
 	    */
@@ -131,7 +146,13 @@ function embed_style_header() {
 	    .property-img > a {
 		    margin: auto;
 		    height: 20em;
+		    width: 100%;
+		    position: relative;
 	    }
+			.property-img a img {
+				position: relative;
+				height: 100%;
+			}
       .google-map-title > h5 {
 	      color: #303030;
 	      font-weight: 400;
@@ -147,6 +168,10 @@ function embed_style_header() {
 	      border: #ccc solid 1px;
 	      margin: 20px 0;
       }
+
+			.single-property {
+				margin-bottom: 30px;
+			}
 
       .single-property-details .property-condition-list,
       .single-property-details .amenities-list {

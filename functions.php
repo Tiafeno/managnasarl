@@ -67,11 +67,22 @@ try {
 	$loader->addPath( TWIG_TEMPLATE_PATH . '/mail', 'MAIL' );
 	$loader->addPath( TWIG_TEMPLATE_PATH . '/vc', 'VC' );
 	$loader->addPath( TWIG_TEMPLATE_PATH . '/shortcodes', 'Shortcodes' );
+
+	/** @var Filter $thumbnailFilter */
+	$thumbnailFilter = new Twig_SimpleFilter( 'thumbnail', function ( $id ) {
+		$product = wc_get_product((int) $id);
+		$image_size = apply_filters( 'single_product_archive_thumbnail_size', 'woocommerce_thumbnail' );
+		return $product ? $product->get_image( $image_size ) : '';
+	} );
+
+	/** @var Object $twig */
 	$twig = new Twig_Environment( $loader, array(
 		'debug'       => WP_DEBUG,
 		'cache'       => TWIG_TEMPLATE_PATH . '/template_cache',
 		'auto_reload' => true
 	) );
+
+	$twig->addFilter( $thumbnailFilter );
 } catch ( Twig_Error_Loader $e ) {
 	die($e->getRawMessage());
 }
@@ -91,7 +102,7 @@ add_action( 'after_setup_theme', function () {
 	// Render this template compatible with woocommerce
 	// @link
 	add_theme_support( 'woocommerce', [
-		'thumbnail_image_width' => 300,
+		'thumbnail_image_width' => 360,
 		'gallery_thumbnail_image_width' => 100,
 		'single_image_width' => 600,
 	] );

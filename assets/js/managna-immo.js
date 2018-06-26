@@ -22,35 +22,27 @@
 
 (function ($) {
   $(document).ready(function () {
-    var euroMoney = $('.euroMoney');
+    var ariarySelectors = $('.ariary');
+    var ariaryNumber =  NaN;
 
-    $('.ariary').each(function (index, element) {
+
+    $.each(ariarySelectors, function (key, element) {
       $(element).text(function () {
-        var value = parseInt($(element).text());
+        ariaryNumber = parseInt($(element).text());
+        if (isNaN(ariaryNumber)) return 'Le prix n\'est pas informer';
         return new Intl.NumberFormat('de-DE', {
           style: 'currency',
           currency: 'MGA'
-        }).format(value);
-      })
-    });
-
-    $.each(euroMoney, function (key, element) {
-      var price = parseFloat($(element).text());
-      $(element).text(function (index) {
-        var curValue = parseFloat($(this).text().trim());
-        return new Intl.NumberFormat('de-DE', {
-          style: 'currency',
-          currency: 'EUR'
-        }).format(curValue);
+        }).format(ariaryNumber);
       });
       var parent = $(element).parents('.property-desc-top');
       parent
-        .find('.mgaMoney')
+        .find('.euroMoney')
         .text(function () {
-          var curValue = price * jManagna.currency.rates.MGA;
+          var curValue = ariaryNumber / jManagna.currency.rates.MGA;
           return new Intl.NumberFormat('de-DE', {
             style: 'currency',
-            currency: 'MGA'
+            currency: 'EUR'
           }).format(curValue);
         });
     });

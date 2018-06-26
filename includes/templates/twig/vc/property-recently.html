@@ -40,7 +40,7 @@
               <div class="single-property">
                 <div class="property-img">
                   <a href="{{post.post_url}}">
-                    <img src="{{post.post_thumbnail[0]}}" alt="">
+                    {{post.ID|thumbnail|raw}}
                   </a>
                 </div>
                 <div class="property-desc">

@@ -1,0 +1,62 @@
+<style type="text/css">
+  #property-newsletter label.newsletter {
+    margin: auto;
+    color: #504e4e;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .ui.button,
+  .ui.buttons .button,
+  .ui.buttons .or {
+    font-size: 0.8rem !important;
+  }
+
+  #property-newsletter input {
+    height: inherit !important;
+  }
+</style>
+<script type="text/javascript">
+  (function ($) {
+    $(document).ready(function () {
+      $('#property-newsletter')
+        .form({
+          fields: {
+            mail: {
+              identifier: 'mail',
+              rules: [
+                {
+                  type: 'empty',
+                  prompt: 'Adresse email obligatoire'
+                },
+                {
+                  type: 'email',
+                  prompt: 'Veuillez entrer une adresse e-mail valide'
+                }
+              ]
+            }
+          }
+        })
+      ;
+    });
+  })(jQuery);
+</script>
+<form id="property-newsletter" class="ui form" method="post" action="">
+  <div class="field">
+    <div class="fields">
+      <div class="three wide field" style="display: flex">
+        <label class="newsletter">{{title}}</label>
+      </div>
+      <div class="eight wide field ui action input">
+        <input type="text" name="mail" placeholder="Adresse email">
+        <button class="ui teal right labeled icon button">
+          <i class="envelope outline icon"></i>
+          Envoyer
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="field">
+    <div class="ui error message"></div>
+  </div>
+</form>
