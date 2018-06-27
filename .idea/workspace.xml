@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="07a8c7fa-cc04-4767-bec4-dd0111f3c9d8" name="Default" comment="Added lightbox">
-      <change afterPath="$PROJECT_DIR$/sidebar-offering.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/footer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/header.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes/actions/managnasarl-actions.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/actions/managnasarl-actions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes/class-managnasarl.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/class-managnasarl.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes/templates/twig/vc/slider.html" beforeDir="false" afterPath="$PROJECT_DIR$/includes/templates/twig/vc/slider.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/woocommerce/archive-product.php" beforeDir="false" afterPath="$PROJECT_DIR$/woocommerce/archive-product.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/woocommerce/content-product.php" beforeDir="false" afterPath="$PROJECT_DIR$/woocommerce/content-product.php" afterDir="false" />
-    </list>
+    <list default="true" id="07a8c7fa-cc04-4767-bec4-dd0111f3c9d8" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -76,11 +65,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sidebar-offering.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="sidebar-offering.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sidebar-offering.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="114">
               <caret line="26" selection-start-line="26" selection-end-line="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="387">
+              <caret line="631" column="14" lean-forward="true" selection-start-line="631" selection-start-column="14" selection-end-line="631" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -168,7 +166,6 @@
         <option value="$PROJECT_DIR$/includes/templates/twig/vc/newsletter.html" />
         <option value="$PROJECT_DIR$/includes/vc/vc-newsletter.php" />
         <option value="$PROJECT_DIR$/assets/js/admin/admin-search-filter.js" />
-        <option value="$PROJECT_DIR$/style.css" />
         <option value="$PROJECT_DIR$/includes/class-managnasarl.php" />
         <option value="$PROJECT_DIR$/includes/actions/managnasarl-actions.php" />
         <option value="$PROJECT_DIR$/woocommerce/content-product.php" />
@@ -177,6 +174,7 @@
         <option value="$PROJECT_DIR$/footer.php" />
         <option value="$PROJECT_DIR$/woocommerce/archive-product.php" />
         <option value="$PROJECT_DIR$/header.php" />
+        <option value="$PROJECT_DIR$/style.css" />
       </list>
     </option>
   </component>
@@ -451,7 +449,7 @@
       <workItem from="1530035609824" duration="10009000" />
       <workItem from="1530045691335" duration="51000" />
       <workItem from="1530083138791" duration="10175000" />
-      <workItem from="1530101890645" duration="893000" />
+      <workItem from="1530101890645" duration="1177000" />
     </task>
     <task id="LOCAL-00001" summary="Finition pour la page contenue de propriété">
       <created>1529174413469</created>
@@ -733,11 +731,18 @@
       <option name="project" value="LOCAL" />
       <updated>1530091479300</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="Added Favicon and offer sidebar.">
+      <created>1530103156043</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1530103156043</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="248993000" />
+    <option name="totallyTimeSpent" value="249277000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -750,9 +755,11 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1456" height="886" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="9" weight="0.32596686" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.32872927" />
       <window_info id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="6" />
       <window_info anchor="right" id="Capture Analysis" order="7" />
@@ -760,7 +767,7 @@
       <window_info anchor="right" id="Maven Projects" order="0" weight="0.3295129" />
       <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="File Transfer" order="12" weight="0.31629834" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="1" visible="true" weight="0.519337" />
+      <window_info anchor="bottom" id="Version Control" order="1" weight="0.519337" />
       <window_info anchor="bottom" id="Run" order="5" weight="0.26213592" />
       <window_info anchor="bottom" id="Terminal" order="2" weight="0.32872927" />
       <window_info id="Capture Tool" order="7" />
@@ -773,7 +780,6 @@
       <window_info anchor="right" id="Theme Preview" order="8" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="6" weight="0.4" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.32872927" />
       <window_info anchor="bottom" id="Inspection" order="8" weight="0.4" />
       <window_info anchor="right" id="Commander" order="4" weight="0.4" />
       <window_info anchor="bottom" id="Find" order="4" weight="0.32963988" />
@@ -825,7 +831,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Fix image url" />
     <MESSAGE value="Create 2 widgets Search filter &amp; Contact form (empty)" />
     <MESSAGE value="Create contact form property widget." />
     <MESSAGE value="If twig engine is error die" />
@@ -850,7 +855,8 @@
     <MESSAGE value="Update newsletter for Add subscriber" />
     <MESSAGE value="Corriger le nom de l'option" />
     <MESSAGE value="Added widget for footer top content" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added widget for footer top content" />
+    <MESSAGE value="Added Favicon and offer sidebar." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Favicon and offer sidebar." />
   </component>
   <component name="WordPressConfiguration" enabled="true">
     <wordpressPath>H:\wordpress-4.9.5</wordpressPath>
@@ -1134,13 +1140,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="6" column="20" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/admin/admin-search-filter.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="228">
@@ -1256,6 +1255,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="114">
           <caret line="26" selection-start-line="26" selection-end-line="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="387">
+          <caret line="631" column="14" lean-forward="true" selection-start-line="631" selection-start-column="14" selection-end-line="631" selection-end-column="14" />
         </state>
       </provider>
     </entry>
