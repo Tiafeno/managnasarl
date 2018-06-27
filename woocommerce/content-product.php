@@ -15,7 +15,7 @@ endif;
 
 ?>
 
-<div class="col-md-4 col-sm-6 col-xs-12">
+<div class="col-md-6 col-sm-6 col-xs-12">
 	<div class="single-property mb-40 fadeInUp wow" data-wow-delay="0.2s">
 		<?php if ( $product->status ): ?>
 			<span class="<?= $product->status ?>"><?= $status_values[ $product->status ] ?></span>

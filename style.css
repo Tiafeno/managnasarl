@@ -4,7 +4,7 @@ Theme URI:    http://managna-immo.com
 Author:       Falicrea Inc.
 Author URI:   https://falicrea.com/
 Description:  Designed and developed by Falicrea , it features a bespoke integration with WooCommerce itself plus many of the most popular customer facing WooCommerce extensions.
-Version:      1.1.9
+Version:      1.1.10
 License:      GNU General Public License v2 or later
 License URI:  https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain:  managnasarl
@@ -82,9 +82,6 @@ Tags:         featured-images, full-width-template, threaded-comments, accessibi
 }
 .boxed-layout.fixed {
     margin: 70px 0;
-}
-.pattern-fixed.pattern {
-    background: url("images/bg/pattern.png") repeat fixed 0 0;
 }
 
 img{max-width: 100%}
@@ -442,67 +439,7 @@ img{max-width: 100%}
 .single-services .welcome-content {
     padding-top: 17px;
 }
-/*--------------
-    05. Download apps css here
-----------------*/
-.download-apps {
-    background: rgba(0, 0, 0, 0) url("img/common/download.jpg") no-repeat scroll center center / cover ;
-    padding: 59px 0 23px;
-    position: relative;
-}
-.download-apps-desc {
-    margin-top: 14px;
-}
-.overlay-blue:before{
-    position: absolute;
-    content: "";
-    background: rgba(0,67,149,0.95);
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-}
-.fun-fact.overlay-black::before {
-    background: rgba(0, 0, 0, 0.95) none repeat scroll 0 0;
-}
-.fun-fact.no-bg {
-    background-color: #9e9e9e;
-    background-image: none;
-}
-.download-app-inner{
-    position: relative;
-    z-index: 9;
-    overflow: hidden;
-}
-.download-apps-title h3 {
-    color: #f9c322;
-    font-size: 26px;
-}
-.download-apps-title h3.title-1 {
-    margin-bottom: 6px;
-}
-.download-apps-bottom > p {
-    color: #eee;
-    font-weight: 300;
-}
-.download-apps-bottom > a {
-    background: #f9c322 none repeat scroll 0 0;
-    border: 1px solid rgba(0, 0, 0, 0);
-    color: #ffffff;
-    display: inline-block;
-    height: 40px;
-    line-height: 38px;
-    margin-top: 11px;
-    padding: 0 21px;
-}
-.download-apps-bottom > a:hover {
-    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
-    border-color: #f9c322;
-    color: #f9c322;
-}
-.download-apps-title h3.title-2 {
-    margin-bottom: 16px;
-}
+
 /*---------------
     06. Our services css here
 --------------*/
@@ -676,8 +613,7 @@ img{max-width: 100%}
 /*----------------------
     09. Fun fact css here
 ---------------*/
-.fun-fact{
-    background: url(img/fun/cover-bg.png)no-repeat scroll center center / cover;
+.fun-fact {
     position: relative;
     padding: 140px 0;
 }
@@ -1057,10 +993,9 @@ img{max-width: 100%}
 .footer-menu li a {
     color: #e2e0e0;
     display: block;
-    font-family: "Poppins",sans-serif;
     font-weight: 300;
     margin-left: 25px;
-    padding: 28px 0;
+    padding: 13px 0;
     text-transform: uppercase;
 }
 .footer-menu li:first-child a {
@@ -1074,7 +1009,7 @@ img{max-width: 100%}
     font-size: 13px;
     font-weight: 300;
     margin: 0;
-    padding: 24px 0;
+    padding: 13px 0;
     text-align: right;
 }
 .copyright > p a {

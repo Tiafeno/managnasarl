@@ -35,7 +35,7 @@ get_header( 'shop' );
 woocommerce_output_content_wrapper();
 ?>
 	<div class="feature-property property-archive pt-80">
-		<?php if (is_search()): echo do_shortcode('[vc_search_filter]'); endif; ?>
+		<?php if ( is_search() ): echo do_shortcode( '[vc_search_filter]' ); endif; ?>
 		<div class="container">
 			<div class="row">
 				<?php
@@ -52,48 +52,60 @@ woocommerce_output_content_wrapper();
 		</div>
 		<div class="container">
 			<div class="row">
+				<div class="col-md-8 col-sm-12 col-xs-12 ">
+					<div class="row">
+						<?php
+
+						if ( woocommerce_product_loop() ) {
+
+							if ( wc_get_loop_prop( 'total' ) ) {
+								while ( have_posts() ) {
+									the_post();
+
+									/**
+									 * Hook: woocommerce_shop_loop.
+									 * @hooked WC_Structured_Data::generate_product_data() - 10
+									 */
+									do_action( 'woocommerce_shop_loop' );
+
+									echo '<!--Feature property section-->';
+									wc_get_template_part( 'content', 'product' );
+									echo '<!--Feature property section end-->';
+								}
+							}
+
+							/**
+							 * Hook: woocommerce_after_shop_loop.
+							 * @hooked woocommerce_pagination - 10
+							 */
+							do_action( 'woocommerce_after_shop_loop' );
+						} else {
+							/**
+							 * Hook: woocommerce_no_products_found.
+							 * @hooked wc_no_products_found - 10
+							 */
+							do_action( 'woocommerce_no_products_found' );
+						}
+
+						?>
+					</div>
+				</div>
+				<!-- Offering sidebar -->
+				<div class="col-md-4 col-sm-6 col-xs-12">
+					<div class="sidebar right-side">
+						<?php get_sidebar( 'offering' ); ?>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
 <?php
-
-if ( woocommerce_product_loop() ) {
-
-	if ( wc_get_loop_prop( 'total' ) ) {
-		while ( have_posts() ) {
-			the_post();
-
-			/**
-			 * Hook: woocommerce_shop_loop.
-			 * @hooked WC_Structured_Data::generate_product_data() - 10
-			 */
-			do_action( 'woocommerce_shop_loop' );
-
-			echo '<!--Feature property section-->';
-			wc_get_template_part( 'content', 'product' );
-			echo '<!--Feature property section end-->';
-		}
-	}
-
-	/**
-	 * Hook: woocommerce_after_shop_loop.
-	 * @hooked woocommerce_pagination - 10
-	 */
-	do_action( 'woocommerce_after_shop_loop' );
-} else {
-	/**
-	 * Hook: woocommerce_no_products_found.
-	 * @hooked wc_no_products_found - 10
-	 */
-	do_action( 'woocommerce_no_products_found' );
-}
-
 /**
  * Hook: woocommerce_after_main_content.
  * @hooked woocommerce_output_content_wrapper_end - 10 (outputs closing divs for the content)
  */
 do_action( 'woocommerce_after_main_content' );
-?>
-			</div>
-		</div>
-	</div>
-<?php
 
 get_footer( 'shop' );

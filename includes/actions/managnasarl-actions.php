@@ -64,6 +64,12 @@ function embed_style_header() {
 			sup {
 				font-size: 10px;
 			}
+			a:focus, a:hover {
+				color: #ffffff;
+				font-weight: bold;
+				text-decoration: none;
+			}
+
 
 				/**
 				Slider

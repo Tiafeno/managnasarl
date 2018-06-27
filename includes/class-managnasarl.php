@@ -215,9 +215,19 @@ if ( ! class_exists( 'ManagnaSarl' ) ) :
 			) );
 
 			register_sidebar( array(
-				'name'          => 'Sidebar Shop',
+				'name'          => 'Single Property Sidebar',
 				'id'            => 'sidebar-shop',
-				'description'   => 'Add widgets here to appear in shop right position.',
+				'description'   => 'Add widgets here to appear in property single page right position.',
+				'before_widget' => '<aside id="%1$s" class="%2$s single-side-box">',
+				'after_widget'  => '</aside>',
+				'before_title'  => '<div class="aside-title"><h5>',
+				'after_title'   => '</h5></div>'
+			) );
+
+			register_sidebar( array(
+				'name'          => 'Offering Sidebar',
+				'id'            => 'sidebar-offering',
+				'description'   => 'Add widgets here to appear in offer right position.',
 				'before_widget' => '<aside id="%1$s" class="%2$s single-side-box">',
 				'after_widget'  => '</aside>',
 				'before_title'  => '<div class="aside-title"><h5>',
