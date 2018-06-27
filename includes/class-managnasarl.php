@@ -223,6 +223,21 @@ if ( ! class_exists( 'ManagnaSarl' ) ) :
 				'before_title'  => '<div class="aside-title"><h5>',
 				'after_title'   => '</h5></div>'
 			) );
+
+			register_sidebar([
+				'name' => 'Footer left',
+				'id'   => 'footer-left',
+			]);
+
+			register_sidebar([
+				'name' => 'Footer Middle',
+				'id'   => 'footer-middle',
+			]);
+
+			register_sidebar([
+				'name' => 'Footer Right',
+				'id'   => 'footer-right',
+			]);
 		}
 
 		private function register_scripts( $version ) {

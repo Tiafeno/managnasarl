@@ -21,48 +21,97 @@
  * SOFTWARE.
  */
 ?>
-		<footer class="footer">
-			<div class="footer-top">
-				<div class="footer-top">
-					<div class="container">
-						<div class="row">
-							<div class="col-md-4 col-sm-6 col-sm-12">
-								<div class="footer-services">
+<footer class="footer">
+	<div class="footer-primary">
+		<div class="footer-top">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4 col-sm-6 col-sm-12">
+						<div class="footer-container ptb-40">
+							<?php
+							if ( is_active_sidebar( 'footer-left' ) ) :
+								dynamic_sidebar( 'footer-left' );
+							endif;
+							?>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-6 col-sm-12">
+						<div class="footer-container ptb-40">
+							<?php
+							if ( is_active_sidebar( 'footer-middle' ) ) :
+								dynamic_sidebar( 'footer-middle' );
+							endif;
+							?>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-6 col-sm-12">
+						<div class="footer-container ptb-40">
 
-								</div>
-							</div>
-							<div class="col-md-4 col-sm-6 col-sm-12"></div>
-							<div class="col-md-4 col-sm-6 col-sm-12"></div>
 						</div>
 					</div>
 				</div>
-				<!--Footer bottom start-->
-				<div class="footer-bottom">
-					<div class="container">
-						<div class="row">
-							<div class="col-md-7 col-sm-12 col-xs-12">
-								<?php
-								if ( has_nav_menu( "menu-footer" ) ) :
-									wp_nav_menu( [
-										'menu_class'      => "",
-										'theme_location'  => 'menu-footer',
-										'container'       => 'div',
-										'container_class' => 'footer-menu'
-									] );
-								endif;
-								?>
-							</div>
-							<div class="col-md-5 col-sm-12 col-xs-12">
-								<div class="copyright">
-									<p>Copyright <i class="fa fa-copyright"></i> 2018. All rights reserved.</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!--Footer bottom end-->
 			</div>
-		</footer>
-  <?php wp_footer(); ?>
-	</body>
+		</div>
+		<!--Footer bottom start-->
+		<div class="footer-bottom">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-7 col-sm-12 col-xs-12">
+						<?php
+						if ( has_nav_menu( "menu-footer" ) ) :
+							wp_nav_menu( [
+								'menu_class'      => "",
+								'theme_location'  => 'menu-footer',
+								'container'       => 'div',
+								'container_class' => 'footer-menu'
+							] );
+						endif;
+						?>
+					</div>
+					<div class="col-md-5 col-sm-12 col-xs-12">
+						<div class="copyright">
+							<p>Copyright <i class="fa fa-copyright"></i> 2018. All rights reserved.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--Footer bottom end-->
+	</div>
+</footer>
+<style type="text/css">
+	footer.footer .footer-top {
+		background-color: #3C3C3C;
+	}
+
+	.footer p,
+	.footer span,
+	.footer {
+		color:#dcdcdc;
+		line-height: 16px;
+	}
+
+	.footer h2.widgettitle {
+		font-size: x-large;
+		text-transform: uppercase;
+		color: #ffffff;
+	}
+
+	.footer ul.menu li {
+		color: #dcdcdc;
+	}
+
+	.footer ul.menu li > a:hover {
+		color: #b33c50;
+	}
+
+	.footer ul.menu li > a {
+		color: #dcdcdc;
+		padding-top: 5px;
+		padding-bottom: 5px;
+		display: block;
+	}
+</style>
+<?php wp_footer(); ?>
+</body>
 </html>

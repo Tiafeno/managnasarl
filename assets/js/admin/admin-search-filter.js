@@ -29,8 +29,8 @@
     $("#slider-range").slider({
       range: true,
       min: 20,
-      max: 900000,
-      values: [20, 400000],
+      max: 20000000000,
+      values: [20, 4000000000],
       slide: function (event, ui) {
         $("#amount").val(ui.values[0] + "MGA - " + ui.values[1] + "MGA");
       }

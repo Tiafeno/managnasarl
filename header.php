@@ -22,7 +22,6 @@
  */
 ?>
 <!DOCTYPE html>
-<!-- saved from url=(0056)https://devitems.com/html/haven-preview/haven/index.html -->
 <html class="no-js" <?= language_attributes(); ?>>
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
