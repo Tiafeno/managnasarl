@@ -122,6 +122,9 @@ if ( ! class_exists( 'msServices' ) ) :
 
 				if ( wp_mail( $to, $subject, $body, $headers ) ) :
 					$contact_alert .= 'Votre message a étés bien envoyer';
+
+				// TODO: Ajouter son adresse email dans les registres des abonnée s'il a crocher sur "abonné"
+
 				else:
 					$contact_alert .= 'Une erreur est survenue lors de l\'envoi';
 				endif;

@@ -121,6 +121,9 @@
 		.footer-menu li a {
 			font-family: 'PT Sans', sans-serif !important;
 		}
+		.footer a {
+			color: #ddd;
+		}
 	</style>
 	<?php wp_footer(); ?>
 		</div>
