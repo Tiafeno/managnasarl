@@ -35,7 +35,6 @@ get_header( 'shop' );
 woocommerce_output_content_wrapper();
 ?>
 	<div class="feature-property property-archive pt-80">
-		<?php if ( is_search() ): echo do_shortcode( '[vc_search_filter]' ); endif; ?>
 		<div class="container">
 			<div class="row">
 				<?php
