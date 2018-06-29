@@ -113,7 +113,12 @@ if ( ! class_exists( 'msServices' ) ) :
 				$subject   = "Contact - " . $product->get_title();
 
 				/* TODO: Justifier le mail exacte pour envoyer la demande */
-				$to        = 'contact@falicrea.com';
+
+				$admin_email = get_option('admin_email');
+				if ( ! filter_var($admin_email, FILTER_VALIDATE_EMAIL))
+					return $contact_alert .= 'Adresse de l\'administrateur non definie';
+
+				$to        = $admin_email;
 				$body      = &$content;
 				$headers[] = 'Content-Type: text/html; charset=UTF-8';
 				$headers[] = 'From: ' . esc_html( $form['firstname'] ) . ' <' . $form['email'] . '>';
