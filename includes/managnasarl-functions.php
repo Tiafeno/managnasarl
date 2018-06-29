@@ -51,8 +51,11 @@ function strLimite( $text = '', $limite = 30) {
 	return strlen($text) > $limite ? substr($text , 0, $limite) . '...' : $text;
 }
 
+/**
+ * Envoyer un message à l'administrateur pour un message de client
+ */
 function managna_contact_property() {
-	$contact_alert = null;
+	$result = null;
 	$inputForm     = ManagnaSarl::getValue( 'form' );
 	if ( $inputForm ) {
 		if ( $inputForm == 'contact_form' ) {
@@ -62,15 +65,15 @@ function managna_contact_property() {
 				'email'     => ManagnaSarl::getValue( 'email' ),
 				'post_id'   => (int) ManagnaSarl::getValue( 'post_id' )
 			];
-			msServices::sendMessage( $form );
-			$contact_alert = apply_filters( 'send_contact_property', $contact_alert );
-			if ( is_null( $contact_alert ) ) {
+			msServices::sendMessage( $form, 'contact' );
+			$result = apply_filters( 'managna_send_email', $result );
+			if ( is_null( $result ) ) {
 				return;
 			}
 
 			echo '<div class="ui info message">
 							  <div class="header"> Information </div>
-							  <p>' . $contact_alert . '</p>
+							  <p>' . $result . '</p>
 							</div>';
 		}
 	}

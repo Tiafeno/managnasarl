@@ -31,10 +31,36 @@ if ( ! class_exists( 'vcNewsletterBox' ) ):
 			add_action( 'wp_ajax_nopriv_ajax_action_added_newsletter', [ $this, 'ajax_action_added_newsletter' ] );
 		}
 
+		/**
+		 * @return array
+		 */
 		public static function create_newsletter() {
 			return update_option( "managna_newsletter", [] );
 		}
 
+		/**
+		 * Récupere la liste des abonnées
+		 * @return array|false
+		 */
+		public static function get_subscribers_email() {
+			$emails      = [];
+			$newsletters = get_option( 'managna_newsletter', [] );
+			if ( empty( $newsletter ) ) {
+				return false;
+			}
+			foreach ( $newsletters as $newsletter ) {
+				if ($newsletter instanceof stdClass)
+					array_push( $emails, $newsletter->mail );
+			}
+			return $emails;
+		}
+
+		/**
+		 * Vérifier si l'adresse email existe déja dans la base de donnée
+		 *
+		 * @param $mail
+		 * @return bool
+		 */
 		public static function isRegister( $mail ) {
 			$newsletters = get_option( "managna_newsletter", [] );
 			if ( empty( $newsletters ) ) {
@@ -48,6 +74,12 @@ if ( ! class_exists( 'vcNewsletterBox' ) ):
 			return ! empty( $filter );
 		}
 
+		/**
+		 * Effacer une resultat ou adresse email d'un abonnée
+		 *
+		 * @param $mail
+		 * @return bool
+		 */
 		public static function remove_newsletter( $mail ) {
 			$newsletters = get_option( "managna_newsletter", [] );
 			if ( empty( $newsletters ) ) {
@@ -56,6 +88,12 @@ if ( ! class_exists( 'vcNewsletterBox' ) ):
 			// TODO: Supprimer une adresse email d'un abonné
 		}
 
+		/**
+		 * Ajouter un abonnée dans la base de donnée
+		 *
+		 * @param $mail
+		 * @return bool
+		 */
 		public static function added_newsletter( $mail ) {
 			if ( empty( $mail ) ) {
 				return false;
@@ -65,10 +103,15 @@ if ( ! class_exists( 'vcNewsletterBox' ) ):
 			$newsletters      = get_option( "managna_newsletter", [] );
 			array_push( $newsletters, $subscriber );
 
-			update_option('managna_newsletter', $newsletters);
+			update_option( 'managna_newsletter', $newsletters );
+
 			return true;
 		}
 
+		/**
+		 * Cette fonction est de type AJAX.
+		 * Il consiste à actionner le mechanisme de l'enregistrement d'un abonnée dans la base de donnée.
+		 */
 		public function ajax_action_added_newsletter() {
 			/**
 			 * @func wp_doing_ajax
@@ -78,36 +121,36 @@ if ( ! class_exists( 'vcNewsletterBox' ) ):
 				return;
 			}
 
-			if ( ! get_option('managna_newsletter', false) ) {
+			if ( ! get_option( 'managna_newsletter', false ) ) {
 				self::create_newsletter();
 			}
 			$mail = ManagnaSarl::getValue( 'mail' );
 
 			// @link http://php.net/manual/fr/filter.examples.validation.php
-			if ( ! filter_var($mail, FILTER_VALIDATE_EMAIL)) {
-				wp_send_json([
+			if ( ! filter_var( $mail, FILTER_VALIDATE_EMAIL ) ) {
+				wp_send_json( [
 					'success' => false,
-					'msg' => 'Error! Please verify your email address'
-				]);
+					'msg'     => 'Error! Please verify your email address'
+				] );
 			}
 
 			if ( ! self::isRegister( $mail ) ) {
 				if ( ! self::added_newsletter( $mail ) ) {
-					wp_send_json([
+					wp_send_json( [
 						'success' => false,
-						'msg' => 'Error! Please verify your email address'
-					]);
+						'msg'     => 'Error! Please verify your email address'
+					] );
 				} else {
-					wp_send_json([
+					wp_send_json( [
 						'success' => true,
-						'msg' => 'Your email address has been successfully added with success'
-					]);
+						'msg'     => 'Your email address has been successfully added with success'
+					] );
 				}
 			} else {
-				wp_send_json([
+				wp_send_json( [
 					'success' => true,
-					'msg' => 'The email address already exists'
-				]);
+					'msg'     => 'The email address already exists'
+				] );
 			}
 
 		}

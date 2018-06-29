@@ -46,26 +46,27 @@ if ( ! class_exists( 'msServices' ) ) :
 
 		/**
 		 * Ajouter les
+		 *
 		 * @param $product
 		 */
 		public static function setACFFields( &$product ) {
-			$id = $product instanceof WC_Product_Simple ? $product->get_id() : $product->ID;
-			$property = get_field('property', $id );
+			$id                = $product instanceof WC_Product_Simple ? $product->get_id() : $product->ID;
+			$property          = get_field( 'property', $id );
 			$product->property = $property;
 			// Get condition ACF fields
-			$conditions      = get_field( 'condition', $id );
+			$conditions        = get_field( 'condition', $id );
 			$product->surface  = $conditions['surface'] ? $conditions['surface'] : 0;
 			$product->bedroom  = $conditions['bedroom'] ? $conditions['bedroom'] : 0;
 			$product->bathroom = $conditions['bathroom'] ? $conditions['bathroom'] : 0;
 			$product->garage   = $conditions['garage'] ? $conditions['garage'] : 0;
 
 			// Get basic informations ACF fields
-			$basic_information = get_field( 'basic_information', $id  );
-			$product->location   = $basic_information['location'];
-			$product->status     = $basic_information['status'];
+			$basic_information = get_field( 'basic_information', $id );
+			$product->location = $basic_information['location'];
+			$product->status   = $basic_information['status'];
 
 			// Get Amenities field
-			$product->amenities = get_field( 'amenities', $id  );
+			$product->amenities = get_field( 'amenities', $id );
 		}
 
 		/**
@@ -81,60 +82,96 @@ if ( ! class_exists( 'msServices' ) ) :
 			return $products;
 		}
 
-		public static function sendMessage( $form ) {
+		public static function sendMessage( $form, $template = 'index' ) {
 			if ( ! is_array( $form ) ) {
 				return;
 			}
-			add_filter( 'send_contact_property', function ( $contact_alert ) use ( $form ) {
+
+			// Crée une filtre pour l'envoie et récuperer le resultat de cette envoie
+			add_filter( 'managna_send_email', function ( $result ) use ( $form, $template ) {
 				global $twig;
 				if ( empty( $form['post_id'] ) ) {
-					return null;
+					return $result = 'Post indentification non definie dans la formulaire';
 				}
-				$post_id = &$form['post_id'];
-				$product = wc_get_product( $post_id );
-				$product_thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ), 'woocommerce_thumbnail');
 
-				$content = $twig->render( '@MAIL/index.html', [
+				$form['message']   = isset( $form['message'] ) ? $form['message'] : '';
+				$form['firstname'] = isset( $form['firstname'] ) ? $form['firstname'] : '';
+
+				$post_id           = &$form['post_id'];
+				$product           = wc_get_product( $post_id );
+				$product_thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ), 'woocommerce_thumbnail' );
+
+				$content = $twig->render( '@MAIL/' . $template . '.html', [
 					'firstname' => $form['firstname'],
-					'content'   => esc_html($form['message']),
-					'template_directory_uri' => get_template_directory_uri(),
-					'home_url' => home_url('/'),
+					'content'   => $form['message'],
 
-					'product_title'       => $product->get_title(),
-					'product_description' => $product->get_description(),
-					'product_price'       => $product->get_price(),
+					'template_directory_uri' => get_template_directory_uri(),
+					'home_url'               => home_url( '/' ),
+
+					'product_title'         => $product->get_title(),
+					'product_description'   => $product->get_description(),
+					'product_price'         => $product->get_price(),
 					'product_thumbnail_url' => $product_thumbnail[0],
-					'product_url'         => get_the_permalink( $product->get_id() )
+					'product_url'           => get_the_permalink( $product->get_id() )
 
 				] );
 
+				// Récuperer les administrateurs du site
 				$users = get_users();
 				/* Prepare to send mail */
-				$subject   = "Contact - " . $product->get_title();
+				$subject = "Contact - " . $product->get_title();
 
-				/* TODO: Justifier le mail exacte pour envoyer la demande */
-
-				$admin_email = get_option('admin_email');
-				if ( ! filter_var($admin_email, FILTER_VALIDATE_EMAIL))
-					return $contact_alert .= 'Adresse de l\'administrateur non definie';
-
-				$to        = $admin_email;
-				$body      = &$content;
+				$admin_email = get_option( 'admin_email' );
+				if ( ! filter_var( $admin_email, FILTER_VALIDATE_EMAIL ) ) {
+					return $result = 'Adresse de l\'administrateur non definie';
+				}
+				$body    = &$content;
+				$senders = [];
+				$headers = [];
 				$headers[] = 'Content-Type: text/html; charset=UTF-8';
-				$headers[] = 'From: ' . esc_html( $form['firstname'] ) . ' <' . $form['email'] . '>';
-				foreach ($users as $user)
-					$headers[] = 'Cc: ' . $user->user_email;
-
-				if ( wp_mail( $to, $subject, $body, $headers ) ) :
-					$contact_alert .= 'Votre message a étés bien envoyer';
-
-				// TODO: Ajouter son adresse email dans les registres des abonnée s'il a crocher sur "abonné"
-
+				if ( $template != 'newsletter' ):
+					$to        = $admin_email;
+					$headers[] = 'From: ' . esc_html( $form['firstname'] ) . ' <' . $form['email'] . '>';
+					foreach ( $users as $user ) {
+						$headers[] = 'Cc: ' . $user->user_email;
+					}
+					array_push( $senders, [
+						'to'      => $to,
+						'headers' => $headers
+					] );
 				else:
-					$contact_alert .= 'Une erreur est survenue lors de l\'envoi';
+
+					$blogname = get_option('blogname');
+					$admin_email = get_option('admin_email');
+					/**
+					 * Declared vc-newsletter.php
+					 * vcNewsletterBox::get_subscribers_email()
+					 * @return array
+					 */
+					$subscribers = vcNewsletterBox::get_subscribers_email();
+					foreach ($subscribers as $mail) {
+						$headers[] = 'From: '.$blogname.' <' . $admin_email . '>';
+						array_push($senders, [
+							'to' => $mail,
+							'headers' => $headers
+						]);
+					}
 				endif;
 
-				return $contact_alert;
+				foreach ( $senders as $sender ) {
+					if ( wp_mail( $sender['to'], $subject, $body, $sender['headers'] ) ) :
+						$result = 'Votre message a étés bien envoyer';
+
+					// TODO: Ajouter son adresse email dans les registres des abonnée s'il a crocher sur "abonné"
+
+					else:
+						$result = 'Une erreur est survenue lors de l\'envoi \n\t';
+						$result .= 'Details: ' . implode(' X ', $sender['headers']);
+						break;
+					endif;
+				}
+
+				return $result;
 			}, 10, 1 );
 		}
 

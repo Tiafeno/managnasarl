@@ -30,12 +30,13 @@ if ( ! class_exists( 'ManagnaSarl' ) ) :
 
 		public function __construct() {
 
-			add_action( 'wp_loaded', function() {
+			add_action( 'wp_loaded', function () {
 
 				// Rennomer les étiquettes d'Woocommerce (product) en "Annonce"
 				$p_object = get_post_type_object( 'product' );
-				if ( ! $p_object )
+				if ( ! $p_object ) {
 					return false;
+				}
 				// see get_post_type_labels()
 				$p_object->labels->name               = 'Annonces';
 				$p_object->labels->singular_name      = 'Annonce';
@@ -52,7 +53,7 @@ if ( ! class_exists( 'ManagnaSarl' ) ) :
 				$p_object->labels->view_item          = 'Afficher l\'annonce';
 
 				return true;
-			}, 20);
+			}, 20 );
 
 			// Save scripts and styles
 			add_action( 'wp_enqueue_scripts', array( $this, 'scripts' ) );
@@ -72,10 +73,25 @@ if ( ! class_exists( 'ManagnaSarl' ) ) :
 			// Add class name in body
 			add_filter( 'body_class', array( $this, 'body_classes' ) );
 
+			add_action( 'transition_post_status', function ( $new_status, $old_status, $post ) {
+				if ( 'publish' == $new_status && 'publish' != $old_status && $post->post_type == 'product' ) {
+					// TODO: Envoyer un newsletter
+					$message = null;
+					$form = [
+						'post_id' => $post->ID
+					];
+					msServices::sendMessage($form, 'newsletter');
+					$send_result = apply_filters( 'managna_send_email', $message );
+					if (is_null($send_result)) return;
+
+				}
+			}, 10, 3 );
+
 			// Change shop post product view per page
 			add_filter( 'loop_shop_per_page', 'override_loop_shop_per_page', 20 );
 			function override_loop_shop_per_page( $cols ) {
 				$cols = 6;
+
 				return $cols;
 			}
 
@@ -86,9 +102,9 @@ if ( ! class_exists( 'ManagnaSarl' ) ) :
 
 			// Sets the text domain used when translating field and field group settings.
 			// Defaults to ”. Strings will not be translated if this setting is empty
-			add_filter('acf/settings/l10n_textdomain', function () {
+			add_filter( 'acf/settings/l10n_textdomain', function () {
 				return __SITENAME__;
-			});
+			} );
 		}
 
 		public static function getValue( $name, $def = false ) {
@@ -234,20 +250,20 @@ if ( ! class_exists( 'ManagnaSarl' ) ) :
 				'after_title'   => '</h5></div>'
 			) );
 
-			register_sidebar([
+			register_sidebar( [
 				'name' => 'Footer left',
 				'id'   => 'footer-left',
-			]);
+			] );
 
-			register_sidebar([
+			register_sidebar( [
 				'name' => 'Footer Middle',
 				'id'   => 'footer-middle',
-			]);
+			] );
 
-			register_sidebar([
+			register_sidebar( [
 				'name' => 'Footer Right',
 				'id'   => 'footer-right',
-			]);
+			] );
 		}
 
 		private function register_scripts( $version ) {
@@ -259,12 +275,12 @@ if ( ! class_exists( 'ManagnaSarl' ) ) :
 				'jquery',
 				'managnasarl-plugins'
 			], $version, true );
-			wp_register_script('slick-script', get_template_directory_uri() . '/assets/js/jquery/slick.min.js', ['jquery'], $version, true);
+			wp_register_script( 'slick-script', get_template_directory_uri() . '/assets/js/jquery/slick.min.js', [ 'jquery' ], $version, true );
 			wp_register_style( 'slick', get_template_directory_uri() . '/assets/css/slick.css', '', $version );
 			wp_register_style( 'slick-theme', get_template_directory_uri() . '/assets/css/slick-theme.css', '', $version );
 
 			wp_register_style( 'lightbox', get_template_directory_uri() . '/assets/css/lightbox.min.css', '', $version );
-			wp_register_script('lightbox-script', get_template_directory_uri() . '/assets/js/lightbox.min.js', ['jquery'], $version, true);
+			wp_register_script( 'lightbox-script', get_template_directory_uri() . '/assets/js/lightbox.min.js', [ 'jquery' ], $version, true );
 
 			wp_register_style( 'semantic', get_template_directory_uri() . '/assets/css/semantic/semantic.min.css', '', $version );
 			wp_register_style( 'semantic-form', get_template_directory_uri() . '/assets/css/semantic/form.min.css', '', $version );
@@ -275,7 +291,7 @@ if ( ! class_exists( 'ManagnaSarl' ) ) :
 			wp_register_style( 'semantic-input', get_template_directory_uri() . '/assets/css/semantic/input.min.css', '', $version );
 
 			wp_register_style( 'Lato', '//fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic&subset=latin' );
-			wp_register_script('tinyMCE', '//cloud.tinymce.com/stable/tinymce.min.js?apiKey=2grxn9iofnxolcaedqa399sh4ft6c1mg3e1kumgnyq6o0ap1');
+			wp_register_script( 'tinyMCE', '//cloud.tinymce.com/stable/tinymce.min.js?apiKey=2grxn9iofnxolcaedqa399sh4ft6c1mg3e1kumgnyq6o0ap1' );
 
 		}
 
