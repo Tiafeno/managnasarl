@@ -73,9 +73,13 @@ if ( ! class_exists( 'ManagnaSarl' ) ) :
 			// Add class name in body
 			add_filter( 'body_class', array( $this, 'body_classes' ) );
 
-			add_action( 'transition_post_status', function ( $new_status, $old_status, $post ) {
+			add_action( /**
+			 * @param string $new_status
+			 * @param $string old_status
+			 * @param WP_Post $post
+			 */
+				'transition_post_status', function ( $new_status, $old_status, $post ) {
 				if ( 'publish' == $new_status && 'publish' != $old_status && $post->post_type == 'product' ) {
-					// TODO: Envoyer un newsletter
 					$message = null;
 					$form = [
 						'post_id' => $post->ID
@@ -83,6 +87,7 @@ if ( ! class_exists( 'ManagnaSarl' ) ) :
 					msServices::sendMessage($form, 'newsletter');
 					$send_result = apply_filters( 'managna_send_email', $message );
 					if (is_null($send_result)) return;
+					// TODO: Q&A test
 
 				}
 			}, 10, 3 );

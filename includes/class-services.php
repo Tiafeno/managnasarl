@@ -159,16 +159,18 @@ if ( ! class_exists( 'msServices' ) ) :
 				endif;
 
 				foreach ( $senders as $sender ) {
-					if ( wp_mail( $sender['to'], $subject, $body, $sender['headers'] ) ) :
+					if ( wp_mail( $sender['to'], $subject, $body, $sender['headers'] ) ) {
 						$result = 'Votre message a étés bien envoyer';
 
-					// TODO: Ajouter son adresse email dans les registres des abonnée s'il a crocher sur "abonné"
-
-					else:
+						$mail = $sender['to'];
+						if ( ! vcNewsletterBox::isRegister( $mail ) ) {
+							$added = vcNewsletterBox::added_newsletter($mail);
+						}
+					} else {
 						$result = 'Une erreur est survenue lors de l\'envoi \n\t';
-						$result .= 'Details: ' . implode(' X ', $sender['headers']);
+						$result .= 'Details: ' . implode( ' X ', $sender['headers'] );
 						break;
-					endif;
+					}
 				}
 
 				return $result;
