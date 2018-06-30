@@ -25,6 +25,15 @@
                 }
               ]
             },
+            phone     : {
+              identifier : 'phone',
+              rules: [
+                {
+                  type: 'empty',
+                  prompt : 'Le numéro de téléphone est obligatoire'
+                }
+              ]
+            },
             email   : {
               identifier: 'email',
               rules:[
@@ -64,6 +73,7 @@
 
     </div>
   </div>
+
   <div class="inline field">
     <div class="ui left icon input">
       <input name="email" type="text" placeholder="Adresse E-mail">
@@ -72,13 +82,21 @@
   </div>
 
   <div class="inline field">
+    <div class="ui left icon input">
+      <input name="phone" type="tel" placeholder="Numéro de téléphone">
+      <i class="phone icon"></i>
+    </div>
+  </div>
+
+
+  <div class="inline field">
     <div class="message-editor" id="message-editor"></div>
   </div>
 
   <div class="inline field ">
     <div class="ui toggle checkbox">
       <input type="checkbox" name="newsletter">
-      <label>Abonnez-vous à la newsletter</label>
+      <label>Je m'abonne à la newsletter</label>
     </div>
   </div>
   <div class="inline find-home-item">

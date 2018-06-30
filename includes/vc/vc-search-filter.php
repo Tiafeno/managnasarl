@@ -70,7 +70,13 @@ if ( ! class_exists( 'vcSearchFilterBox' ) ) :
 				)
 			);
 
+			$options = $managnaSarl->services->getManagnaOptions();
 			wp_enqueue_script('admin-element-search-filter');
+			if ($options instanceof stdClass)
+				wp_localize_script('admin-element-search-filter', 'vc_search_filter', [
+					'slider' => $options->search_filters
+				]);
+
 
 			/** @var string $title */
 			try {

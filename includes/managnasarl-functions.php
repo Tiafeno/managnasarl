@@ -63,6 +63,8 @@ function managna_contact_property() {
 				'message'   => ManagnaSarl::getValue( 'message-editor' ),
 				'firstname' => ManagnaSarl::getValue( 'firstname' ),
 				'email'     => ManagnaSarl::getValue( 'email' ),
+				'phone'     => ManagnaSarl::getValue('phone'),
+				'subscribe' => ManagnaSarl::getValue('newsletter', false),
 				'post_id'   => (int) ManagnaSarl::getValue( 'post_id' )
 			];
 			msServices::sendMessage( $form, 'contact' );

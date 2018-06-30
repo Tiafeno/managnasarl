@@ -26,17 +26,22 @@
     /*------------------
         5. Price Slider
     --------------------------*/
-    $("#slider-range").slider({
+    var echelle = $("#slider-range");
+    var optionSlider = vc_search_filter.slider;
+    var min_price = parseFloat(optionSlider.min_price);
+    var max_price = parseFloat(optionSlider.max_price);
+    var limite = parseFloat(optionSlider.max_price_limite);
+    echelle.slider({
       range: true,
-      min: 20,
-      max: 20000000000,
-      values: [20, 4000000000],
+      min: min_price,
+      max: limite,
+      values: [min_price, max_price],
       slide: function (event, ui) {
         $("#amount").val(ui.values[0] + "MGA - " + ui.values[1] + "MGA");
       }
     });
-    $("#amount").val($("#slider-range").slider("values", 0) +
-      "MGA - " + $("#slider-range").slider("values", 1) + "MGA");
+    $("#amount").val(echelle.slider("values", 0) +
+      "MGA - " + echelle.slider("values", 1) + "MGA");
 
   });
 })(jQuery);

@@ -45,6 +45,28 @@ if ( ! class_exists( 'msServices' ) ) :
 		}
 
 		/**
+		 * Récuperer les options ACF
+		 * @return null|stdClass
+		 */
+		public function getManagnaOptions() {
+			if ( function_exists( 'get_field' ) ) {
+				$options = new stdClass();
+
+				// @var ARRAY ['facebook' =>, 'twitter' =>, 'google-plus' =>]
+				$socials          = get_field( 'social_networks', 'option' );
+				$options->socials = $socials ? $socials : [];
+
+				// @var ARRAY ['min_price' =>, 'max_price' =>, 'max_price_limite' => ]
+				$searchFilters           = get_field( 'search_filter_option', 'option' );
+				$options->search_filters = $searchFilters ? $searchFilters : [];
+
+				return $options;
+			}
+
+			return null;
+		}
+
+		/**
 		 * Ajouter les
 		 *
 		 * @param $product
@@ -89,10 +111,13 @@ if ( ! class_exists( 'msServices' ) ) :
 
 			// Crée une filtre pour l'envoie et récuperer le resultat de cette envoie
 			add_filter( 'managna_send_email', function ( $result ) use ( $form, $template ) {
-				global $twig;
+				global $twig, $managnaSarl;
 				if ( empty( $form['post_id'] ) ) {
 					return $result = 'Post indentification non definie dans la formulaire';
 				}
+
+				$options = $managnaSarl->services->getManagnaOptions();
+				$socials = $options->socials;
 
 				$form['message']   = isset( $form['message'] ) ? $form['message'] : '';
 				$form['firstname'] = isset( $form['firstname'] ) ? $form['firstname'] : '';
@@ -104,9 +129,11 @@ if ( ! class_exists( 'msServices' ) ) :
 				$content = $twig->render( '@MAIL/' . $template . '.html', [
 					'firstname' => $form['firstname'],
 					'content'   => $form['message'],
+					'phone'     => $form['phone'],
 
 					'template_directory_uri' => get_template_directory_uri(),
 					'home_url'               => home_url( '/' ),
+					'socials'                => $socials,
 
 					'product_title'         => $product->get_title(),
 					'product_description'   => $product->get_description(),
@@ -118,20 +145,23 @@ if ( ! class_exists( 'msServices' ) ) :
 
 				// Récuperer les administrateurs du site
 				$users = get_users();
+
 				/* Prepare to send mail */
-				$subject = "Contact - " . $product->get_title();
+				$blogName    = get_option( 'blogname' );
+				$subject = "Contact - " . $product->get_title() . ' | ' . $blogName;
 
 				$admin_email = get_option( 'admin_email' );
 				if ( ! filter_var( $admin_email, FILTER_VALIDATE_EMAIL ) ) {
 					return $result = 'Adresse de l\'administrateur non definie';
 				}
-				$body    = &$content;
-				$senders = [];
-				$headers = [];
+				$body      = &$content;
+				$senders   = [];
+				$headers   = [];
 				$headers[] = 'Content-Type: text/html; charset=UTF-8';
 				if ( $template != 'newsletter' ):
-					$to        = $admin_email;
-					$headers[] = 'From: ' . esc_html( $form['firstname'] ) . ' <' . $form['email'] . '>';
+					$isSubscriber = &$form['subscribe'];
+					$to          = $admin_email;
+					$headers[]   = 'From: ' . esc_html( $form['firstname'] ) . ' <' . $form['email'] . '>';
 					foreach ( $users as $user ) {
 						$headers[] = 'Cc: ' . $user->user_email;
 					}
@@ -141,20 +171,19 @@ if ( ! class_exists( 'msServices' ) ) :
 					] );
 				else:
 
-					$blogname = get_option('blogname');
-					$admin_email = get_option('admin_email');
+					$admin_email = get_option( 'admin_email' );
 					/**
 					 * Declared vc-newsletter.php
 					 * vcNewsletterBox::get_subscribers_email()
 					 * @return array
 					 */
 					$subscribers = vcNewsletterBox::get_subscribers_email();
-					foreach ($subscribers as $mail) {
-						$headers[] = 'From: '.$blogname.' <' . $admin_email . '>';
-						array_push($senders, [
-							'to' => $mail,
+					foreach ( $subscribers as $mail ) {
+						$headers[] = 'From: ' . $blogName . ' <' . $admin_email . '>';
+						array_push( $senders, [
+							'to'      => $mail,
 							'headers' => $headers
-						]);
+						] );
 					}
 				endif;
 
@@ -162,10 +191,16 @@ if ( ! class_exists( 'msServices' ) ) :
 					if ( wp_mail( $sender['to'], $subject, $body, $sender['headers'] ) ) {
 						$result = 'Votre message a étés bien envoyer';
 
-						$mail = $sender['to'];
-						if ( ! vcNewsletterBox::isRegister( $mail ) ) {
-							$added = vcNewsletterBox::added_newsletter($mail);
+						if ( isset( $isSubscriber ) ) {
+							if ( ! $isSubscriber ) {
+								continue;
+							}
+							$mail = $sender['to'];
+							if ( ! vcNewsletterBox::isRegister( $mail ) ) {
+								$added = vcNewsletterBox::added_newsletter( $mail );
+							}
 						}
+
 					} else {
 						$result = 'Une erreur est survenue lors de l\'envoi \n\t';
 						$result .= 'Details: ' . implode( ' X ', $sender['headers'] );

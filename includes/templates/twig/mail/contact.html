@@ -131,7 +131,15 @@
                     align=left><STRONG>Demande de contact</STRONG></P>
                   <P
                     style="FONT-SIZE: 12px; MARGIN-BOTTOM: 1em; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; MARGIN-TOP: 0px; COLOR: #2f2f2f; LINE-HEIGHT: 155%; BACKGROUND-COLOR: transparent; mso-line-height-rule: exactly"
-                    align=left> {{content}}</P></TD>
+                    align=left>Nom: {{firstname}}</P>
+                  <P
+                    style="FONT-SIZE: 12px; MARGIN-BOTTOM: 1em; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; MARGIN-TOP: 0px; COLOR: #2f2f2f; LINE-HEIGHT: 155%; BACKGROUND-COLOR: transparent; mso-line-height-rule: exactly"
+                    align=left>Numéro de téléphone: {{phone}}</P>
+                  <P
+                    style="FONT-SIZE: 12px; MARGIN-BOTTOM: 1em; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; MARGIN-TOP: 0px; COLOR: #2f2f2f; LINE-HEIGHT: 155%; BACKGROUND-COLOR: transparent; mso-line-height-rule: exactly; text-align: left"
+                    align=left> {{content|raw}}</P>
+
+                </TD>
               </TR>
             </TABLE>
           </TD>
@@ -187,7 +195,7 @@
                       <TD width="50%">
                         <P
                           style="FONT-SIZE: 12px; MARGIN-BOTTOM: 1em; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; MARGIN-TOP: 0px; COLOR: #efb04e; LINE-HEIGHT: 155%; BACKGROUND-COLOR: transparent; mso-line-height-rule: exactly"
-                          align=left><STRONG>Regular Price<BR>{{product_price}} Euro</STRONG></P>
+                          align=left><STRONG>Prix: {{product_price}} MGA</STRONG></P>
                       </TD>
                     </TR>
                   </TABLE>
@@ -237,10 +245,13 @@
                                 <TR>
                                   <TD
                                     style="BORDER-TOP: medium none; BORDER-RIGHT: medium none; BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; BACKGROUND-COLOR: transparent">
-                                    <IMG
-                                      style="BORDER-TOP: medium none; BORDER-RIGHT: medium none; BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; DISPLAY: block; BACKGROUND-COLOR: transparent"
-                                      border=0 src="{{template_directory_uri}}/img/inbox/Image_3.png" width=24 height=24 hspace="0"
-                                      vspace="0"></TD>
+                                    <a href="{{socials['facebook']}}" title="Facebook" style="display: block;">
+                                      <IMG
+                                        style="BORDER-TOP: medium none; BORDER-RIGHT: medium none; BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; DISPLAY: block; BACKGROUND-COLOR: transparent"
+                                        border=0 src="{{template_directory_uri}}/img/inbox/Image_3.png" width=24 height=24 hspace="0"
+                                        vspace="0">
+                                    </a>
+                                  </TD>
                                 </TR>
                               </TABLE>
                             </TD>
@@ -256,10 +267,13 @@
                                 <TR>
                                   <TD
                                     style="BORDER-TOP: medium none; BORDER-RIGHT: medium none; BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; BACKGROUND-COLOR: transparent">
-                                    <IMG
+                                    <a href="{{socials['twitter']}}" title="Twitter" style="display: block;">
+                                      <IMG
                                       style="BORDER-TOP: medium none; BORDER-RIGHT: medium none; BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; DISPLAY: block; BACKGROUND-COLOR: transparent"
                                       border=0 src="{{template_directory_uri}}/img/inbox/Image_4.png" width=24 height=24 hspace="0"
-                                      vspace="0"></TD>
+                                      vspace="0">
+                                    </a>
+                                  </TD>
                                 </TR>
                               </TABLE>
                             </TD>
@@ -275,86 +289,13 @@
                                 <TR>
                                   <TD
                                     style="BORDER-TOP: medium none; BORDER-RIGHT: medium none; BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; BACKGROUND-COLOR: transparent">
+                                    <a href="{{socials['google-plus']}}" title="Google Plus" style="display: block;">
                                     <IMG
                                       style="BORDER-TOP: medium none; BORDER-RIGHT: medium none; BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; DISPLAY: block; BACKGROUND-COLOR: transparent"
                                       border=0 src="{{template_directory_uri}}/img/inbox/Image_5.png" width=24 height=24 hspace="0"
-                                      vspace="0"></TD>
-                                </TR>
-                              </TABLE>
-                            </TD>
-                          </TR>
-                        </TABLE>
-                      </TD>
-                      <TD>
-                        <TABLE cellSpacing=0 cellPadding=0 align=center border=0>
-                          <TR>
-                            <TD style="PADDING-BOTTOM: 4px; PADDING-TOP: 4px; PADDING-LEFT: 4px; PADDING-RIGHT: 5px"
-                                align=center>
-                              <TABLE cellSpacing=0 cellPadding=0 border=0>
-                                <TR>
-                                  <TD
-                                    style="BORDER-TOP: medium none; BORDER-RIGHT: medium none; BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; BACKGROUND-COLOR: transparent">
-                                    <IMG
-                                      style="BORDER-TOP: medium none; BORDER-RIGHT: medium none; BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; DISPLAY: block; BACKGROUND-COLOR: transparent"
-                                      border=0 src="{{template_directory_uri}}/img/inbox/Image_6.png" width=24 height=24 hspace="0"
-                                      vspace="0"></TD>
-                                </TR>
-                              </TABLE>
-                            </TD>
-                          </TR>
-                        </TABLE>
-                      </TD>
-                      <TD>
-                        <TABLE cellSpacing=0 cellPadding=0 align=center border=0>
-                          <TR>
-                            <TD style="PADDING-BOTTOM: 4px; PADDING-TOP: 4px; PADDING-LEFT: 4px; PADDING-RIGHT: 5px"
-                                align=center>
-                              <TABLE cellSpacing=0 cellPadding=0 border=0>
-                                <TR>
-                                  <TD
-                                    style="BORDER-TOP: medium none; BORDER-RIGHT: medium none; BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; BACKGROUND-COLOR: transparent">
-                                    <IMG
-                                      style="BORDER-TOP: medium none; BORDER-RIGHT: medium none; BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; DISPLAY: block; BACKGROUND-COLOR: transparent"
-                                      border=0 src="{{template_directory_uri}}/img/inbox/Image_7.png" width=24 height=24 hspace="0"
-                                      vspace="0"></TD>
-                                </TR>
-                              </TABLE>
-                            </TD>
-                          </TR>
-                        </TABLE>
-                      </TD>
-                      <TD>
-                        <TABLE cellSpacing=0 cellPadding=0 align=center border=0>
-                          <TR>
-                            <TD style="PADDING-BOTTOM: 4px; PADDING-TOP: 4px; PADDING-LEFT: 4px; PADDING-RIGHT: 5px"
-                                align=center>
-                              <TABLE cellSpacing=0 cellPadding=0 border=0>
-                                <TR>
-                                  <TD
-                                    style="BORDER-TOP: medium none; BORDER-RIGHT: medium none; BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; BACKGROUND-COLOR: transparent">
-                                    <IMG
-                                      style="BORDER-TOP: medium none; BORDER-RIGHT: medium none; BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; DISPLAY: block; BACKGROUND-COLOR: transparent"
-                                      border=0 src="{{template_directory_uri}}/img/inbox/Image_8.png" width=24 height=24 hspace="0"
-                                      vspace="0"></TD>
-                                </TR>
-                              </TABLE>
-                            </TD>
-                          </TR>
-                        </TABLE>
-                      </TD>
-                      <TD>
-                        <TABLE cellSpacing=0 cellPadding=0 align=center border=0>
-                          <TR>
-                            <TD style="PADDING-BOTTOM: 4px; PADDING-TOP: 4px; PADDING-LEFT: 4px; PADDING-RIGHT: 5px"
-                                align=center>
-                              <TABLE cellSpacing=0 cellPadding=0 border=0>
-                                <TR>
-                                  <TD
-                                    style="BORDER-TOP: medium none; BORDER-RIGHT: medium none; BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; BACKGROUND-COLOR: transparent">
-                                    <IMG
-                                      style="BORDER-TOP: medium none; BORDER-RIGHT: medium none; BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; DISPLAY: block; BACKGROUND-COLOR: transparent"
-                                      border=0 src="{{template_directory_uri}}/img/inbox/Image_9.png" width=24 height=24 hspace="0"
-                                      vspace="0"></TD>
+                                      vspace="0">
+                                    </a>
+                                  </TD>
                                 </TR>
                               </TABLE>
                             </TD>
@@ -382,7 +323,7 @@
                   </P>
                   <P
                     style="FONT-SIZE: 10px; MARGIN-BOTTOM: 1em; FONT-FAMILY: Arial, Helvetica, sans-serif; MARGIN-TOP: 0px; COLOR: #909091; LINE-HEIGHT: 125%; BACKGROUND-COLOR: transparent; mso-line-height-rule: exactly"
-                    align=left>&#169;2015 MANAGNA Sarl. All rights reserved.</P></TD>
+                    align=left>&#169;{{ "now"|date("Y") }} MANAGNA Sarl. All rights reserved.</P></TD>
               </TR>
             </TABLE>
           </TD>

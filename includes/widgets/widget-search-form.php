@@ -31,14 +31,19 @@ if ( ! class_exists( 'SearchFilterWidget' ) ):
 
 		// @front-end
 		public function widget( $args, $instance ) {
-			global $twig;
+			global $twig, $managnaSarl;
 			$title = apply_filters( 'widget_title', $instance['title'] );
 			echo $args['before_widget'];
 			if ( ! empty( $title ) ) {
 				echo $args['before_title'] . $title . $args['after_title'];
 			}
 
+			$options = $managnaSarl->services->getManagnaOptions();
 			wp_enqueue_script('admin-element-search-filter');
+			wp_localize_script('admin-element-search-filter', 'vc_search_filter', [
+				'slider' => $options->search_filters
+			]);
+
 			try {
 				echo $twig->render( '@WIDGETS_FRONT/search-filter-form.html', [
 					'search' => [
