@@ -74,29 +74,12 @@ function embed_style_header() {
 				/**
 				Slider
 				*/
-	    .nivoSlider .middle-text h1,
-	    .nivoSlider .middle-text h2,
-	    .nivoSlider .middle-text h3,
-	    .nivoSlider .middle-text h4,
-	    .nivoSlider .middle-text h5,
-	    .nivoSlider .middle-text h6,
-	    .nivoSlider .middle-text strong{
-		    color: #ffffff;
-	    }
-	    .nivoSlider .middle-text h1,
-	    .nivoSlider .middle-text h2,
-	    .nivoSlider .middle-text h3,
-	    .nivoSlider .middle-text h4,
-	    .nivoSlider .middle-text h5,
-	    .nivoSlider .middle-text h6 {
-		    text-transform: uppercase;
-	    }
 
 	    @media (max-width: 767px) {
-		    .nivoSlider .middle-text h1, .nivoSlider .middle-text h2,
-		    .nivoSlider .middle-text h3, .nivoSlider .middle-text h4,
-		    .nivoSlider .middle-text h5, .nivoSlider .middle-text h6,
-		    .nivoSlider .middle-text strong {
+		    .ms-slide-container h1, .ms-slide-container h2,
+		    .ms-slide-container h3, .ms-slide-container h4,
+		    .ms-slide-container h5, .ms-slide-container h6,
+		    .ms-slide-container strong {
 			    font-size: calc(100% + 4px);
 			    font-size: -webkit-calc(100% + 4px);
 		    }

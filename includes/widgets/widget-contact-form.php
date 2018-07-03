@@ -45,6 +45,7 @@ if ( ! class_exists( 'ContactPropertyFormWidget' ) ) :
 			wp_enqueue_style( 'semantic-checkbox' );
 			wp_enqueue_style( 'semantic-input' );
 
+
 			wp_enqueue_style( 'Lato' );
 			wp_enqueue_script('tinyMCE');
 

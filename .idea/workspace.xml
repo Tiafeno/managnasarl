@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="07a8c7fa-cc04-4767-bec4-dd0111f3c9d8" name="Default" comment="" />
+    <list default="true" id="07a8c7fa-cc04-4767-bec4-dd0111f3c9d8" name="Default" comment="Justifier le mail exacte pour envoyer la demande">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/includes/actions/managnasarl-actions.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/actions/managnasarl-actions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/includes/widgets/widget-contact-form.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/widgets/widget-contact-form.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -29,11 +35,29 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="functions.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/functions.php">
+      <file leaf-file-name="class-services.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/includes/class-services.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1577">
-              <caret line="83" selection-start-line="83" selection-end-line="83" />
+            <state relative-caret-position="1805">
+              <caret line="115" column="67" selection-start-line="115" selection-start-column="67" selection-end-line="115" selection-end-column="67" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="widget-contact-form.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/includes/widgets/widget-contact-form.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="147">
+              <caret line="46" selection-start-line="46" selection-end-line="46" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="header.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/header.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="73">
+              <caret line="36" column="38" selection-start-line="36" selection-start-column="38" selection-end-line="36" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -41,44 +65,17 @@
       <file leaf-file-name="class-managnasarl.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/includes/class-managnasarl.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3952">
-              <caret line="228" column="28" selection-start-line="228" selection-start-column="28" selection-end-line="228" selection-end-column="44" />
+            <state relative-caret-position="361">
+              <caret line="264" column="34" selection-start-line="264" selection-start-column="34" selection-end-line="264" selection-end-column="34" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="footer.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/footer.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2052">
-              <caret line="128" selection-start-line="128" selection-end-line="128" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="single-product.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/woocommerce/single-product.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="608">
-              <caret line="52" column="22" selection-start-line="52" selection-start-column="22" selection-end-line="52" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="sidebar-offering.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sidebar-offering.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="26" selection-start-line="26" selection-end-line="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="style.css" pinned="false" current-in-tab="true">
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="387">
-              <caret line="631" column="14" lean-forward="true" selection-start-line="631" selection-start-column="14" selection-end-line="631" selection-end-column="14" />
+            <state relative-caret-position="114">
+              <caret line="6" column="20" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -113,6 +110,12 @@
       <find>property-list</find>
       <find>price</find>
       <find>outline</find>
+      <find>send_contact_property</find>
+      <find>managna_contact_property</find>
+      <find>newsletter</find>
+      <find>acfParams</find>
+      <find>isSubsc</find>
+      <find>loca</find>
     </findStrings>
     <dirStrings>
       <dir>C:\xampp\htdocs\managna\wp-content\themes\managnasarl</dir>
@@ -124,35 +127,21 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/woocommerce/loop/pagination.php" />
-        <option value="$PROJECT_DIR$/.editorconfig" />
-        <option value="$PROJECT_DIR$/assets/js/map.js" />
-        <option value="$PROJECT_DIR$/includes/walker-menu.php" />
-        <option value="$PROJECT_DIR$/page.php" />
-        <option value="$PROJECT_DIR$/assets/js/main.js" />
         <option value="$PROJECT_DIR$/assets/js/admin/admin-element-owlCarousel.js" />
         <option value="$PROJECT_DIR$/includes/vc/vc-sliders.php" />
         <option value="$PROJECT_DIR$/includes/vc/vc-our-offers.php" />
         <option value="$PROJECT_DIR$/sidebar-shop.php" />
         <option value="$PROJECT_DIR$/includes/templates/twig/widgets/search-filter.html" />
         <option value="$PROJECT_DIR$/includes/templates/twig/widgets/back/search-filter.html" />
-        <option value="$PROJECT_DIR$/includes/vc/vc-search-filter.php" />
-        <option value="$PROJECT_DIR$/includes/widgets/widget-search-form.php" />
-        <option value="$PROJECT_DIR$/includes/widgets/widget-contact-form.php" />
         <option value="H:/CREA/Managna-immo/mail/template.htm" />
-        <option value="$PROJECT_DIR$/includes/templates/twig/mail/index.html" />
         <option value="$PROJECT_DIR$/search.php" />
-        <option value="$PROJECT_DIR$/includes/templates/twig/widgets/front/contact-form.html" />
         <option value="$PROJECT_DIR$/languages/fr_FR.po" />
         <option value="$PROJECT_DIR$/assets/js/jquery/jquery.slick.js" />
         <option value="$PROJECT_DIR$/includes/templates/twig/widgets/front/search-filter-form.html" />
         <option value="$PROJECT_DIR$/includes/templates/twig/vc/search-filter.html" />
         <option value="$PROJECT_DIR$/woocommerce/single-product.php" />
         <option value="$PROJECT_DIR$/includes/templates/twig/shortcodes/property-details-gallery.html" />
-        <option value="$PROJECT_DIR$/includes/acf.php" />
         <option value="$PROJECT_DIR$/includes/shortcode/property-details-image.php" />
-        <option value="$PROJECT_DIR$/includes/class-services.php" />
-        <option value="$PROJECT_DIR$/includes/managnasarl-functions.php" />
         <option value="$PROJECT_DIR$/includes/templates/twig/vc/our-offers.html" />
         <option value="$PROJECT_DIR$/woocommerce/content-single-product.php" />
         <option value="$PROJECT_DIR$/includes/templates/twig/vc/property-recently.html" />
@@ -160,21 +149,35 @@
         <option value="$PROJECT_DIR$/woocommerce/loop/orderby.php" />
         <option value="$PROJECT_DIR$/woocommerce/loop/result-count.php" />
         <option value="$PROJECT_DIR$/includes/vc/vc-property-recently.php" />
-        <option value="$PROJECT_DIR$/functions.php" />
-        <option value="$PROJECT_DIR$/includes/vc/vc-function-managnasarl.php" />
         <option value="$PROJECT_DIR$/assets/js/managna-immo.js" />
         <option value="$PROJECT_DIR$/includes/templates/twig/vc/newsletter.html" />
-        <option value="$PROJECT_DIR$/includes/vc/vc-newsletter.php" />
-        <option value="$PROJECT_DIR$/assets/js/admin/admin-search-filter.js" />
-        <option value="$PROJECT_DIR$/includes/class-managnasarl.php" />
-        <option value="$PROJECT_DIR$/includes/actions/managnasarl-actions.php" />
         <option value="$PROJECT_DIR$/woocommerce/content-product.php" />
         <option value="$PROJECT_DIR$/includes/templates/twig/vc/slider.html" />
         <option value="$PROJECT_DIR$/sidebar-offering.php" />
+        <option value="$PROJECT_DIR$/assets/css/shortcode/header.css" />
         <option value="$PROJECT_DIR$/footer.php" />
         <option value="$PROJECT_DIR$/woocommerce/archive-product.php" />
-        <option value="$PROJECT_DIR$/header.php" />
+        <option value="$PROJECT_DIR$/assets/css/shortcode/default.css" />
+        <option value="$PROJECT_DIR$/includes/vc/vc-function-managnasarl.php" />
+        <option value="$PROJECT_DIR$/functions.php" />
+        <option value="$PROJECT_DIR$/includes/templates/twig/mail/index.html" />
+        <option value="$PROJECT_DIR$/includes/vc/vc-newsletter.php" />
+        <option value="$PROJECT_DIR$/includes/class-managnasarl.php" />
+        <option value="$PROJECT_DIR$/includes/templates/twig/widgets/front/contact-form.html" />
+        <option value="$PROJECT_DIR$/includes/managnasarl-functions.php" />
+        <option value="$PROJECT_DIR$/includes/widgets/widget-search-form.php" />
+        <option value="$PROJECT_DIR$/assets/js/admin/admin-search-filter.js" />
+        <option value="$PROJECT_DIR$/includes/vc/vc-search-filter.php" />
+        <option value="$PROJECT_DIR$/includes/templates/twig/mail/contact.html" />
+        <option value="$PROJECT_DIR$/includes/templates/twig/mail/newsletter.html" />
+        <option value="$PROJECT_DIR$/includes/class-services.php" />
+        <option value="$PROJECT_DIR$/includes/acf.php" />
+        <option value="$PROJECT_DIR$/404.php" />
+        <option value="$PROJECT_DIR$/includes/actions/managnasarl-actions.php" />
+        <option value="$PROJECT_DIR$/includes/widgets/widget-contact-form.php" />
+        <option value="H:/CREA/Orangea, Site web/global-elements.css" />
         <option value="$PROJECT_DIR$/style.css" />
+        <option value="$PROJECT_DIR$/header.php" />
       </list>
     </option>
   </component>
@@ -201,10 +204,10 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
+    <option name="x" value="1432" />
     <option name="y" value="-8" />
-    <option name="width" value="1456" />
-    <option name="height" value="886" />
+    <option name="width" value="1376" />
+    <option name="height" value="754" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -212,19 +215,15 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="AndroidView" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="managnasarl" type="b2602c69:ProjectViewProjectNode" />
               <item name="managnasarl" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="managnasarl" type="b2602c69:ProjectViewProjectNode" />
-              <item name="managnasarl" type="462c0819:PsiDirectoryNode" />
-              <item name="favicon" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="managnasarl" type="b2602c69:ProjectViewProjectNode" />
@@ -241,92 +240,43 @@
               <item name="managnasarl" type="b2602c69:ProjectViewProjectNode" />
               <item name="managnasarl" type="462c0819:PsiDirectoryNode" />
               <item name="includes" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="managnasarl" type="b2602c69:ProjectViewProjectNode" />
-              <item name="managnasarl" type="462c0819:PsiDirectoryNode" />
-              <item name="includes" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="twig" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="managnasarl" type="b2602c69:ProjectViewProjectNode" />
-              <item name="managnasarl" type="462c0819:PsiDirectoryNode" />
-              <item name="includes" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="twig" type="462c0819:PsiDirectoryNode" />
               <item name="vc" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="managnasarl" type="b2602c69:ProjectViewProjectNode" />
               <item name="managnasarl" type="462c0819:PsiDirectoryNode" />
               <item name="includes" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="twig" type="462c0819:PsiDirectoryNode" />
               <item name="widgets" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="managnasarl" type="b2602c69:ProjectViewProjectNode" />
-              <item name="managnasarl" type="462c0819:PsiDirectoryNode" />
-              <item name="includes" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="twig" type="462c0819:PsiDirectoryNode" />
-              <item name="widgets" type="462c0819:PsiDirectoryNode" />
-              <item name="front" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="managnasarl" type="b2602c69:ProjectViewProjectNode" />
-              <item name="managnasarl" type="462c0819:PsiDirectoryNode" />
-              <item name="includes" type="462c0819:PsiDirectoryNode" />
-              <item name="vc" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="managnasarl" type="b2602c69:ProjectViewProjectNode" />
-              <item name="managnasarl" type="462c0819:PsiDirectoryNode" />
-              <item name="languages" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="managnasarl" type="b2602c69:ProjectViewProjectNode" />
-              <item name="managnasarl" type="462c0819:PsiDirectoryNode" />
-              <item name="woocommerce" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="managnasarl" type="b2602c69:ProjectViewProjectNode" />
-              <item name="managnasarl" type="462c0819:PsiDirectoryNode" />
-              <item name="woocommerce" type="462c0819:PsiDirectoryNode" />
-              <item name="loop" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="managnasarl" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../adverts/wp-content/themes/wp_orangea" />
+    <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="node.js.detected.package.prettier" value="true" />
+    <property name="node.js.path.for.package.prettier" value="project" />
+    <property name="node.js.selected.package.prettier" value="" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\managna\wp-content\themes\managnasarl\includes\templates\twig\mail" />
       <recent name="C:\xampp\htdocs\managna\wp-content\themes\managnasarl\assets\js" />
       <recent name="C:\xampp\htdocs\managna\wp-content\themes\managnasarl\woocommerce\loop" />
       <recent name="C:\xampp\htdocs\managna\wp-content\themes\managnasarl\img\inbox" />
-      <recent name="C:\xampp\htdocs\managna\wp-content\themes\managnasarl\includes\templates\twig\mail" />
       <recent name="C:\xampp\htdocs\managna\wp-content\themes\managnasarl\img" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -449,7 +399,21 @@
       <workItem from="1530035609824" duration="10009000" />
       <workItem from="1530045691335" duration="51000" />
       <workItem from="1530083138791" duration="10175000" />
-      <workItem from="1530101890645" duration="1177000" />
+      <workItem from="1530101890645" duration="2866000" />
+      <workItem from="1530133493228" duration="832000" />
+      <workItem from="1530171917642" duration="747000" />
+      <workItem from="1530175572985" duration="11000" />
+      <workItem from="1530189698488" duration="1569000" />
+      <workItem from="1530203023982" duration="798000" />
+      <workItem from="1530263172219" duration="73000" />
+      <workItem from="1530267676643" duration="2136000" />
+      <workItem from="1530298395740" duration="6913000" />
+      <workItem from="1530344018766" duration="10545000" />
+      <workItem from="1530362357674" duration="2796000" />
+      <workItem from="1530461603218" duration="75000" />
+      <workItem from="1530461711865" duration="126000" />
+      <workItem from="1530522749451" duration="1617000" />
+      <workItem from="1530613616234" duration="1399000" />
     </task>
     <task id="LOCAL-00001" summary="Finition pour la page contenue de propriété">
       <created>1529174413469</created>
@@ -738,11 +702,67 @@
       <option name="project" value="LOCAL" />
       <updated>1530103156043</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="Replace favicon image">
+      <created>1530103507577</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1530103507577</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Fix dropdown menu position">
+      <created>1530134244888</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1530134244889</updated>
+    </task>
+    <task id="LOCAL-00044" summary="Justifier le mail exacte pour envoyer la demande">
+      <created>1530299806754</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1530299806754</updated>
+    </task>
+    <task id="LOCAL-00045" summary="Ajouter une action pour envoyer les newsletters">
+      <created>1530304431058</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1530304431058</updated>
+    </task>
+    <task id="LOCAL-00046" summary="Effacer le plugins &quot;slider&quot; dans le template">
+      <created>1530304514155</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1530304514155</updated>
+    </task>
+    <task id="LOCAL-00047" summary="[TODO] Ajouter son adresse email dans les registres des abonnée s'il a crocher sur &quot;abonné&quot;">
+      <created>1530344816773</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1530344816773</updated>
+    </task>
+    <task id="LOCAL-00048" summary="Up to 1.1.16">
+      <created>1530359083976</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1530359083976</updated>
+    </task>
+    <task id="LOCAL-00049" summary="Ajouter une page 404">
+      <created>1530363117842</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1530363117842</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="249277000" />
+    <option name="totallyTimeSpent" value="280603000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -754,25 +774,23 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1456" height="886" extended-state="6" />
-    <editor active="true" />
+    <frame x="1432" y="-8" width="1376" height="754" extended-state="6" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="bottom" id="TODO" order="9" weight="0.32596686" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.32872927" />
+      <window_info anchor="bottom" id="TODO" order="9" weight="0.32456142" />
       <window_info id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="6" />
       <window_info anchor="right" id="Capture Analysis" order="7" />
       <window_info anchor="bottom" id="Event Log" order="0" side_tool="true" weight="0.32872927" />
       <window_info anchor="right" id="Maven Projects" order="0" weight="0.3295129" />
       <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
-      <window_info anchor="bottom" id="File Transfer" order="12" weight="0.31629834" />
-      <window_info anchor="bottom" id="Version Control" order="1" weight="0.519337" />
+      <window_info anchor="bottom" id="File Transfer" order="12" weight="0.3141892" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="1" visible="true" weight="0.5168919" />
       <window_info anchor="bottom" id="Run" order="5" weight="0.26213592" />
       <window_info anchor="bottom" id="Terminal" order="2" weight="0.32872927" />
       <window_info id="Capture Tool" order="7" />
       <window_info anchor="right" id="Designer" order="1" />
-      <window_info content_ui="combo" id="Project" order="4" sideWeight="0.7462406" visible="true" weight="0.22707736" />
+      <window_info content_ui="combo" id="Project" order="4" sideWeight="0.7462406" visible="true" weight="0.22492401" />
       <window_info anchor="right" id="Database" order="2" weight="0.3295129" />
       <window_info id="Structure" order="5" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="5" weight="0.25" />
@@ -780,8 +798,10 @@
       <window_info anchor="right" id="Theme Preview" order="8" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="6" weight="0.4" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.32872927" />
       <window_info anchor="bottom" id="Inspection" order="8" weight="0.4" />
       <window_info anchor="right" id="Commander" order="4" weight="0.4" />
+      <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Find" order="4" weight="0.32963988" />
       <window_info anchor="bottom" id="Cvs" order="7" weight="0.25" />
       <window_info id="npm" order="0" sideWeight="0.25375938" side_tool="true" weight="0.25" />
@@ -804,17 +824,17 @@
       <window_info anchor="right" id="Commander" order="4" weight="0.4" />
       <window_info anchor="bottom" id="Event Log" order="0" side_tool="true" weight="0.32872927" />
       <window_info anchor="bottom" id="Messages" order="10" weight="0.32872927" />
-      <window_info anchor="bottom" id="File Transfer" order="12" visible="true" weight="0.31629834" />
+      <window_info anchor="bottom" id="File Transfer" order="12" weight="0.31578946" />
       <window_info anchor="right" x="0" y="0" width="294" height="554" id="Documentation" order="9" side_tool="true" weight="0.32978722" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="6" weight="0.25" />
       <window_info id="npm" order="0" sideWeight="0.25375938" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="1" weight="0.519337" />
+      <window_info anchor="bottom" id="Version Control" order="1" weight="0.51900584" />
       <window_info anchor="right" id="Maven Projects" order="0" weight="0.3295129" />
-      <window_info active="true" content_ui="combo" id="Project" order="4" sideWeight="0.7462406" visible="true" weight="0.22707736" />
+      <window_info active="true" content_ui="combo" id="Project" order="4" sideWeight="0.7462406" visible="true" weight="0.21203439" />
       <window_info anchor="right" id="Database" order="2" weight="0.3295129" />
       <window_info anchor="bottom" id="Message" order="3" />
-      <window_info anchor="bottom" id="TODO" order="9" weight="0.32596686" />
+      <window_info anchor="bottom" id="TODO" order="9" weight="0.32456142" />
       <window_info id="Palette&#9;" order="3" />
       <window_info anchor="right" id="Theme Preview" order="8" />
       <window_info id="Structure" order="5" side_tool="true" weight="0.25" />
@@ -831,14 +851,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Create 2 widgets Search filter &amp; Contact form (empty)" />
-    <MESSAGE value="Create contact form property widget." />
-    <MESSAGE value="If twig engine is error die" />
-    <MESSAGE value="Fix text editor character spacing" />
-    <MESSAGE value="Fix search page" />
-    <MESSAGE value="Added Internationalization i18 for fr_Fr" />
-    <MESSAGE value="Remove recording action repeat from widgets" />
-    <MESSAGE value="added litle comment" />
     <MESSAGE value="Added slider property page" />
     <MESSAGE value="added slick css" />
     <MESSAGE value="Fix surface unit" />
@@ -856,140 +868,30 @@
     <MESSAGE value="Corriger le nom de l'option" />
     <MESSAGE value="Added widget for footer top content" />
     <MESSAGE value="Added Favicon and offer sidebar." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Favicon and offer sidebar." />
+    <MESSAGE value="Replace favicon image" />
+    <MESSAGE value="Fix dropdown menu position" />
+    <MESSAGE value="Justifier le mail exacte pour envoyer la demande" />
+    <MESSAGE value="Ajouter une action pour envoyer les newsletters" />
+    <MESSAGE value="Effacer le plugins &quot;slider&quot; dans le template" />
+    <MESSAGE value="[TODO] Ajouter son adresse email dans les registres des abonnée s'il a crocher sur &quot;abonné&quot;" />
+    <MESSAGE value="Up to 1.1.16" />
+    <MESSAGE value="Ajouter une page 404" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajouter une page 404" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WordPressConfiguration" enabled="true">
     <wordpressPath>H:\wordpress-4.9.5</wordpressPath>
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/includes/acf.php</url>
-          <line>130</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/includes/acf.php</url>
-          <line>3</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/sidebar-shop.php</url>
-          <line>23</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/includes/vc/vc-newsletter.php</url>
-          <line>114</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/includes/vc/vc-newsletter.php</url>
-          <line>145</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/includes/vc/vc-newsletter.php</url>
-          <line>71</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/includes/vc/vc-newsletter.php</url>
-          <line>58</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/includes/vc/vc-newsletter.php</url>
-          <line>50</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/includes/vc/vc-newsletter.php</url>
-          <line>37</line>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/includes/vc/vc-newsletter.php</url>
-          <line>33</line>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-      </breakpoints>
-      <option name="time" value="13" />
+      <option name="time" value="15" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/includes/widgets/widget-search-form.php">
+    <entry file="file://$PROJECT_DIR$/includes/managnasarl-functions.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="24" column="26" selection-start-line="24" selection-start-column="8" selection-end-line="24" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://H:/CREA/Managna-immo/mail/template.htm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="221" column="116" lean-forward="true" selection-start-line="221" selection-start-column="116" selection-end-line="221" selection-end-column="116" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/templates/twig/mail/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="133" column="41" lean-forward="true" selection-start-line="133" selection-start-column="41" selection-end-line="133" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/css/semantic/message.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="180" column="11" selection-start-line="180" selection-start-column="11" selection-end-line="180" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/search.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/languages/fr_FR.po">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/widgets/widget-contact-form.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="532">
-          <caret line="48" column="35" selection-start-line="48" selection-start-column="35" selection-end-line="48" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/jquery/jquery.slick.js" />
-    <entry file="file://$PROJECT_DIR$/includes/templates/twig/widgets/front/search-filter-form.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="15" column="16" lean-forward="true" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/templates/twig/shortcodes/property-details-gallery.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="621">
-          <caret line="36" column="9" selection-start-line="36" selection-start-column="9" selection-end-line="36" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/acf.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="572">
-          <caret line="364" column="22" selection-start-line="364" selection-start-column="22" selection-end-line="364" selection-end-column="22" />
-          <folding>
-            <element signature="e#89#2987#1#PHP" />
-          </folding>
+        <state relative-caret-position="513">
+          <caret line="47" column="3" lean-forward="true" selection-start-line="47" selection-start-column="3" selection-end-line="47" selection-end-column="3" />
         </state>
       </provider>
     </entry>
@@ -1000,31 +902,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/includes/shortcode/property-details-image.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="703">
-          <caret line="57" column="53" lean-forward="true" selection-start-line="57" selection-start-column="53" selection-end-line="57" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/managnasarl-functions.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="48" column="29" selection-start-line="48" selection-start-column="29" selection-end-line="48" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/includes/templates/twig/vc/our-offers.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
           <caret line="68" column="41" selection-start-line="68" selection-start-column="41" selection-end-line="68" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/vc/vc-search-filter.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="893">
-          <caret line="77" column="23" lean-forward="true" selection-start-line="77" selection-start-column="23" selection-end-line="77" selection-end-column="23" />
         </state>
       </provider>
     </entry>
@@ -1070,31 +951,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/includes/vc/vc-function-managnasarl.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="31" column="70" selection-start-line="31" selection-start-column="70" selection-end-line="31" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/vc/vc-property-recently.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="119" column="20" selection-start-line="119" selection-start-column="20" selection-end-line="119" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/css/semantic/icon.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2210">
           <caret line="4051" column="27" selection-start-line="4051" selection-start-column="27" selection-end-line="4051" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/templates/twig/widgets/front/contact-form.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1653">
-          <caret line="87" column="4" selection-start-line="87" selection-start-column="4" selection-end-line="87" selection-end-column="40" />
         </state>
       </provider>
     </entry>
@@ -1119,38 +979,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/includes/templates/twig/vc/newsletter.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="55" column="23" selection-start-line="55" selection-start-column="23" selection-end-line="55" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/managna-immo.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="304">
           <caret line="36" column="32" lean-forward="true" selection-start-line="36" selection-start-column="32" selection-end-line="36" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/templates/twig/vc/search-filter.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-386">
-          <caret line="17" column="51" selection-start-line="17" selection-start-column="51" selection-end-line="17" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/admin/admin-search-filter.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="32" column="26" selection-start-line="32" selection-start-column="26" selection-end-line="32" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/vc/vc-newsletter.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2730">
-          <caret line="175" column="41" selection-start-line="175" selection-start-column="41" selection-end-line="175" selection-end-column="41" />
         </state>
       </provider>
     </entry>
@@ -1161,93 +993,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/functions.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1577">
-          <caret line="83" selection-start-line="83" selection-end-line="83" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/actions/managnasarl-actions.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="507">
-          <caret line="68" column="26" selection-start-line="68" selection-start-column="26" selection-end-line="68" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/class-services.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="621">
-          <caret line="121" selection-start-line="121" selection-end-line="121" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/class-managnasarl.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3952">
-          <caret line="228" column="28" selection-start-line="228" selection-start-column="28" selection-end-line="228" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/vc/vc-sliders.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-595">
-          <caret line="70" column="44" selection-start-line="70" selection-start-column="44" selection-end-line="70" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/templates/twig/vc/slider.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="317">
-          <caret line="51" column="65" selection-start-line="51" selection-start-column="65" selection-end-line="51" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/woocommerce/content-product.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="28" column="31" lean-forward="true" selection-start-line="28" selection-start-column="31" selection-end-line="28" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/woocommerce/single-product.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="608">
-          <caret line="52" column="22" selection-start-line="52" selection-start-column="22" selection-end-line="52" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/footer.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2052">
-          <caret line="128" selection-start-line="128" selection-end-line="128" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/woocommerce/archive-product.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="621">
-          <caret line="95" column="18" selection-start-line="95" selection-start-column="18" selection-end-line="95" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sidebar-shop.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="57">
           <caret line="23" column="44" selection-start-line="23" selection-start-column="44" selection-end-line="23" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/favicon/manifest.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/favicon/browserconfig.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/header.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="46" column="83" selection-start-line="46" selection-start-column="83" selection-end-line="46" selection-end-column="83" />
         </state>
       </provider>
     </entry>
@@ -1258,10 +1007,229 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/includes/templates/twig/vc/newsletter.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-234">
+          <caret line="55" column="23" selection-start-line="55" selection-start-column="23" selection-end-line="55" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/shortcode/property-details-image.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="57" column="53" lean-forward="true" selection-start-line="57" selection-start-column="53" selection-end-line="57" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/css/shortcode/header.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="258" column="32" lean-forward="true" selection-start-line="258" selection-start-column="32" selection-end-line="258" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/footer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="545">
+          <caret line="116" column="26" lean-forward="true" selection-start-line="116" selection-start-column="26" selection-end-line="116" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/search.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/woocommerce/archive-product.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-437">
+          <caret line="36" column="55" selection-start-line="36" selection-start-column="55" selection-end-line="36" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/css/shortcode/default.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="84" column="4" selection-start-line="84" selection-start-column="4" selection-end-line="84" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/woocommerce/content-product.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="532">
+          <caret line="28" column="31" lean-forward="true" selection-start-line="28" selection-start-column="31" selection-end-line="28" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/templates/twig/vc/slider.html" />
+    <entry file="file://$PROJECT_DIR$/includes/vc/vc-sliders.php" />
+    <entry file="file://$PROJECT_DIR$/includes/vc/vc-function-managnasarl.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="31" column="1" lean-forward="true" selection-start-line="31" selection-start-column="1" selection-end-line="31" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/woocommerce/single-product.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="63" column="4" selection-start-line="63" selection-start-column="4" selection-end-line="63" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/templates/twig/mail/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="26" column="14" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/vc/vc-property-recently.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="393">
+          <caret line="56" column="23" selection-start-line="56" selection-start-column="23" selection-end-line="56" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/templates/twig/vc/search-filter.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-44">
+          <caret line="17" column="51" selection-start-line="17" selection-start-column="51" selection-end-line="17" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/functions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1875">
+          <caret line="127" selection-start-line="127" selection-end-line="127" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/admin/admin-search-filter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="34" column="18" lean-forward="true" selection-start-line="34" selection-start-column="18" selection-end-line="34" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/templates/twig/widgets/front/contact-form.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="697">
+          <caret line="85" column="35" selection-start-line="85" selection-start-column="35" selection-end-line="85" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/widgets/widget-search-form.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="27" column="59" lean-forward="true" selection-start-line="27" selection-start-column="59" selection-end-line="27" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/templates/twig/mail/newsletter.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="516">
+          <caret line="210" column="49" selection-start-line="210" selection-start-column="48" selection-end-line="210" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/templates/twig/mail/contact.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3367">
+          <caret line="261" column="80" selection-start-line="261" selection-start-column="80" selection-end-line="261" selection-end-column="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/vc/vc-search-filter.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1368">
+          <caret line="72" column="58" selection-start-line="72" selection-start-column="41" selection-end-line="72" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/managnasarl-functions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="513">
+          <caret line="47" column="3" selection-start-line="47" selection-start-column="3" selection-end-line="47" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/vc/vc-newsletter.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="24" column="23" selection-start-line="24" selection-start-column="8" selection-end-line="24" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/acf.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="329" column="12" selection-start-line="329" selection-start-column="12" selection-end-line="329" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/page.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="24" selection-start-line="24" selection-end-line="24" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/404.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="41" column="27" lean-forward="true" selection-start-line="41" selection-start-column="27" selection-end-line="41" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/actions/managnasarl-actions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="75" column="10" selection-start-line="75" selection-start-column="10" selection-end-line="75" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/class-services.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1805">
+          <caret line="115" column="67" selection-start-line="115" selection-start-column="67" selection-end-line="115" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://H:/CREA/Orangea, Site web/global-elements.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="287">
+          <caret line="3261" column="33" selection-start-line="3261" selection-start-column="33" selection-end-line="3261" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="387">
-          <caret line="631" column="14" lean-forward="true" selection-start-line="631" selection-start-column="14" selection-end-line="631" selection-end-column="14" />
+        <state relative-caret-position="114">
+          <caret line="6" column="20" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/class-managnasarl.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="264" column="34" selection-start-line="264" selection-start-column="34" selection-end-line="264" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/widgets/widget-contact-form.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="46" selection-start-line="46" selection-end-line="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/header.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="73">
+          <caret line="36" column="38" selection-start-line="36" selection-start-column="38" selection-end-line="36" selection-end-column="38" />
         </state>
       </provider>
     </entry>
