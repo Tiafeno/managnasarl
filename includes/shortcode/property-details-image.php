@@ -67,7 +67,7 @@ if ( ! class_exists( 'ShortcodeProDetailsImage' ) ) :
 			try {
 				return $twig->render( '@Shortcodes/property-details-gallery.html', [
 					'galleries' => $galleries,
-					'title'                      => $title
+					'title'     => $title
 				] );
 			} catch ( Twig_Error_Loader $e ) {
 			} catch ( Twig_Error_Runtime $e ) {

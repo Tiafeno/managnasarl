@@ -273,9 +273,12 @@ if ( ! class_exists( 'ManagnaSarl' ) ) :
 
 		private function register_scripts( $version ) {
 			wp_register_script( 'bluebird', get_template_directory_uri() . '/assets/js/bluebird.min.js', [], $version, true );
-			wp_register_script( 'semantic', get_template_directory_uri() . '/assets/js/semantic/semantic.min.js', [ 'jquery' ], $version, true );
-			wp_register_script( 'semantic-checkbox', get_template_directory_uri() . '/assets/js/semantic/checkbox.min.js', [ 'jquery' ], $version, true );
-			wp_register_script( 'semantic-form', get_template_directory_uri() . '/assets/js/semantic/form.min.js', [ 'jquery' ], $version, true );
+			wp_register_script( 'semantic', get_template_directory_uri() . '/libs/semantic/semantic.min.js', [ 'jquery' ], $version, true );
+			wp_register_script( 'semantic-checkbox', get_template_directory_uri() . '/libs/semantic/components/checkbox.min.js', [ 'jquery' ], $version, true );
+			wp_register_script( 'semantic-dropdown', get_template_directory_uri() . '/libs/semantic/components/dropdown.min.js', [ 'jquery' ], $version, true );
+			wp_register_script( 'semantic-dropdown', get_template_directory_uri() . '/libs/semantic/components/dropdown.min.js', [ 'jquery' ], $version, true );
+			wp_register_script( 'semantic-transition', get_template_directory_uri() . '/libs/semantic/components/transition.min.js', [ 'jquery' ], $version, true );
+			wp_register_script( 'semantic-form', get_template_directory_uri() . '/libs/semantic/components/form.min.js', [ 'jquery' ], $version, true );
 			wp_register_script( 'admin-element-search-filter', get_template_directory_uri() . '/assets/js/admin/admin-search-filter.js', [
 				'jquery',
 				'managnasarl-plugins'
@@ -284,16 +287,18 @@ if ( ! class_exists( 'ManagnaSarl' ) ) :
 			wp_register_style( 'slick', get_template_directory_uri() . '/assets/css/slick.css', '', $version );
 			wp_register_style( 'slick-theme', get_template_directory_uri() . '/assets/css/slick-theme.css', '', $version );
 
-			wp_register_style( 'lightbox', get_template_directory_uri() . '/assets/css/lightbox.min.css', '', $version );
-			wp_register_script( 'lightbox-script', get_template_directory_uri() . '/assets/js/lightbox.min.js', [ 'jquery' ], $version, true );
+			wp_register_style( 'lightbox', get_template_directory_uri() . '/assets/css/lightbox/lightbox.min.css', '', $version );
+			wp_register_script( 'lightbox-script', get_template_directory_uri() . '/assets/js/lightbox/lightbox.min.js', [ 'jquery' ], $version, true );
 
-			wp_register_style( 'semantic', get_template_directory_uri() . '/assets/css/semantic/semantic.min.css', '', $version );
-			wp_register_style( 'semantic-form', get_template_directory_uri() . '/assets/css/semantic/form.min.css', '', $version );
-			wp_register_style( 'semantic-button', get_template_directory_uri() . '/assets/css/semantic/button.min.css', '', $version );
-			wp_register_style( 'semantic-icon', get_template_directory_uri() . '/assets/css/semantic/icon.css', '', $version );
-			wp_register_style( 'semantic-message', get_template_directory_uri() . '/assets/css/semantic/message.min.css', '', $version );
-			wp_register_style( 'semantic-checkbox', get_template_directory_uri() . '/assets/css/semantic/checkbox.min.css', '', $version );
-			wp_register_style( 'semantic-input', get_template_directory_uri() . '/assets/css/semantic/input.min.css', '', $version );
+			wp_register_style( 'semantic', get_template_directory_uri() . '/libs/semantic/semantic.min.css', '', $version );
+			wp_register_style( 'semantic-form', get_template_directory_uri() . '/libs/semantic/components/form.min.css', '', $version );
+			wp_register_style( 'semantic-button', get_template_directory_uri() . '/libs/semantic/components/button.min.css', '', $version );
+			wp_register_style( 'semantic-icon', get_template_directory_uri() . '/libs/semantic/components/icon.min.css', '', $version );
+			wp_register_style( 'semantic-message', get_template_directory_uri() . '/libs/semantic/components/message.min.css', '', $version );
+			wp_register_style( 'semantic-transition', get_template_directory_uri() . '/libs/semantic/components/transition.min.css', '', $version );
+			wp_register_style( 'semantic-checkbox', get_template_directory_uri() . '/libs/semantic/components/checkbox.min.css', '', $version );
+			wp_register_style( 'semantic-input', get_template_directory_uri() . '/libs/semantic/components/input.min.css', '', $version );
+			wp_register_style( 'semantic-dropdown', get_template_directory_uri() . '/libs/semantic/components/dropdown.min.css', '', $version );
 
 			wp_register_style( 'Lato', '//fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic&subset=latin' );
 			wp_register_script( 'tinyMCE', '//cloud.tinymce.com/stable/tinymce.min.js?apiKey=2grxn9iofnxolcaedqa399sh4ft6c1mg3e1kumgnyq6o0ap1' );
