@@ -75,6 +75,16 @@ try {
 		return $product ? $product->get_image($image_size) : '';
 	});
 
+	$unitFilter = new Twig_SimpleFilter('Unit', function ($value) {
+		$unit = [
+			'sqft' => 'm<sup>2</sup>',
+			'ha' => 'Ha'
+		];
+
+		if ( ! in_array($value, array_keys($unit))) return $value;
+		return $unit[$value];
+	});
+
 	/** @var Object $twig */
 	$twig = new Twig_Environment($loader, array(
 		'debug' => WP_DEBUG,
@@ -82,6 +92,7 @@ try {
 		'auto_reload' => true
 	));
 
+	$twig->addFilter($unitFilter);
 	$twig->addFilter($thumbnailFilter);
 } catch (Twig_Error_Loader $e) {
 	die($e->getRawMessage());
@@ -136,8 +147,67 @@ if (function_exists('acf_register_form')) {
 		],
 		'post_title' => true,
 		'post_content' => true,
+		'form' => true,
+		//'return' => get_permalink(wc_get_page_id('shop')),
+		'updated_message' => 'Votre annonce a été ajouté avec succès',
 		'submit_value' => 'Publier'
 	]);
+
+	/**
+	 *
+	 */
+	add_filter('acf/update_value/name=featured_image', function ($value, $post_id, $field) {
+		if ($value != '') {
+			update_post_meta($post_id, '_thumbnail_id', $value);
+		} else {
+			delete_post_thumbnail($post_id);
+		}
+		return $value;
+	}, 10, 3);
+
+	/**
+	 *
+	 */
+	add_filter('acf/update_value/name=cost', function ($value, $post_id, $field) {
+		if ($value != '') {
+			update_post_meta($post_id, '_regular_price', $value);
+			update_post_meta($post_id, '_price', $value);
+		} else {
+			delele_post_meta($post_id, '_regular_price');
+			delele_post_meta($post_id, '_price');
+		}
+		return $value;
+	}, 10, 3);
+
+	/**
+	 * Ajouter une gallerie à partir du champ acf {gallery}
+	 *
+	 * @param {array} $values - Un tableau d'id
+	 * @param {int} $post_id
+	 * ...
+	 */
+	add_filter("acf/update_value/name=gallery", function ($values, $post_id, $field) {
+		// @link https://www.advancedcustomfields.com/resources/gallery/
+		$image_gallery = [];
+		if ($values) {
+			foreach ($values as $value) {
+				array_push($image_gallery, $value);
+			}
+			update_post_meta($post_id, '_product_image_gallery', implode(',', $image_gallery));
+		} else {
+			delete_post_meta($post_id, '_product_image_gallery');
+		}
+
+		return $values;
+	}, 10, 3);
+
+	/**
+	 *
+	 */
+	add_action('post_updated', function ($post_id, $post_after, $post_before) {
+		var_dump($post_after);
+	}, 10, 3);
+
 }
 
 

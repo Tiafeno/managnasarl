@@ -1,7 +1,7 @@
 <?php
 
 /* @VC/our-offers.html */
-class __TwigTemplate_f09dfc369a95ccececa8619ec9dcd7423af4cb11025604fd2f9baa33994219de extends Twig_Template
+class __TwigTemplate_6e93ff2707b0a7463c3d025c9912c21e6a3a2c5cd978722905dcc2d8de88f619 extends Twig_Template
 {
     public function __construct(Twig_Environment $env)
     {
@@ -132,7 +132,7 @@ class __TwigTemplate_f09dfc369a95ccececa8619ec9dcd7423af4cb11025604fd2f9baa33994
             // line 80
             echo twig_escape_filter($this->env, $this->getAttribute($context["sale"], "surface", array()), "html", null, true);
             echo " ";
-            echo twig_escape_filter($this->env, $this->getAttribute($context["sale"], "unit", array()), "html", null, true);
+            echo call_user_func_array($this->env->getFilter('Unit')->getCallable(), array($this->getAttribute($context["sale"], "unit", array())));
             echo "</span>
                       </li>
                       ";
@@ -246,7 +246,7 @@ class __TwigTemplate_f09dfc369a95ccececa8619ec9dcd7423af4cb11025604fd2f9baa33994
             // line 131
             echo twig_escape_filter($this->env, $this->getAttribute($context["rent"], "surface", array()), "html", null, true);
             echo " ";
-            echo twig_escape_filter($this->env, $this->getAttribute($context["rent"], "unit", array()), "html", null, true);
+            echo call_user_func_array($this->env->getFilter('Unit')->getCallable(), array($this->getAttribute($context["rent"], "unit", array())));
             echo "</span>
                       </li>
                       ";
@@ -332,6 +332,165 @@ class __TwigTemplate_f09dfc369a95ccececa8619ec9dcd7423af4cb11025604fd2f9baa33994
 
     public function getSourceContext()
     {
-        return new Twig_Source("", "@VC/our-offers.html", "C:\\xampp\\htdocs\\managna\\wp-content\\themes\\managnasarl\\includes\\templates\\twig\\vc\\our-offers.html");
+        return new Twig_Source("
+<!--
+  ~ Copyright (c) 2018 Tiafeno Finel
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy
+  ~ of this software and associated documentation files, to deal
+  ~ in the Software without restriction, including without limitation the rights
+  ~ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  ~ copies of the Software, and to permit persons to whom the Software is
+  ~ furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in all
+  ~ copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  ~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  ~ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  ~ SOFTWARE.
+  -->
+<!-- Our offers section start-->
+<div class=\"property-area fadeInUp wow ptb-50\" data-wow-delay=\"0.2s\">
+  <div class=\"container\">
+    <div class=\"row\">
+      <div class=\"col-md-12\">
+        <div class=\"feature-property-title\">
+          <h3>{{title}}</h3>
+        </div>
+      </div>
+    </div>
+    <div class=\"row\">
+      <div class=\"col-md-12\">
+        <div class=\"property-tab-menu\">
+          <ul class=\"nav\" role=\"tablist\">
+            <li role=\"presentation\" class=\"active\">
+              <a href=\"#sale\" aria-controls=\"sale\" data-toggle=\"tab\">
+                PROPRIÉTÉ À VENDRE
+              </a>
+            </li>
+            <li role=\"presentation\">
+              <a href=\"#rent\" aria-controls=\"rent\" data-toggle=\"tab\">
+                PROPRIÉTÉ À LOUER
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class=\"row\">
+      <div class=\"tab-content\">
+        <div role=\"tabpanel\" class=\"tab-pane active\" id=\"sale\">
+          {% for sale in posts.sales %}
+          <div class=\"col-md-4\">
+            <div class=\"single-property\">
+              <div class=\"property-img\">
+                <a href=\"{{ sale.post_url }}\">
+                  <img src=\"{{ sale.post_thumbnail[0] }}\" alt=\"\">
+                </a>
+              </div>
+              <div class=\"property-desc\">
+                <div class=\"property-desc-top\">
+                  <h6>
+                    <a href=\"{{ sale.post_url }}\" title=\"{{ sale.post_title }}\">
+                      {{ sale.post_title }}
+                    </a>
+                  </h6>
+                  <h4 class=\"price ariary\">{{ sale.price }}</h4>
+                  <!--<p class=\"mg-price mgaMoney\"></p>-->
+                  <div class=\"property-location\">
+                    <p><img src=\"{{get_template_directory_uri}}/img/icons/icon-5.png\" alt=\"\">{{ sale.location }}</p>
+                  </div>
+                </div>
+                <div class=\"property-desc-bottom\">
+                  <div class=\"property-bottom-list\">
+                    <ul>
+                      <li>
+                        <img src=\"{{get_template_directory_uri}}/img/icons/icon-1.png\" alt=\"\">
+                        <span>{{ sale.surface }} {{sale.unit|Unit|raw}}</span>
+                      </li>
+                      {% if sale.property != 'ground' %}
+                        <li>
+                          <img src=\"{{get_template_directory_uri}}/img/icons/icon-2.png\" alt=\"\">
+                          <span>{{ sale.bedroom }}</span>
+                        </li>
+                        <li>
+                          <img src=\"{{get_template_directory_uri}}/img/icons/icon-3.png\" alt=\"\">
+                          <span>{{ sale.bathroom }}</span>
+                        </li>
+                        <li>
+                          <img src=\"{{get_template_directory_uri}}/img/icons/icon-4.png\" alt=\"\">
+                          <span>{{ sale.garage }}</span>
+                        </li>
+                      {% endif %}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        <div role=\"tabpanel\" class=\"tab-pane fade\" id=\"rent\">
+          {% for rent in posts.rents %}
+          <div class=\"col-md-4\">
+            <div class=\"single-property\">
+              <div class=\"property-img\">
+                <a href=\"{{ rent.post_url }}\">
+                  <img src=\"{{ rent.post_thumbnail[0] }}\" alt=\"\">
+                </a>
+              </div>
+              <div class=\"property-desc\">
+                <div class=\"property-desc-top\">
+                  <h6>
+                    <a href=\"{{ rent.post_url }}\" title=\"{{ rent.post_title }}\">
+                      {{ rent.post_title }}
+                    </a>
+                  </h6>
+                  <h4 class=\"price ariary\">{{ rent.price }}</h4>
+                  <!--<p class=\"mg-price mgaMoney\"></p>-->
+                  <div class=\"property-location\">
+                    <p><img src=\"{{get_template_directory_uri}}/img/icons/icon-5.png\" alt=\"\">{{ rent.location }}</p>
+                  </div>
+                </div>
+                <div class=\"property-desc-bottom\">
+                  <div class=\"property-bottom-list\">
+                    <ul>
+                      <li>
+                        <img src=\"{{get_template_directory_uri}}/img/icons/icon-1.png\" alt=\"\">
+                        <span>{{rent.surface}} {{rent.unit|Unit|raw}}</span>
+                      </li>
+                      {% if rent.property != 'ground' %}
+                        <li>
+                          <img src=\"{{get_template_directory_uri}}/img/icons/icon-2.png\" alt=\"\">
+                          <span>{{ rent.bedroom }}</span>
+                        </li>
+                        <li>
+                          <img src=\"{{get_template_directory_uri}}/img/icons/icon-3.png\" alt=\"\">
+                          <span>{{ rent.bathroom }}</span>
+                        </li>
+                        <li>
+                          <img src=\"{{get_template_directory_uri}}/img/icons/icon-4.png\" alt=\"\">
+                          <span>{{ rent.garage }}</span>
+                        </li>
+                      {% endif %}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+<!--Our offers section end-->", "@VC/our-offers.html", "C:\\xampp\\htdocs\\managna\\wp-content\\themes\\managnasarl\\includes\\templates\\twig\\vc\\our-offers.html");
     }
 }

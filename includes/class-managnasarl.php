@@ -75,7 +75,7 @@ if ( ! class_exists( 'ManagnaSarl' ) ) :
 
 			add_action( /**
 			 * @param string $new_status
-			 * @param $string old_status
+			 * @param $string $old_status
 			 * @param WP_Post $post
 			 */
 				'transition_post_status', function ( $new_status, $old_status, $post ) {
@@ -151,13 +151,13 @@ if ( ! class_exists( 'ManagnaSarl' ) ) :
 
 				/**
 				 * ACF post meta
-				 * @group basic_information
-				 * @field {text} status
+				 * Filter by rent or sale
+				 * @field {text} Formulaire
 				 */
 				if ( self::getValue( 'status' ) ) {
 					$status       = self::getValue( 'status' );
 					$meta_query[] = array(
-						'key'     => 'basic_information_status',
+						'key'     => 'form',
 						'value'   => $status,
 						'compare' => '='
 					);
@@ -165,13 +165,13 @@ if ( ! class_exists( 'ManagnaSarl' ) ) :
 
 				/**
 				 * ACF post meta
-				 * @group condition
+				 * @group details {Détails sur la maison}
 				 * @field {number} bedroom
 				 */
 				if ( self::getValue( 'area' ) ) {
 					$area         = self::getValue( 'area' );
 					$meta_query[] = array(
-						'key'     => 'condition_bedroom',
+						'key'     => 'details_bedroom',
 						'value'   => $area,
 						'compare' => '='
 					);
@@ -199,28 +199,7 @@ if ( ! class_exists( 'ManagnaSarl' ) ) :
 		 * Wordpress initialization function
 		 */
 		public function init() {
-			register_post_type( 'slider', array(
-				'label'           => _x( "Slider", 'General name for Slider post type' ),
-				'labels'          => array(
-					'name'               => _x( "Sliders", "Plural name for slider post type" ),
-					'singular_name'      => _x( "Slider", "Singular name for slider post type" ),
-					'add_new'            => __( 'Add' ),
-					'add_new_item'       => __( "Add New slider" ),
-					'edit_item'          => __( 'Edit' ),
-					'view_item'          => __( 'View' ),
-					'search_items'       => __( "Search sliders" ),
-					'not_found'          => __( "No slider found" ),
-					'not_found_in_trash' => __( "No slider found in trash" )
-				),
-				'public'          => true,
-				'hierarchical'    => false,
-				'menu_position'   => null,
-				'show_ui'         => true,
-				'rewrite'         => array( 'slug' => 'slider' ),
-				'capability_type' => 'post',
-				'menu_icon'       => 'dashicons-images-alt2',
-				'supports'        => [ 'title', 'custom-fields' ]
-			) );
+			// Replace by Master slider
 		}
 
 		public function widgets_init() {

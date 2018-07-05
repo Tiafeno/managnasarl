@@ -10,6 +10,12 @@ acf_form_head();
 get_header();
 
 ?>
+<style type="text/css">
+	form#new-annonce input[type='checkbox'] {
+		height: inherit !important;
+		width: inherit !important;
+	}
+</style>
 <div class="container ptb-100">
 	<?php acf_form('new-annonce'); ?>
 </div>

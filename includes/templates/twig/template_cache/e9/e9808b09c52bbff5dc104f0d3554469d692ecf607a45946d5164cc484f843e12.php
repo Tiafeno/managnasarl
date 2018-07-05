@@ -1,7 +1,7 @@
 <?php
 
 /* @Shortcodes/property-details-gallery.html */
-class __TwigTemplate_05e11b99c0d9f20db05cd4d0d869655e9a00d10904d57090b623c307534c7213 extends Twig_Template
+class __TwigTemplate_a0300b74d37faea0f5a0b2f31ecc3906fb2fb2db7d1baf53d664d029d5f79d3f extends Twig_Template
 {
     public function __construct(Twig_Environment $env)
     {
@@ -183,6 +183,80 @@ class __TwigTemplate_05e11b99c0d9f20db05cd4d0d869655e9a00d10904d57090b623c307534
 
     public function getSourceContext()
     {
-        return new Twig_Source("", "@Shortcodes/property-details-gallery.html", "C:\\xampp\\htdocs\\managna\\wp-content\\themes\\managnasarl\\includes\\templates\\twig\\shortcodes\\property-details-gallery.html");
+        return new Twig_Source("<script type=\"text/javascript\">
+  (function(\$) {
+    \$(document).ready(function() {
+      \$('.pro-details-carousel').slick({
+        dots: false,
+        infinite: false,
+        slidesToShow: 4,
+        slidesToScroll: 3,
+        speed: 300,
+        slidesToShow: 4,
+        slidesToScroll: 4,
+        responsive: [
+          {
+            breakpoint: 1024,
+            settings: {
+              slidesToShow: 3,
+              slidesToScroll: 3,
+              infinite: true,
+              dots: true
+            }
+          },
+          {
+            breakpoint: 600,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 2
+            }
+          },
+          {
+            breakpoint: 480,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1
+            }
+          }
+        ]
+      });
+    })
+  })(jQuery);
+</script>
+<style type=\"text/css\">
+  .pro-details-item a {
+    padding: 10px;
+    display: block;
+  }
+  .slick-prev:before, .slick-next:before {
+    color: #000000 !important;
+  }
+</style>
+<div class=\"pro-details-image mb-5\">
+  <div class=\"pro-details-big-image\">
+    <div class=\"tab-content\">
+
+      {% for gallery in galleries %}
+        <div role=\"tabpanel\" class=\"tab-pane fade in {% if loop.index == 1 %} active {% endif %}\" id=\"pro-{{ gallery.id }}\">
+          <a href=\"{{ gallery.image_url[0] }}\" data-lightbox=\"image-1\" data-title=\"{{ gallery.title }}\">
+            <img src=\"{{ gallery.image_url[0] }}\" alt=\"{{ gallery.title }}\">
+          </a>
+        </div>
+      {% endfor %}
+
+    </div>
+  </div>
+  <div class=\"pro-details-carousel\">
+
+    {% for gallery in galleries %}
+      <div class=\"pro-details-item\">
+        <a href=\"#pro-{{ gallery.id }}\" data-toggle=\"tab\">
+          <img src=\"{{ gallery.image_url[0] }}\" alt=\"{{ gallery.title }}\">
+        </a>
+      </div>
+    {% endfor %}
+
+  </div>
+</div>", "@Shortcodes/property-details-gallery.html", "C:\\xampp\\htdocs\\managna\\wp-content\\themes\\managnasarl\\includes\\templates\\twig\\shortcodes\\property-details-gallery.html");
     }
 }

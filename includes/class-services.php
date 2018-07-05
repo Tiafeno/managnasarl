@@ -21,24 +21,26 @@
  * SOFTWARE.
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
+if (!defined('ABSPATH')) {
 	exit;
 }
 
-if ( ! class_exists( 'msServices' ) ) :
-	final Class msServices {
+if (!class_exists('msServices')) :
+	final Class msServices
+	{
 		private $EUR2MGA = 0;
 		private $fixerIOData = null;
 
-		public function __construct() {
-			$this->EUR2MGA = get_option( 'EUR2MGA', false );
-			if ( ! $this->EUR2MGA ) {
+		public function __construct()
+		{
+			$this->EUR2MGA = get_option('EUR2MGA', false);
+			if (!$this->EUR2MGA) {
 				$this->getCurrency();
 			}
-			if ( $this->EUR2MGA instanceof stdClass ) {
-				$optionDate = strtotime( $this->EUR2MGA->date );
-				$today      = strtotime( date( 'Y-m-d' ) );
-				if ( $optionDate != $today ) {
+			if ($this->EUR2MGA instanceof stdClass) {
+				$optionDate = strtotime($this->EUR2MGA->date);
+				$today = strtotime(date('Y-m-d'));
+				if ($optionDate != $today) {
 					$this->getCurrency();
 				}
 			}
@@ -48,16 +50,17 @@ if ( ! class_exists( 'msServices' ) ) :
 		 * Récuperer les options ACF
 		 * @return null|stdClass
 		 */
-		public function getManagnaOptions() {
-			if ( function_exists( 'get_field' ) ) {
+		public function getManagnaOptions()
+		{
+			if (function_exists('get_field')) {
 				$options = new stdClass();
 
 				// @var ARRAY ['facebook' =>, 'twitter' =>, 'google-plus' =>]
-				$socials          = get_field( 'social_networks', 'option' );
+				$socials = get_field('social_networks', 'option');
 				$options->socials = $socials ? $socials : [];
 
 				// @var ARRAY ['min_price' =>, 'max_price' =>, 'max_price_limite' => ]
-				$searchFilters           = get_field( 'search_filter_option', 'option' );
+				$searchFilters = get_field('search_filter_option', 'option');
 				$options->search_filters = $searchFilters ? $searchFilters : [];
 
 				return $options;
@@ -71,24 +74,33 @@ if ( ! class_exists( 'msServices' ) ) :
 		 *
 		 * @param $product
 		 */
-		public static function setACFFields( &$product ) {
-			$id                = $product instanceof WC_Product_Simple ? $product->get_id() : $product->ID;
-			$property          = get_field( 'property', $id );
+		public static function setACFFields( &$product )
+		{
+			$id = ($product instanceof stdClass) ? $product->product_id : (($product instanceof WC_Product_Simple) ? $product->get_id() :$product->ID);
+			$property = get_field('property', $id);
 			$product->property = $property;
 			// Get condition ACF fields
-			$conditions        = get_field( 'condition', $id );
-			$product->surface  = $conditions['surface'] ? $conditions['surface'] : 0;
-			$product->bedroom  = $conditions['bedroom'] ? $conditions['bedroom'] : 0;
-			$product->bathroom = $conditions['bathroom'] ? $conditions['bathroom'] : 0;
-			$product->garage   = $conditions['garage'] ? $conditions['garage'] : 0;
+
+			$superficie = get_field('area', $id);
+			$product->surface = $superficie['surface'] ? $superficie['surface'] : 0;
+			$product->unit = $superficie['unit'] ? $superficie['unit'] : 'm<sup>2</sup>';
+
+			$details = get_field('details', $id);
+			$product->bedroom = $details['bedroom'] ? $details['bedroom'] : 0;
+			$product->bathroom = $details['bathroom'] ? $details['bathroom'] : 0;
+			$product->garage = $details['garage'] ? $details['garage'] : 0;
+			$product->kitchen = $details['kitchen'] ? $details['kitchen'] : 0;
 
 			// Get basic informations ACF fields
-			$basic_information = get_field( 'basic_information', $id );
-			$product->location = $basic_information['location'];
-			$product->status   = $basic_information['status'];
+			$city = get_field('city', $id);
+			$address = get_field('address', $id);
+			$postcode = get_field('code_postal', $id);
+
+			$product->location = $postcode . ', ' . $address . ', ' . $city;
+			$product->status = get_field('form', $id);
 
 			// Get Amenities field
-			$product->amenities = get_field( 'amenities', $id );
+			$product->amenities = get_field('amenities', $id);
 		}
 
 		/**
@@ -96,156 +108,158 @@ if ( ! class_exists( 'msServices' ) ) :
 		 *
 		 * @return array
 		 */
-		public static function acfParams( $products ) {
-			array_walk( $products, function ( &$product ) {
-				self::setACFFields( $product );
-			} );
-
+		public static function acfParams( &$products )
+		{
+			array_walk($products, function (&$product) {
+				self::setACFFields($product);
+			});
 			return $products;
 		}
 
-		public static function sendMessage( $form, $template = 'index' ) {
-			if ( ! is_array( $form ) ) {
+		public static function sendMessage($form, $template = 'index')
+		{
+			if (!is_array($form)) {
 				return;
 			}
 
 			// Crée une filtre pour l'envoie et récuperer le resultat de cette envoie
-			add_filter( 'managna_send_email', function ( $result ) use ( $form, $template ) {
+			add_filter('managna_send_email', function ($result) use ($form, $template) {
 				global $twig, $managnaSarl;
-				if ( empty( $form['post_id'] ) ) {
+				if (empty($form['post_id'])) {
 					return $result = 'Post indentification non definie dans la formulaire';
 				}
 
 				$options = $managnaSarl->services->getManagnaOptions();
 				$socials = $options->socials;
 
-				$form['message']   = isset( $form['message'] ) ? $form['message'] : '';
-				$form['firstname'] = isset( $form['firstname'] ) ? $form['firstname'] : '';
+				$form['message'] = isset($form['message']) ? $form['message'] : '';
+				$form['firstname'] = isset($form['firstname']) ? $form['firstname'] : '';
 
-				$post_id           = &$form['post_id'];
-				$product           = wc_get_product( $post_id );
-				$product_thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ), 'woocommerce_thumbnail' );
+				$post_id = &$form['post_id'];
+				$product = wc_get_product($post_id);
+				$product_thumbnail = wp_get_attachment_image_src(get_post_thumbnail_id($post_id), 'woocommerce_thumbnail');
 
-				$content = $twig->render( '@MAIL/' . $template . '.html', [
+				$content = $twig->render('@MAIL/' . $template . '.html', [
 					'firstname' => $form['firstname'],
-					'content'   => $form['message'],
-					'phone'     => $form['phone'],
+					'content' => $form['message'],
+					'phone' => $form['phone'],
 
 					'template_directory_uri' => get_template_directory_uri(),
-					'home_url'               => home_url( '/' ),
-					'socials'                => $socials,
+					'home_url' => home_url('/'),
+					'socials' => $socials,
 
-					'product_title'         => $product->get_title(),
-					'product_description'   => $product->get_description(),
-					'product_price'         => $product->get_price(),
+					'product_title' => $product->get_title(),
+					'product_description' => $product->get_description(),
+					'product_price' => $product->get_price(),
 					'product_thumbnail_url' => $product_thumbnail[0],
-					'product_url'           => get_the_permalink( $product->get_id() )
+					'product_url' => get_the_permalink($product->get_id())
 
-				] );
+				]);
 
 				// Récuperer les administrateurs du site
 				$users = get_users();
 
 				/* Prepare to send mail */
-				$blogName    = get_option( 'blogname' );
+				$blogName = get_option('blogname');
 				$subject = "Contact - " . $product->get_title() . ' | ' . $blogName;
 
-				$admin_email = get_option( 'admin_email' );
-				if ( ! filter_var( $admin_email, FILTER_VALIDATE_EMAIL ) ) {
+				$admin_email = get_option('admin_email');
+				if (!filter_var($admin_email, FILTER_VALIDATE_EMAIL)) {
 					return $result = 'Adresse de l\'administrateur non definie';
 				}
-				$body      = &$content;
-				$senders   = [];
-				$headers   = [];
+				$body = &$content;
+				$senders = [];
+				$headers = [];
 				$headers[] = 'Content-Type: text/html; charset=UTF-8';
-				if ( $template != 'newsletter' ):
+				if ($template != 'newsletter'):
 					$isSubscriber = &$form['subscribe'];
-					$to          = $admin_email;
-					$headers[]   = 'From: ' . esc_html( $form['firstname'] ) . ' <' . $form['email'] . '>';
-					foreach ( $users as $user ) {
+					$to = $admin_email;
+					$headers[] = 'From: ' . esc_html($form['firstname']) . ' <' . $form['email'] . '>';
+					foreach ($users as $user) {
 						$headers[] = 'Cc: ' . $user->user_email;
 					}
-					array_push( $senders, [
-						'to'      => $to,
+					array_push($senders, [
+						'to' => $to,
 						'headers' => $headers
-					] );
+					]);
 				else:
 
-					$admin_email = get_option( 'admin_email' );
+					$admin_email = get_option('admin_email');
 					/**
 					 * Declared vc-newsletter.php
 					 * vcNewsletterBox::get_subscribers_email()
 					 * @return array
 					 */
 					$subscribers = vcNewsletterBox::get_subscribers_email();
-					foreach ( $subscribers as $mail ) {
+					foreach ($subscribers as $mail) {
 						$headers[] = 'From: ' . $blogName . ' <' . $admin_email . '>';
-						array_push( $senders, [
-							'to'      => $mail,
+						array_push($senders, [
+							'to' => $mail,
 							'headers' => $headers
-						] );
+						]);
 					}
 				endif;
 
-				foreach ( $senders as $sender ) {
-					if ( wp_mail( $sender['to'], $subject, $body, $sender['headers'] ) ) {
+				foreach ($senders as $sender) {
+					if (wp_mail($sender['to'], $subject, $body, $sender['headers'])) {
 						$result = 'Votre message a étés bien envoyer';
 
-						if ( isset( $isSubscriber ) ) {
-							if ( ! $isSubscriber ) {
+						if (isset($isSubscriber)) {
+							if (!$isSubscriber) {
 								continue;
 							}
 							$mail = $sender['to'];
-							if ( ! vcNewsletterBox::isRegister( $mail ) ) {
-								$added = vcNewsletterBox::added_newsletter( $mail );
+							if (!vcNewsletterBox::isRegister($mail)) {
+								$added = vcNewsletterBox::added_newsletter($mail);
 							}
 						}
 
 					} else {
 						$result = 'Une erreur est survenue lors de l\'envoi \n\t';
-						$result .= 'Details: ' . implode( ' X ', $sender['headers'] );
+						$result .= 'Details: ' . implode(' X ', $sender['headers']);
 						break;
 					}
 				}
 
 				return $result;
-			}, 10, 1 );
+			}, 10, 1);
 		}
 
 		/**
 		 * Récuperer l'echange en cours pour EUR en MGA
 		 */
-		public function getCurrency() {
+		public function getCurrency()
+		{
 			$fields_string = '';
-			$fields        = (object) [
+			$fields = (object)[
 				'access_key' => __fixer_io_api__,
-				'base'       => 'EUR',
-				'symbols'    => 'MGA',
+				'base' => 'EUR',
+				'symbols' => 'MGA',
 			];
-			foreach ( $fields as $key => $value ) {
+			foreach ($fields as $key => $value) {
 				$fields_string .= $key . '=' . $value . '&';
 			}
-			rtrim( $fields_string, '&' );
+			rtrim($fields_string, '&');
 			// Open connection
 			$ch = curl_init();
-			curl_setopt( $ch, CURLOPT_URL, "http://data.fixer.io/api/latest?access_key={$fields->access_key}&base={$fields->base}&symbols={$fields->symbols}" );
-			curl_setopt_array( $ch, [
+			curl_setopt($ch, CURLOPT_URL, "http://data.fixer.io/api/latest?access_key={$fields->access_key}&base={$fields->base}&symbols={$fields->symbols}");
+			curl_setopt_array($ch, [
 				CURLOPT_RETURNTRANSFER => 1
-			] );
+			]);
 			// Execute!
-			$response = curl_exec( $ch );
+			$response = curl_exec($ch);
 			// Close the connection, release resources used
-			curl_close( $ch );
-			$this->fixerIOData = json_decode( $response );
-			$rates             = $this->fixerIOData->rates;
+			curl_close($ch);
+			$this->fixerIOData = json_decode($response);
+			$rates = $this->fixerIOData->rates;
 
-			add_filter( 'add_message_alert', function ( $messageAlert ) use ( $rates ) {
-				if ( is_null( $messageAlert ) ) {
+			add_filter('add_message_alert', function ($messageAlert) use ($rates) {
+				if (is_null($messageAlert)) {
 					$messageAlert = "Initialisation de la cours d'echange pour un Euro: " . $rates->MGA . "Ar";
 				}
 
 				return $messageAlert;
-			}, 10, 1 );
+			}, 10, 1);
 
 			return $this->updateCurrencyMGA();
 		}
@@ -253,8 +267,9 @@ if ( ! class_exists( 'msServices' ) ) :
 		/**
 		 * Mettre à jours la valeur de l'echange
 		 */
-		public function updateCurrencyMGA() {
-			update_option( 'EUR2MGA', $this->fixerIOData );
+		public function updateCurrencyMGA()
+		{
+			update_option('EUR2MGA', $this->fixerIOData);
 
 			return $this->fixerIOData;
 		}
@@ -262,8 +277,9 @@ if ( ! class_exists( 'msServices' ) ) :
 		/**
 		 * @return mixed
 		 */
-		public function getCurrencyMGA() {
-			if ( ! $this->EUR2MGA instanceof stdClass ) {
+		public function getCurrencyMGA()
+		{
+			if (!$this->EUR2MGA instanceof stdClass) {
 				return $this->getCurrency();
 			}
 

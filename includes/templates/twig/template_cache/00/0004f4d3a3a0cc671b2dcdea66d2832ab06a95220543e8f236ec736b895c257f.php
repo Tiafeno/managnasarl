@@ -1,7 +1,7 @@
 <?php
 
 /* @VC/property-recently.html */
-class __TwigTemplate_f9cec453e4e3cca61eef57623a2e80f44ab7857327cf902038f560c1502fbf3c extends Twig_Template
+class __TwigTemplate_6479363075375abaead83292da43876cf817b6d1ac9198e07da658fb159d11c1 extends Twig_Template
 {
     public function __construct(Twig_Environment $env)
     {
@@ -116,7 +116,7 @@ class __TwigTemplate_f9cec453e4e3cca61eef57623a2e80f44ab7857327cf902038f560c1502
             // line 64
             echo twig_escape_filter($this->env, $this->getAttribute($context["post"], "surface", array()), "html", null, true);
             echo " ";
-            echo twig_escape_filter($this->env, $this->getAttribute($context["post"], "unit", array()), "html", null, true);
+            echo call_user_func_array($this->env->getFilter('Unit')->getCallable(), array($this->getAttribute($context["post"], "unit", array())));
             echo "</span>
                         </li>
                         ";
@@ -203,6 +203,99 @@ class __TwigTemplate_f9cec453e4e3cca61eef57623a2e80f44ab7857327cf902038f560c1502
 
     public function getSourceContext()
     {
-        return new Twig_Source("", "@VC/property-recently.html", "C:\\xampp\\htdocs\\managna\\wp-content\\themes\\managnasarl\\includes\\templates\\twig\\vc\\property-recently.html");
+        return new Twig_Source("
+<!--
+  ~ Copyright (c) 2018 Tiafeno Finel
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy
+  ~ of this software and associated documentation files, to deal
+  ~ in the Software without restriction, including without limitation the rights
+  ~ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  ~ copies of the Software, and to permit persons to whom the Software is
+  ~ furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in all
+  ~ copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  ~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  ~ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  ~ SOFTWARE.
+  -->
+
+<!-- Property recently section start-->
+<div class=\"property-area fadeInUp wow ptb-40\" data-wow-delay=\"0.2s\" >
+  <div class=\"container\">
+    <div class=\"row\">
+      <div class=\"col-md-12\">
+        <div class=\"feature-property-title ptb-20\">
+          <h3 style=\"text-transform: uppercase\">{{title}}</h3>
+        </div>
+      </div>
+    </div>
+    <div class=\"row\">
+      <div class=\"tab-content\">
+        <div role=\"tabpanel\" class=\"tab-pane active\">
+          <div class=\"property-list\">
+          {% for post in posts %}
+            <div class=\"col-md-4\">
+              <div class=\"single-property\">
+                <div class=\"property-img\">
+                  <a href=\"{{post.post_url}}\">
+                    {{post.ID|thumbnail|raw}}
+                  </a>
+                </div>
+                <div class=\"property-desc\">
+                  <div class=\"property-desc-top\">
+                    <h6>
+                      <a href=\"{{post.post_url}}\" title=\"{{post.post_title}}\">
+                        {{post.post_title[:30]}}
+                      </a>
+                    </h6>
+                    <h4 class=\"price ariary\">{{post.price}}</h4>
+                    <!--<p class=\"mg-price mgaMoney\"></p>-->
+                    <div class=\"property-location\">
+                      <p><img src=\"{{get_template_directory_uri}}/img/icons/icon-5.png\" alt=\"\">{{post.location}}</p>
+                    </div>
+                  </div>
+                  <div class=\"property-desc-bottom\">
+                    <div class=\"property-bottom-list\">
+                      <ul>
+                        <li>
+                          <img src=\"{{get_template_directory_uri}}/img/icons/icon-1.png\" alt=\"\">
+                          <span>{{post.surface}} {{post.unit|Unit|raw}}</span>
+                        </li>
+                        {% if post.property != 'ground' %}
+                          <li>
+                            <img src=\"{{get_template_directory_uri}}/img/icons/icon-2.png\" alt=\"\">
+                            <span>{{post.bedroom}}</span>
+                          </li>
+                          <li>
+                            <img src=\"{{get_template_directory_uri}}/img/icons/icon-3.png\" alt=\"\">
+                            <span>{{post.bathroom}}</span>
+                          </li>
+                          <li>
+                            <img src=\"{{get_template_directory_uri}}/img/icons/icon-4.png\" alt=\"\">
+                            <span>{{post.garage}}</span>
+                          </li>
+                        {% endif %}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Property recently section end-->", "@VC/property-recently.html", "C:\\xampp\\htdocs\\managna\\wp-content\\themes\\managnasarl\\includes\\templates\\twig\\vc\\property-recently.html");
     }
 }
