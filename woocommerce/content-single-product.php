@@ -78,7 +78,7 @@ if ( post_password_required() ) {
 							<ul>
 								<li>
 									<img src="<?= get_template_directory_uri() . '/img/icons/icon-6.png' ?>" alt="">
-									<span><?= __('Area', __SITENAME__) ?> <?= $acfField->surface ?> <?= $acfField->unit ?></span>
+									<span><?= __('Area', __SITENAME__) ?> <?= $acfField->surface ?> <?= convertUnit($acfField->unit) ?></span>
 								</li>
 								<?php if ( $acfField->property != 'ground' ): ?>
 									<li>

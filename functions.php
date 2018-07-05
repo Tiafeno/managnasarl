@@ -58,6 +58,22 @@ require 'includes/vc/vc-function-managnasarl.php';
 // $managnaSarl->services->getCurrency();
 /** Twig Engine */
 require 'vendor/autoload.php';
+
+/**
+ * Convertir les valeurs avec ces unités respectif
+ * @param {string} $value
+ * @return string
+ */
+function convertUnit($value)
+{
+	$unit = [
+		'sqft' => 'm<sup>2</sup>',
+		'ha' => 'Ha'
+	];
+	if (!in_array($value, array_keys($unit))) return $value;
+	return $unit[$value];
+}
+
 try {
 
 	$loader = new Twig_Loader_Filesystem();
@@ -68,23 +84,6 @@ try {
 	$loader->addPath(TWIG_TEMPLATE_PATH . '/vc', 'VC');
 	$loader->addPath(TWIG_TEMPLATE_PATH . '/shortcodes', 'Shortcodes');
 
-	/** @var Filter $thumbnailFilter */
-	$thumbnailFilter = new Twig_SimpleFilter('thumbnail', function ($id) {
-		$product = wc_get_product((int)$id);
-		$image_size = apply_filters('single_product_archive_thumbnail_size', 'woocommerce_thumbnail');
-		return $product ? $product->get_image($image_size) : '';
-	});
-
-	$unitFilter = new Twig_SimpleFilter('Unit', function ($value) {
-		$unit = [
-			'sqft' => 'm<sup>2</sup>',
-			'ha' => 'Ha'
-		];
-
-		if ( ! in_array($value, array_keys($unit))) return $value;
-		return $unit[$value];
-	});
-
 	/** @var Object $twig */
 	$twig = new Twig_Environment($loader, array(
 		'debug' => WP_DEBUG,
@@ -92,8 +91,18 @@ try {
 		'auto_reload' => true
 	));
 
-	$twig->addFilter($unitFilter);
-	$twig->addFilter($thumbnailFilter);
+	/** Filtre pour l'unité de mesure */
+	$twig->addFilter(new Twig_SimpleFilter('Unit', function ($value) {
+		return convertUnit($value);
+	}));
+
+	/** Filtre pour récupéré l'image à la une de l'annonce */
+	$twig->addFilter(new Twig_SimpleFilter('thumbnail', function ($id) {
+		$product = wc_get_product((int)$id);
+		$image_size = apply_filters('single_product_archive_thumbnail_size', 'woocommerce_thumbnail');
+		return $product ? $product->get_image($image_size) : '';
+	}));
+
 } catch (Twig_Error_Loader $e) {
 	die($e->getRawMessage());
 }
