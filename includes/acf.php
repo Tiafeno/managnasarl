@@ -1,6 +1,7 @@
 <?php
 if ( function_exists( 'acf_add_local_field_group' ) ):
 
+	/*
 	acf_add_local_field_group(array(
 		'key' => 'group_5b23b96668211',
 		'title' => 'Property details',
@@ -326,7 +327,7 @@ if ( function_exists( 'acf_add_local_field_group' ) ):
 		'active' => 1,
 		'description' => '',
 	));
-
+	*/
 	// Options
 	acf_add_local_field_group(array(
 		'key' => 'group_5b34d8099304b',

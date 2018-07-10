@@ -30,7 +30,7 @@ if ( ! class_exists( 'vcOurOffersBox' ) ) :
 			add_shortcode( 'vc_offers', array( $this, 'vc_render_html' ) );
 		}
 
-		private function get_product_params( $posts ) {
+		private function get_product_params( &$posts ) {
 			array_walk($posts, function (&$post) {
 				$post->post_url       = get_the_permalink( $post->ID );
 				$post->post_thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'woocommerce_thumbnail');
@@ -38,7 +38,6 @@ if ( ! class_exists( 'vcOurOffersBox' ) ) :
 				$product     = wc_get_product( $post->ID );
 				$post->price = $product->get_price();
 			});
-			return $posts;
 		}
 
 		public function getContents() {
@@ -55,7 +54,9 @@ if ( ! class_exists( 'vcOurOffersBox' ) ) :
 				]
 			];
 			$sales = get_posts($args_sale);
-			$posts->sales = msServices::acfParams( $this->get_product_params($sales) );
+			$this->get_product_params($sales);
+			msServices::acfParams( $sales );
+			$posts->sales = &$sales;
 			wp_reset_postdata();
 
 			$args_rent = [
@@ -70,7 +71,9 @@ if ( ! class_exists( 'vcOurOffersBox' ) ) :
 				]
 			];
 			$rents = get_posts($args_rent);
-			$posts->rents = msServices::acfParams( $this->get_product_params($rents) );
+			$this->get_product_params($rents);
+			msServices::acfParams( $rents );
+			$posts->rents = &$rents;
 			wp_reset_postdata();
 
 			return $posts;

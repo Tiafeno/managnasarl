@@ -32,15 +32,11 @@ global $product;
 do_action( 'woocommerce_before_single_product' );
 
 if ( function_exists( 'get_field' ) ):
-	// View acf.php file
-	$property          = get_field( 'property', $product->get_id() ); // 0:house, 1:ground
-	$basic_information = get_field( 'basic_information', $product->get_id() );
-	$location          = $basic_information['location'];
-	$status            = $basic_information['status'] ? $basic_information['status'] : false;
 
-	$condition  = get_field( 'condition', $product->get_id() );
-	$conditions = (object) $condition;
-	$amenities  = get_field( 'amenities', $product->get_id() );
+	// View acf.php file
+	$acfField = new stdClass();
+	$acfField->product_id = $product->get_id();
+	msServices::setACFFields( $acfField );
 endif;
 
 if ( post_password_required() ) {
@@ -65,7 +61,7 @@ if ( post_password_required() ) {
 				<h4 class="price ariary" style="font-size: 30px"><?= $product->get_price() ?></h4>
 				<p class="mg-price euroMoney"></p>
 				<div class="property-location">
-					<p><img src="<?= get_template_directory_uri() . '/img/icons/icon-5.png' ?>" alt=""><?= $location ?></p>
+					<p><img src="<?= get_template_directory_uri() . '/img/icons/icon-5.png' ?>" alt=""><?= $acfField->location ?></p>
 				</div>
 			</div>
 		</div>
@@ -82,24 +78,24 @@ if ( post_password_required() ) {
 							<ul>
 								<li>
 									<img src="<?= get_template_directory_uri() . '/img/icons/icon-6.png' ?>" alt="">
-									<span><?= __('Area', __SITENAME__) ?> <?= $conditions->surface ? $conditions->surface : 0 ?> m<sup>2</sup></span>
+									<span><?= __('Area', __SITENAME__) ?> <?= $acfField->surface ?> <?= convertUnit($acfField->unit) ?></span>
 								</li>
-								<?php if ( $property != 'ground' ): ?>
+								<?php if ( $acfField->property != 'ground' ): ?>
 									<li>
 										<img src="<?= get_template_directory_uri() . '/img/icons/icon-7.png' ?>" alt="">
-										<span><?= __('Bedroom', __SITENAME__) ?> <?= $conditions->bedroom ? $conditions->bedroom : 0 ?></span>
+										<span><?= __('Bedroom', __SITENAME__) ?> <?= $acfField->bedroom ?></span>
 									</li>
 									<li>
 										<img src="<?= get_template_directory_uri() . '/img/icons/icon-8.png' ?>" alt="">
-										<span><?= __('Bathroom', __SITENAME__) ?> <?= $conditions->bathroom ? $conditions->bathroom : 0 ?></span>
+										<span><?= __('Bathroom', __SITENAME__) ?> <?= $acfField->bathroom ?></span>
 									</li>
 									<li>
 										<img src="<?= get_template_directory_uri() . '/img/icons/icon-9.png' ?>" alt="">
-										<span><?= __('Garage', __SITENAME__)?>  <?= $conditions->garage ? $conditions->garage : 0 ?></span>
+										<span><?= __('Garage', __SITENAME__)?>  <?= $acfField->garage ?></span>
 									</li>
 									<li>
 										<img src="<?= get_template_directory_uri() . '/img/icons/icon-10.png' ?>" alt="">
-										<span><?= __('Kitchen', __SITENAME__) ?> <?= $conditions->kitchen ? $conditions->kitchen : 0 ?></span>
+										<span><?= __('Kitchen', __SITENAME__) ?> <?= $acfField->kitchen ?></span>
 									</li>
 								<?php endif; ?>
 							</ul>
@@ -107,7 +103,7 @@ if ( post_password_required() ) {
 					</div>
 				</div>
 
-				<?php if ( $property != 'ground' && ! empty( $amenities ) ): ?>
+				<?php if ( $acfField->property != 'ground' && ! empty( $acfField->amenities ) ): ?>
 					<div class="col-md-6 col-sm-12 col-xs-12">
 						<div class="amenities">
 							<div class="amenities-title">
@@ -116,8 +112,8 @@ if ( post_password_required() ) {
 							<div class="amenities-list">
 								<ul>
 									<?php
-									if ( $amenities ):
-										foreach ( $amenities as $amenitie ): ?>
+									if ( $acfField->amenities ):
+										foreach ( $acfField->amenities as $amenitie ): ?>
 											<li><i class="fa fa-check-circle"></i> <span><?= __($amenitie['label'], __SITENAME__) ?></span></li>
 										<?php
 										endforeach;

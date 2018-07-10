@@ -106,11 +106,11 @@ class __TwigTemplate_f09dfc369a95ccececa8619ec9dcd7423af4cb11025604fd2f9baa33994
             echo "
                     </a>
                   </h6>
-                  <h4 class=\"price euroMoney\">";
+                  <h4 class=\"price ariary\">";
             // line 69
             echo twig_escape_filter($this->env, $this->getAttribute($context["sale"], "price", array()), "html", null, true);
             echo "</h4>
-                  <p class=\"mg-price mgaMoney\"></p>
+                  <!--<p class=\"mg-price mgaMoney\"></p>-->
                   <div class=\"property-location\">
                     <p><img src=\"";
             // line 72
@@ -131,7 +131,9 @@ class __TwigTemplate_f09dfc369a95ccececa8619ec9dcd7423af4cb11025604fd2f9baa33994
                         <span>";
             // line 80
             echo twig_escape_filter($this->env, $this->getAttribute($context["sale"], "surface", array()), "html", null, true);
-            echo " m<sup>2</sup></span>
+            echo " ";
+            echo twig_escape_filter($this->env, $this->getAttribute($context["sale"], "unit", array()), "html", null, true);
+            echo "</span>
                       </li>
                       ";
             // line 82
@@ -218,11 +220,11 @@ class __TwigTemplate_f09dfc369a95ccececa8619ec9dcd7423af4cb11025604fd2f9baa33994
             echo "
                     </a>
                   </h6>
-                  <h4 class=\"price euroMoney\">";
+                  <h4 class=\"price ariary\">";
             // line 120
             echo twig_escape_filter($this->env, $this->getAttribute($context["rent"], "price", array()), "html", null, true);
             echo "</h4>
-                  <p class=\"mg-price mgaMoney\"></p>
+                  <!--<p class=\"mg-price mgaMoney\"></p>-->
                   <div class=\"property-location\">
                     <p><img src=\"";
             // line 123
@@ -243,7 +245,9 @@ class __TwigTemplate_f09dfc369a95ccececa8619ec9dcd7423af4cb11025604fd2f9baa33994
                         <span>";
             // line 131
             echo twig_escape_filter($this->env, $this->getAttribute($context["rent"], "surface", array()), "html", null, true);
-            echo " sqft</span>
+            echo " ";
+            echo twig_escape_filter($this->env, $this->getAttribute($context["rent"], "unit", array()), "html", null, true);
+            echo "</span>
                       </li>
                       ";
             // line 133
@@ -315,7 +319,7 @@ class __TwigTemplate_f09dfc369a95ccececa8619ec9dcd7423af4cb11025604fd2f9baa33994
 
     public function getDebugInfo()
     {
-        return array (  297 => 154,  285 => 147,  279 => 144,  275 => 143,  269 => 140,  265 => 139,  259 => 136,  255 => 135,  252 => 134,  250 => 133,  245 => 131,  241 => 130,  229 => 123,  223 => 120,  217 => 117,  211 => 116,  202 => 110,  198 => 109,  193 => 106,  189 => 105,  185 => 103,  173 => 96,  167 => 93,  163 => 92,  157 => 89,  153 => 88,  147 => 85,  143 => 84,  140 => 83,  138 => 82,  133 => 80,  129 => 79,  117 => 72,  111 => 69,  105 => 66,  99 => 65,  90 => 59,  86 => 58,  81 => 55,  77 => 54,  49 => 29,  19 => 1,);
+        return array (  301 => 154,  289 => 147,  283 => 144,  279 => 143,  273 => 140,  269 => 139,  263 => 136,  259 => 135,  256 => 134,  254 => 133,  247 => 131,  243 => 130,  231 => 123,  225 => 120,  219 => 117,  213 => 116,  204 => 110,  200 => 109,  195 => 106,  191 => 105,  187 => 103,  175 => 96,  169 => 93,  165 => 92,  159 => 89,  155 => 88,  149 => 85,  145 => 84,  142 => 83,  140 => 82,  133 => 80,  129 => 79,  117 => 72,  111 => 69,  105 => 66,  99 => 65,  90 => 59,  86 => 58,  81 => 55,  77 => 54,  49 => 29,  19 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */

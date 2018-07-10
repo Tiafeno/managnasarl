@@ -42,9 +42,10 @@ require 'includes/widgets/widget-search-form.php';
 require 'includes/shortcode/property-details-image.php';
 
 $managnaSarl = (object)array(
-	'version' => $theme->get('Version'),
-	'main' => require 'includes/class-managnasarl.php',
+	'version'  => $theme->get('Version'),
+	'main' 		 => require 'includes/class-managnasarl.php',
 	'services' => require 'includes/class-services.php',
+	'ajax' 		 => require 'includes/class-ajax.php'
 );
 
 $managnaSarl->main->search_filter_query();
@@ -56,8 +57,25 @@ require 'includes/actions/managnasarl-actions.php';
 require 'includes/vc/vc-function-managnasarl.php';
 
 // $managnaSarl->services->getCurrency();
+
 /** Twig Engine */
 require 'vendor/autoload.php';
+
+/**
+ * Convertir les valeurs avec ces unités respectif
+ * @param {string} $value
+ * @return string
+ */
+function convertUnit($value)
+{
+	$unit = [
+		'sqft' => 'm<sup>2</sup>',
+		'ha' 	 => 'Ha'
+	];
+	if ( ! in_array($value, array_keys($unit))) return $value;
+	return $unit[$value];
+}
+
 try {
 
 	$loader = new Twig_Loader_Filesystem();
@@ -68,13 +86,6 @@ try {
 	$loader->addPath(TWIG_TEMPLATE_PATH . '/vc', 'VC');
 	$loader->addPath(TWIG_TEMPLATE_PATH . '/shortcodes', 'Shortcodes');
 
-	/** @var Filter $thumbnailFilter */
-	$thumbnailFilter = new Twig_SimpleFilter('thumbnail', function ($id) {
-		$product = wc_get_product((int)$id);
-		$image_size = apply_filters('single_product_archive_thumbnail_size', 'woocommerce_thumbnail');
-		return $product ? $product->get_image($image_size) : '';
-	});
-
 	/** @var Object $twig */
 	$twig = new Twig_Environment($loader, array(
 		'debug' => WP_DEBUG,
@@ -82,7 +93,18 @@ try {
 		'auto_reload' => true
 	));
 
-	$twig->addFilter($thumbnailFilter);
+	/** Filtre pour l'unité de mesure */
+	$twig->addFilter(new Twig_SimpleFilter('Unit', function ($value) {
+		return convertUnit($value);
+	}));
+
+	/** Filtre pour récupéré l'image à la une de l'annonce */
+	$twig->addFilter(new Twig_SimpleFilter('thumbnail', function ($id) {
+		$product = wc_get_product((int)$id);
+		$image_size = apply_filters('single_product_archive_thumbnail_size', 'woocommerce_thumbnail');
+		return $product ? $product->get_image($image_size) : '';
+	}));
+
 } catch (Twig_Error_Loader $e) {
 	die($e->getRawMessage());
 }
@@ -115,29 +137,5 @@ add_action('after_setup_theme', function () {
 	));
 });
 
-if (function_exists('acf_add_options_page')) {
-	// Premier menu d'options
-	acf_add_options_page(array(
-		'page_title' => 'Managna Immo Options',
-		'menu_title' => 'Managna Immo',
-		'menu_slug' => 'options-managna-immo',
-		'capability' => 'edit_posts',
-		'redirect' => true
-	));
-}
-
-if (function_exists('acf_register_form')) {
-	acf_register_form([
-		'id' => 'new-annonce',
-		'post_id' => 'new_post',
-		'new_post' => [
-			'post_type' => 'product',
-			'post_status' => 'publish'
-		],
-		'post_title' => true,
-		'post_content' => true,
-		'submit_value' => 'Publier'
-	]);
-}
 
 

@@ -69,10 +69,10 @@ class __TwigTemplate_f9cec453e4e3cca61eef57623a2e80f44ab7857327cf902038f560c1502
             // line 42
             echo twig_escape_filter($this->env, $this->getAttribute($context["post"], "post_url", array()), "html", null, true);
             echo "\">
-                    <img src=\"";
+                    ";
             // line 43
-            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($context["post"], "post_thumbnail", array()), 0, array(), "array"), "html", null, true);
-            echo "\" alt=\"\">
+            echo call_user_func_array($this->env->getFilter('thumbnail')->getCallable(), array($this->getAttribute($context["post"], "ID", array())));
+            echo "
                   </a>
                 </div>
                 <div class=\"property-desc\">
@@ -90,11 +90,11 @@ class __TwigTemplate_f9cec453e4e3cca61eef57623a2e80f44ab7857327cf902038f560c1502
             echo "
                       </a>
                     </h6>
-                    <h4 class=\"price euroMoney\">";
+                    <h4 class=\"price ariary\">";
             // line 53
             echo twig_escape_filter($this->env, $this->getAttribute($context["post"], "price", array()), "html", null, true);
             echo "</h4>
-                    <p class=\"mg-price mgaMoney\"></p>
+                    <!--<p class=\"mg-price mgaMoney\"></p>-->
                     <div class=\"property-location\">
                       <p><img src=\"";
             // line 56
@@ -115,7 +115,9 @@ class __TwigTemplate_f9cec453e4e3cca61eef57623a2e80f44ab7857327cf902038f560c1502
                           <span>";
             // line 64
             echo twig_escape_filter($this->env, $this->getAttribute($context["post"], "surface", array()), "html", null, true);
-            echo " m<sup>2</sup></span>
+            echo " ";
+            echo twig_escape_filter($this->env, $this->getAttribute($context["post"], "unit", array()), "html", null, true);
+            echo "</span>
                         </li>
                         ";
             // line 66
@@ -188,7 +190,7 @@ class __TwigTemplate_f9cec453e4e3cca61eef57623a2e80f44ab7857327cf902038f560c1502
 
     public function getDebugInfo()
     {
-        return array (  169 => 87,  157 => 80,  151 => 77,  147 => 76,  141 => 73,  137 => 72,  131 => 69,  127 => 68,  124 => 67,  122 => 66,  117 => 64,  113 => 63,  101 => 56,  95 => 53,  89 => 50,  83 => 49,  74 => 43,  70 => 42,  65 => 39,  61 => 38,  50 => 30,  19 => 1,);
+        return array (  171 => 87,  159 => 80,  153 => 77,  149 => 76,  143 => 73,  139 => 72,  133 => 69,  129 => 68,  126 => 67,  124 => 66,  117 => 64,  113 => 63,  101 => 56,  95 => 53,  89 => 50,  83 => 49,  74 => 43,  70 => 42,  65 => 39,  61 => 38,  50 => 30,  19 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */

@@ -16,13 +16,61 @@ class __TwigTemplate_05e11b99c0d9f20db05cd4d0d869655e9a00d10904d57090b623c307534
     protected function doDisplay(array $context, array $blocks = array())
     {
         // line 1
-        echo "
-<div class=\"pro-details-image mb-60\">
+        echo "<script type=\"text/javascript\">
+  (function(\$) {
+    \$(document).ready(function() {
+      \$('.pro-details-carousel').slick({
+        dots: false,
+        infinite: false,
+        slidesToShow: 4,
+        slidesToScroll: 3,
+        speed: 300,
+        slidesToShow: 4,
+        slidesToScroll: 4,
+        responsive: [
+          {
+            breakpoint: 1024,
+            settings: {
+              slidesToShow: 3,
+              slidesToScroll: 3,
+              infinite: true,
+              dots: true
+            }
+          },
+          {
+            breakpoint: 600,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 2
+            }
+          },
+          {
+            breakpoint: 480,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1
+            }
+          }
+        ]
+      });
+    })
+  })(jQuery);
+</script>
+<style type=\"text/css\">
+  .pro-details-item a {
+    padding: 10px;
+    display: block;
+  }
+  .slick-prev:before, .slick-next:before {
+    color: #000000 !important;
+  }
+</style>
+<div class=\"pro-details-image mb-5\">
   <div class=\"pro-details-big-image\">
     <div class=\"tab-content\">
 
       ";
-        // line 6
+        // line 54
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["galleries"]) ? $context["galleries"] : null));
         $context['loop'] = array(
@@ -39,7 +87,7 @@ class __TwigTemplate_05e11b99c0d9f20db05cd4d0d869655e9a00d10904d57090b623c307534
             $context['loop']['last'] = 1 === $length;
         }
         foreach ($context['_seq'] as $context["_key"] => $context["gallery"]) {
-            // line 7
+            // line 55
             echo "        <div role=\"tabpanel\" class=\"tab-pane fade in ";
             if (($this->getAttribute($context["loop"], "index", array()) == 1)) {
                 echo " active ";
@@ -48,13 +96,13 @@ class __TwigTemplate_05e11b99c0d9f20db05cd4d0d869655e9a00d10904d57090b623c307534
             echo twig_escape_filter($this->env, $this->getAttribute($context["gallery"], "id", array()), "html", null, true);
             echo "\">
           <a href=\"";
-            // line 8
+            // line 56
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($context["gallery"], "image_url", array()), 0, array(), "array"), "html", null, true);
             echo "\" data-lightbox=\"image-1\" data-title=\"";
             echo twig_escape_filter($this->env, $this->getAttribute($context["gallery"], "title", array()), "html", null, true);
             echo "\">
             <img src=\"";
-            // line 9
+            // line 57
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($context["gallery"], "image_url", array()), 0, array(), "array"), "html", null, true);
             echo "\" alt=\"";
             echo twig_escape_filter($this->env, $this->getAttribute($context["gallery"], "title", array()), "html", null, true);
@@ -74,25 +122,25 @@ class __TwigTemplate_05e11b99c0d9f20db05cd4d0d869655e9a00d10904d57090b623c307534
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['gallery'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 13
+        // line 61
         echo "
     </div>
   </div>
   <div class=\"pro-details-carousel\">
 
     ";
-        // line 18
+        // line 66
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["galleries"]) ? $context["galleries"] : null));
         foreach ($context['_seq'] as $context["_key"] => $context["gallery"]) {
-            // line 19
+            // line 67
             echo "      <div class=\"pro-details-item\">
         <a href=\"#pro-";
-            // line 20
+            // line 68
             echo twig_escape_filter($this->env, $this->getAttribute($context["gallery"], "id", array()), "html", null, true);
             echo "\" data-toggle=\"tab\">
           <img src=\"";
-            // line 21
+            // line 69
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($context["gallery"], "image_url", array()), 0, array(), "array"), "html", null, true);
             echo "\" alt=\"";
             echo twig_escape_filter($this->env, $this->getAttribute($context["gallery"], "title", array()), "html", null, true);
@@ -104,7 +152,7 @@ class __TwigTemplate_05e11b99c0d9f20db05cd4d0d869655e9a00d10904d57090b623c307534
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['gallery'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 25
+        // line 73
         echo "
   </div>
 </div>";
@@ -122,7 +170,7 @@ class __TwigTemplate_05e11b99c0d9f20db05cd4d0d869655e9a00d10904d57090b623c307534
 
     public function getDebugInfo()
     {
-        return array (  108 => 25,  96 => 21,  92 => 20,  89 => 19,  85 => 18,  78 => 13,  58 => 9,  52 => 8,  43 => 7,  26 => 6,  19 => 1,);
+        return array (  156 => 73,  144 => 69,  140 => 68,  137 => 67,  133 => 66,  126 => 61,  106 => 57,  100 => 56,  91 => 55,  74 => 54,  19 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
