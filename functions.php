@@ -42,9 +42,10 @@ require 'includes/widgets/widget-search-form.php';
 require 'includes/shortcode/property-details-image.php';
 
 $managnaSarl = (object)array(
-	'version' => $theme->get('Version'),
-	'main' => require 'includes/class-managnasarl.php',
+	'version'  => $theme->get('Version'),
+	'main' 		 => require 'includes/class-managnasarl.php',
 	'services' => require 'includes/class-services.php',
+	'ajax' 		 => require 'includes/class-ajax.php'
 );
 
 $managnaSarl->main->search_filter_query();
@@ -56,6 +57,7 @@ require 'includes/actions/managnasarl-actions.php';
 require 'includes/vc/vc-function-managnasarl.php';
 
 // $managnaSarl->services->getCurrency();
+
 /** Twig Engine */
 require 'vendor/autoload.php';
 
@@ -68,9 +70,9 @@ function convertUnit($value)
 {
 	$unit = [
 		'sqft' => 'm<sup>2</sup>',
-		'ha' => 'Ha'
+		'ha' 	 => 'Ha'
 	];
-	if (!in_array($value, array_keys($unit))) return $value;
+	if ( ! in_array($value, array_keys($unit))) return $value;
 	return $unit[$value];
 }
 
@@ -135,88 +137,5 @@ add_action('after_setup_theme', function () {
 	));
 });
 
-if (function_exists('acf_add_options_page')) {
-	// Premier menu d'options
-	acf_add_options_page(array(
-		'page_title' => 'Managna Immo Options',
-		'menu_title' => 'Managna Immo',
-		'menu_slug' => 'options-managna-immo',
-		'capability' => 'edit_posts',
-		'redirect' => true
-	));
-}
-
-if (function_exists('acf_register_form')) {
-	acf_register_form([
-		'id' => 'new-annonce',
-		'post_id' => 'new_post',
-		'new_post' => [
-			'post_type' => 'product',
-			'post_status' => 'publish'
-		],
-		'post_title' => true,
-		'post_content' => true,
-		'form' => true,
-		//'return' => get_permalink(wc_get_page_id('shop')),
-		'updated_message' => 'Votre annonce a été ajouté avec succès',
-		'submit_value' => 'Publier'
-	]);
-
-	/**
-	 *
-	 */
-	add_filter('acf/update_value/name=featured_image', function ($value, $post_id, $field) {
-		if ($value != '') {
-			update_post_meta($post_id, '_thumbnail_id', $value);
-		} else {
-			delete_post_thumbnail($post_id);
-		}
-		return $value;
-	}, 10, 3);
-
-	/**
-	 *
-	 */
-	add_filter('acf/update_value/name=cost', function ($value, $post_id, $field) {
-		if ($value != '') {
-			update_post_meta($post_id, '_regular_price', $value);
-			update_post_meta($post_id, '_price', $value);
-		} else {
-			delele_post_meta($post_id, '_regular_price');
-			delele_post_meta($post_id, '_price');
-		}
-		return $value;
-	}, 10, 3);
-
-	/**
-	 * Ajouter une gallerie à partir du champ acf {gallery}
-	 *
-	 * @param {array} $values - Un tableau d'id
-	 * @param {int} $post_id
-	 * ...
-	 */
-	add_filter("acf/update_value/name=gallery", function ($values, $post_id, $field) {
-		// @link https://www.advancedcustomfields.com/resources/gallery/
-		$image_gallery = [];
-		if ($values) {
-			foreach ($values as $value) {
-				array_push($image_gallery, $value);
-			}
-			update_post_meta($post_id, '_product_image_gallery', implode(',', $image_gallery));
-		} else {
-			delete_post_meta($post_id, '_product_image_gallery');
-		}
-
-		return $values;
-	}, 10, 3);
-
-	/**
-	 *
-	 */
-	add_action('post_updated', function ($post_id, $post_after, $post_before) {
-		var_dump($post_after);
-	}, 10, 3);
-
-}
 
 

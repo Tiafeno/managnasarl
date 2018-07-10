@@ -122,6 +122,22 @@ if (!class_exists('msServices')) :
 				return;
 			}
 
+			add_filter('send_email_annonce', function ($callback) use ($form) {
+				global $twig, $managnaSarl;
+				if (empty($form['post_id'])) {
+					return $result = 'Post indentification non definie dans la formulaire';
+				}
+				$formObject = (object)$form;
+				$args = [
+					'post_id' => $formObject->post_id,
+					'template_dir_uri' => get_template_directory_uri(),
+					'logo_url' => get_template_directory_uri() . '/img/logo.png',
+				];
+				$content = $twig->render('@MAIL/annonce.html', $args);
+				// TODO: envoyer l'email
+
+			});
+
 			// Crée une filtre pour l'envoie et récuperer le resultat de cette envoie
 			add_filter('managna_send_email', function ($result) use ($form, $template) {
 				global $twig, $managnaSarl;
@@ -132,17 +148,18 @@ if (!class_exists('msServices')) :
 				$options = $managnaSarl->services->getManagnaOptions();
 				$socials = $options->socials;
 
-				$form['message'] = isset($form['message']) ? $form['message'] : '';
-				$form['firstname'] = isset($form['firstname']) ? $form['firstname'] : '';
+				$message = isset($form['message']) ? $form['message'] : '';
+				$firstname = isset($form['firstname']) ? $form['firstname'] : '';
+				$phone = isset($form['phone']) ? $form['phone'] : '';
 
 				$post_id = &$form['post_id'];
 				$product = wc_get_product($post_id);
 				$product_thumbnail = wp_get_attachment_image_src(get_post_thumbnail_id($post_id), 'woocommerce_thumbnail');
 
 				$content = $twig->render('@MAIL/' . $template . '.html', [
-					'firstname' => $form['firstname'],
-					'content' => $form['message'],
-					'phone' => $form['phone'],
+					'firstname' => $firstname,
+					'content' => $message,
+					'phone' => $phone,
 
 					'template_directory_uri' => get_template_directory_uri(),
 					'home_url' => home_url('/'),
