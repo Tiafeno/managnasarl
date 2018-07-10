@@ -489,8 +489,6 @@ const adsRoute = angular.module('adsRoute', ['ngFileUpload'])
               return deferred.promise;
             };
 
-            // TODO: Ajouter un champ description dans le formulaire
-
             let error = false;
             let promiseFeatured = asyncUploadFeatured(featuredFile);
             let promiseGaleries = asyncUploadGaleries(galleryFiles);
