@@ -167,7 +167,7 @@ if (!class_exists('ManagnaSarl')) :
 				if (self::getValue('status')) {
 					$status = self::getValue('status');
 					$meta_query[] = array(
-						'key' => 'form',
+						'key' => 'type',
 						'value' => $status,
 						'compare' => '='
 					);
@@ -194,7 +194,7 @@ if (!class_exists('ManagnaSarl')) :
 				if (self::getValue('property')) {
 					$property = self::getValue('property');
 					$meta_query[] = array(
-						'key' => 'property',
+						'key' => 'prop',
 						'value' => $property,
 						'compare' => '='
 					);
