@@ -123,14 +123,14 @@ if (!class_exists('msServices')) :
 
 			// Get postal code
 			$taxonomy_zipcode = 'zipcode';
-			$postcodes = wp_get_post_terms($id, $taxonomy_zipcode, ["fields" => 'names']);
-			$postcode = empty($postcodes) ? '' : $postcodes[0] . ', ';
+			$zipcodes = wp_get_post_terms($id, $taxonomy_zipcode, ["fields" => 'names']);
+			$zipcode = empty($zipcodes) ? '' : $zipcodes[0] . ', ';
 
 			// Get basic informations ACF fields
 			$city = get_field('city', $id);
 			$address = get_field('address', $id);
 
-			$product->location = $postcode . $address . ', ' . $city;
+			$product->location = $zipcode . $address . ', ' . $city;
 			$product->status = get_field('form', $id);
 
 			// Get amenities
@@ -172,7 +172,7 @@ if (!class_exists('msServices')) :
 					return $callback = 'Post indentification non definie dans la formulaire';
 				}
 				$formObject = (object)$form;
-				$product = wc_get_product($formObject->post_id);
+				$product = wc_get_product((int)$formObject->post_id);
 				$args = [
 					'admin_url' => admin_url('post.php?post='. $product->get_id() .'&action=edit'),
 					'title' => $product->post_title . ' (Ref: ' . $product->get_sku() .')',
@@ -188,6 +188,7 @@ if (!class_exists('msServices')) :
 				$headers = [];
 				$headers[] = 'Content-Type: text/html; charset=UTF-8';
 				$headers[] = 'From: Managna Immo <webmaster@managna-immo.com>';
+				// TODO: Doit être verifier
 				if (wp_mail($to, $subject, $content, $headers)) {
 					$callback = 'Votre message a étés bien envoyer';
 				} else {
