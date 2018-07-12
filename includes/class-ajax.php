@@ -64,6 +64,7 @@ class Ajax
 	 */
 	public function ajax_insert_annonce()
 	{
+		global $managnaSarl;
 		$title = ManagnaSarl::getValue('title');
 		$content = ManagnaSarl::getValue('content');
 		$property = ManagnaSarl::getValue('property');
@@ -89,6 +90,14 @@ class Ajax
 			]);
 		wp_set_object_terms($post_id, 'simple', 'product_type');
 
+		// Update acf fields
+		update_field('prop', $property, $post_id);
+		update_field('type', $type, $post_id);
+		if ($property === 'ground') {
+			update_field('deed', $deed, $post_id);
+			update_field('limited', $limited, $post_id);
+		}
+
 		/**
 		 * [V] - Vente
 		 * [L] - Loeur
@@ -98,18 +107,10 @@ class Ajax
 		 * [V]DT - [Vente] de terrain
 		 *
 		 * @ground
-		 * BO - borné
-		 * TR - Titré
+		 * + BO - borné
+		 * + TTR - Titré
 		 */
-		$sku = ($type === 'for_sale') ? 'V' : 'L';
-		$sku .= ($property === 'ground') ? 'DT ' : ($property === 'house' ? 'DM ' : 'DA ');
-		if ($property == 'ground') {
-			$isDeed =  !is_null($deed) ? ((int)$deed ? 'TR ' : '') : '';
-			$isLimited = !is_null($limited) ? ((int)$limited ? ' BO' : '') : '';
-			$sku .= $isDeed . $post_id . $isLimited;
-		} else {
-			$sku .= $post_id;
-		}
+		$sku = $managnaSarl->services->generateSku($post_id);
 
 		/**
 		 * **************************************
@@ -170,13 +171,13 @@ class Ajax
 		$user = json_decode(ManagnaSarl::getValue('user', '[]'));
 		if (function_exists('update_field')) {
 			$fields = [
-				['field' => 'prop', 'value' => ManagnaSarl::getValue('property'), 'for' => "all"],
+				//['field' => 'prop', 'value' => ManagnaSarl::getValue('property'), 'for' => "all"],
 				['field' => 'owner_name', 'value' => ManagnaSarl::getValue('owner'), 'for' => 'all'],
 				['field' => 'address', 'value' => ManagnaSarl::getValue('address'), 'for' => 'all'],
 				['field' => 'city', 'value' => ManagnaSarl::getValue('city'), 'for' => 'all'],
-				['field' => 'type', 'value' => ManagnaSarl::getValue('type'), 'for' => 'all'], // for_rent & for_sale?
-				['field' => 'deed', 'value' => ManagnaSarl::getValue('deed'), 'for' => 'ground'], // bool
-				['field' => 'limited', 'value' => ManagnaSarl::getValue('limited'), 'for' => 'ground'], // bool
+				//['field' => 'type', 'value' => ManagnaSarl::getValue('type'), 'for' => 'all'], // for_rent & for_sale?
+				//['field' => 'deed', 'value' => ManagnaSarl::getValue('deed'), 'for' => 'ground'], // bool
+				//['field' => 'limited', 'value' => ManagnaSarl::getValue('limited'), 'for' => 'ground'], // bool
 				['field' => 'area_surface', 'value' => ManagnaSarl::getValue('surface', 0), 'for' => 'all'], // group field
 				['field' => 'area_unit', 'value' => ManagnaSarl::getValue('unit'), 'for' => 'all'], // group field
 				['field' => 'details_bedroom', 'value' => ManagnaSarl::getValue('bedroom', null), 'for' => 'house'], // group field
@@ -192,8 +193,6 @@ class Ajax
 				update_field($field['field'], $field['value'], $post_id);
 			}
 		}
-
-
 
 		$zipcode = json_decode(ManagnaSarl::getValue('zipcode')); // stringify
 		$params = [
@@ -220,11 +219,20 @@ class Ajax
 			wp_set_post_terms($post_id, $ids, $tax);
 		}
 
-		// TODO: envoyer un email pour prevenir l'administrateur de cette annonce
+		// @link https://iconicwp.com/blog/get-woocommerce-page-id-url/
+		$shop_url = wc_get_page_permalink( 'shop' );
+
+		// Envoyer un email pour prevenir l'administrateur de cette annonce
+		$message = null;
+		msServices::sendMessage([
+			'post_id' => $post_id
+		]);
+		$send_result = apply_filters('send_email_annonce', $message);
 		wp_send_json([
 			'success' => true,
 			'msg' => 'Annonce ajouter avec succès',
-			'redirect' => get_the_permalink($post_id)
+			'email_msg' => $send_result,
+			'redirect' => $shop_url
 		]);
 	}
 

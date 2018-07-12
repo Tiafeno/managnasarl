@@ -112,9 +112,9 @@ if ( post_password_required() ) {
 							<div class="amenities-list">
 								<ul>
 									<?php
-									if ( $acfField->amenities ):
+									if ($acfField->amenities):
 										foreach ( $acfField->amenities as $amenitie ): ?>
-											<li><i class="fa fa-check-circle"></i> <span><?= __($amenitie['label'], __SITENAME__) ?></span></li>
+											<li><i class="fa fa-check-circle"></i> <span><?= __($amenitie, __SITENAME__) ?></span></li>
 										<?php
 										endforeach;
 									endif;

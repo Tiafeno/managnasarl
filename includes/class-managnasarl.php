@@ -31,6 +31,7 @@ if (!class_exists('ManagnaSarl')) :
 
 		public function __construct()
 		{
+			// TODO: Envoyer un email à l'utilisateur pour l'informer que sont annonce est publier dans le site.
 
 			add_action('wp_loaded', function () {
 
@@ -64,7 +65,8 @@ if (!class_exists('ManagnaSarl')) :
 			add_action('init', array($this, 'init'));
 
 			// Save widgets
-			add_action('widgets_init', function () {
+			add_action(
+				'widgets_init', function () {
 				$this->widgets_init();
 
 				// @folder includes/widgets
@@ -75,32 +77,25 @@ if (!class_exists('ManagnaSarl')) :
 			// Add class name in body
 			add_filter('body_class', array($this, 'body_classes'));
 
-			add_action(/**
-			 * @param string $new_status
-			 * @param $string $old_status
-			 * @param WP_Post $post
-			 */
-				'transition_post_status', function ($new_status, $old_status, $post) {
-				if ('publish' == $new_status && 'publish' != $old_status && $post->post_type == 'product') {
-					$message = null;
-					$form = [
-						'post_id' => $post->ID
-					];
-					msServices::sendMessage($form, 'newsletter');
-					$send_result = apply_filters('managna_send_email', $message);
-					if (is_null($send_result)) return;
-					// TODO: Q&A test
+			add_action(
+				'pending_to_publish', function ($post) {
+					$this->send_newsletter($post);
+			}, 10, 3);
 
-				}
+			add_action(
+				'publish_product', function ($post) {
+				// Envoyer un newsletter
+				// TODO: Modifier les sku apres avoir publier un produit dans la back-office.
+				$this->send_newsletter($post);
+
 			}, 10, 3);
 
 			// Change shop post product view per page
-			add_filter('loop_shop_per_page', 'override_loop_shop_per_page', 20);
-			function override_loop_shop_per_page($cols)
-			{
+			add_filter(
+				'loop_shop_per_page', function($cols) {
 				$cols = 6;
 				return $cols;
-			}
+			}, 20);
 
 			/** Supprimer les deux colones (categories, tags) dans product*/
 			add_action( 'admin_init' , function() {
@@ -132,6 +127,18 @@ if (!class_exists('ManagnaSarl')) :
 			$returnValue = urldecode(preg_replace('/((\%5C0+)|(\%00+))/i', '', urlencode($returnValue)));
 
 			return !is_string($returnValue) ? $returnValue : stripslashes($returnValue);
+		}
+
+		public function send_newsletter($post) {
+			if (! $post instanceof WP_Post) return;
+			$message = null;
+			$form = [
+				'post_id' => $post->ID
+			];
+			msServices::sendMessage($form, 'newsletter');
+			$send_result = apply_filters('managna_send_email', $message);
+			if (is_null($send_result)) return;
+			// TODO: Q&A test
 		}
 
 		public function search_filter_query()

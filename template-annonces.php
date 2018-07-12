@@ -5,7 +5,7 @@
  * Description: Template pour afficher le formulaire d'ajout d'annonce
  * Version: 0.0.1
  */
-
+global $managnaSarl;
 get_header();
 
 wp_deregister_script('semantic');
@@ -37,7 +37,7 @@ wp_enqueue_script('angular-aria');
 wp_enqueue_script('angular-material');
 wp_enqueue_script('angular-messages');
 
-wp_enqueue_script('annonce-application', get_template_directory_uri() . '/assets/js/app/annonce.js', ['angular', 'angular-file-upload-shim', 'angular-file-upload'], true);
+wp_enqueue_script('annonce-application', get_template_directory_uri() . '/assets/js/app/annonce.js', ['angular', 'angular-file-upload-shim', 'angular-file-upload'], $managnaSarl->version);
 wp_localize_script('annonce-application', 'annonceOptions', [
 	'ajax_url' => admin_url('admin-ajax.php'),
 	'application_directory_uri' => get_template_directory_uri() . '/assets/js/app'
@@ -109,8 +109,14 @@ wp_localize_script('annonce-application', 'annonceOptions', [
 				font-family: Roboto,Helvetica Neue,sans-serif !important;
 			}
 
-			md-input-container .md-input {
-				background: rgba(255, 248, 220, 0.47058823529411764);
+			md-input-container .md-input,
+			md-input-container > md-select {
+				background-color: rgba(0, 0, 0, 0.04) !important
+			}
+
+			.container-form {
+				box-shadow: 0 1px 3px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12);
+				border: 1px solid #fafafa;
 			}
 
 		</style>

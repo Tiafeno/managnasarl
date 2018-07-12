@@ -306,7 +306,8 @@ const adsRoute = angular.module('adsRoute', ['ngFileUpload'])
        */
       const imgPromise = (file) => {
         return new Promise((resolve, reject) => {
-          if (file) {
+          const byteLimite = 5242880; // 5Mb
+          if (file && file.size <= byteLimite) {
             let identification = $window.btoa(_.random(0, 100) + Date.now());
             let fileReader = new FileReader();
             fileReader.onload = (Event) => {
@@ -326,7 +327,7 @@ const adsRoute = angular.module('adsRoute', ['ngFileUpload'])
             };
             fileReader.readAsDataURL(file);
           } else {
-            reject(false);
+            reject('Le fichier sélectionné est trop volumineux. La taille maximale est 5Mo.');
           }
         });
       };
@@ -350,7 +351,7 @@ const adsRoute = angular.module('adsRoute', ['ngFileUpload'])
                 });
               })
               .catch(e => {
-                $log.warn("Le fichier image n'existe pas");
+                alert(e);
               })
           })
       };
@@ -375,7 +376,7 @@ const adsRoute = angular.module('adsRoute', ['ngFileUpload'])
               });
             })
             .catch(e => {
-              console.warn("Le fichier image n'existe pas");
+              alert(e);
             })
         }); // forEach
       };
@@ -428,7 +429,8 @@ const adsRoute = angular.module('adsRoute', ['ngFileUpload'])
             .ok('Valider')
         )
         .finally(() => {
-          $log.info('Dialog close!');
+          const shopUrl = successCallback.redirect;
+          $window.location.href = shopUrl;
         });
       };
 
@@ -573,7 +575,6 @@ const adsRoute = angular.module('adsRoute', ['ngFileUpload'])
 
                     }, reason => {
                       $log.warn(reason);
-
                     });
                 });
 

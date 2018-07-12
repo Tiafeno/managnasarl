@@ -47,7 +47,7 @@ if ( ! class_exists( 'vcOurOffersBox' ) ) :
 				'numberposts' => 6,
 				'meta_query' => [
 					[
-						'key' => 'basic_information_status', // field: basic_information, subfield: status
+						'key' => 'type', // field: basic_information, subfield: status
 						'compare' => 'LIKE',
 						'value' => 'sale'
 					]
@@ -64,7 +64,7 @@ if ( ! class_exists( 'vcOurOffersBox' ) ) :
 				'numberposts' => 6,
 				'meta_query' => [
 					[
-						'key' => 'basic_information_status', // field: basic_information, subfield: status
+						'key' => 'type', // field: basic_information, subfield: status
 						'compare' => 'LIKE',
 						'value' => 'rent'
 					]

@@ -1,8 +1,12 @@
 <div layout="column" layout-padding layout-margin >
   <div class="ui two column centered stackable grid">
-    <div class="column">
+    <div class="column container-form">
         <form name="userForm" ng-submit="userFormSubmit(userForm.$valid)" novalidate>
+          <md-content>
+            <h2 class="md-title">Vos informations</h2>
+          </md-content>
           <md-content class="md-no-momentum">
+
             <md-input-container class="md-icon-float md-block">
               <!-- Use floating label instead of placeholder -->
               <label>Votre nom</label>
@@ -13,7 +17,7 @@
               <label>Votre numero de téléphone</label>
               <input ng-model="user.phone" name="phone" type="text" ng-pattern="/^[0-9]{10}$/" ng-required="true">
               <div class="hint">
-
+                Cette information ne sera pas communiquées à des tiers
               </div>
               <div ng-messages="userForm.phone.$error" role="alert" multiple>
                 <div ng-message="required" class="my-message">Vous devez fournir un numéro de téléphone.</div>
@@ -31,7 +35,9 @@
               <!-- Use floating placeholder instead of label -->
               <label>Votre adresse email</label>
               <input ng-model="user.email" type="email" name="email" ng-required="true" ng-pattern="/^.+@.+\..+$/">
-
+              <div class="hint">
+                Cette information ne sera pas communiquées à des tiers
+              </div>
               <div ng-messages="userForm.email.$error" role="alert" multiple>
                 <div ng-message="required" >Votre adresse email est obligatoire</div>
                 <div ng-message="pattern" >

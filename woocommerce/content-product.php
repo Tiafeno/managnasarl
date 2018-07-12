@@ -10,15 +10,17 @@ $status_values = [
 	'for_rent' => __( "For rent", __SITENAME__ )
 ];
 if ( function_exists( 'get_field' ) ):
-	msServices::setACFFields( $product );
+	$acfFields = new stdClass();
+	$acfFields->product_id = $product->get_id();
+	msServices::setACFFields( $acfFields );
 endif;
 
 ?>
 
 <div class="col-md-6 col-sm-6 col-xs-12">
 	<div class="single-property mb-40 fadeInUp wow" data-wow-delay="0.2s">
-		<?php if ( $product->status ): ?>
-			<span class="<?= $product->status ?>"><?= $status_values[ $product->status ] ?></span>
+		<?php if ( $acfFields->status ): ?>
+			<span class="<?= $acfFields->status ?>"><?= $status_values[ $acfFields->status ] ?></span>
 		<?php endif; ?>
 		<div class="property-img">
 			<a href="<?= get_the_permalink() ?>">
@@ -37,12 +39,12 @@ endif;
 				<div class="property-location">
 					<p>
 						<img src="<?= get_template_directory_uri() . '/img/icons/icon-5.png' ?>" alt="">
-						<?= strLimite( $product->location, 40 ) ?>
+						<?= strLimite( $acfFields->location, 40 ) ?>
 					</p>
 				</div>
 			</div>
 			<div class="property-desc-bottom">
-				<?php do_action( 'action_property_bottom_list', $product ); ?>
+				<?php do_action( 'action_property_bottom_list', $acfFields ); ?>
 			</div>
 		</div>
 	</div>

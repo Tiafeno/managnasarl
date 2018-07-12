@@ -70,14 +70,42 @@ if (!class_exists('msServices')) :
 		}
 
 		/**
-		 * Ajouter les
+		 * Retourne la valeur du reference pour l'annonce
+		 * @param null $post
+		 * @return null|string
+		 */
+		public function generateSku($post_id = null)
+		{
+			if (is_null($post_id) || ! is_numeric($post_id)) return null;
+			if ( ! function_exists('get_field')) return null;
+			$type = get_field('type', (int)$post_id);
+			$property = get_field('prop', $post_id);
+
+			$sku = ($type === 'for_sale') ? 'V' : 'L';
+			$sku .= ($property === 'ground') ? 'DT ' : ($property === 'house' ? 'DM ' : 'DA ');
+			if ($property == 'ground') {
+				// @link https://www.advancedcustomfields.com/resources/true-false/
+				$deed = get_field('deed', $post_id);
+				$limited = get_field('limited', $post_id);
+
+				$isDeed =  $deed ? 'TR ' : '';
+				$isLimited = $limited ? ' BO' : '';
+				$sku .= $isDeed . $post_id . $isLimited;
+			} else {
+				$sku .= $post_id;
+			}
+			return $sku;
+		}
+
+		/**
+		 * Ajouter les champs dans la variable param
 		 *
 		 * @param $product
 		 */
 		public static function setACFFields( &$product )
 		{
 			$id = ($product instanceof stdClass) ? $product->product_id : (($product instanceof WC_Product_Simple) ? $product->get_id() :$product->ID);
-			$property = get_field('property', $id);
+			$property = get_field('prop', $id);
 			$product->property = $property;
 			// Get condition ACF fields
 
@@ -85,22 +113,33 @@ if (!class_exists('msServices')) :
 			$product->surface = $superficie['surface'] ? $superficie['surface'] : 0;
 			$product->unit = $superficie['unit'] ? $superficie['unit'] : 'm<sup>2</sup>';
 
-			$details = get_field('details', $id);
-			$product->bedroom = $details['bedroom'] ? $details['bedroom'] : 0;
-			$product->bathroom = $details['bathroom'] ? $details['bathroom'] : 0;
-			$product->garage = $details['garage'] ? $details['garage'] : 0;
-			$product->kitchen = $details['kitchen'] ? $details['kitchen'] : 0;
+			if ($property != 'ground') { // @file annonce.js, for view all property lists
+				$details = get_field('details', $id);
+				$product->bedroom = $details['bedroom'] ? $details['bedroom'] : 0;
+				$product->bathroom = $details['bathroom'] ? $details['bathroom'] : 0;
+				$product->garage = $details['garage'] ? $details['garage'] : 0;
+				$product->kitchen = $details['kitchen'] ? $details['kitchen'] : 0;
+			}
+
+			// Get postal code
+			$taxonomy_zipcode = 'zipcode';
+			$postcodes = wp_get_post_terms($id, $taxonomy_zipcode, ["fields" => 'names']);
+			$postcode = empty($postcodes) ? '' : $postcodes[0] . ', ';
 
 			// Get basic informations ACF fields
 			$city = get_field('city', $id);
 			$address = get_field('address', $id);
-			$postcode = get_field('code_postal', $id);
 
-			$product->location = $postcode . ', ' . $address . ', ' . $city;
+			$product->location = $postcode . $address . ', ' . $city;
 			$product->status = get_field('form', $id);
 
-			// Get Amenities field
-			$product->amenities = get_field('amenities', $id);
+			// Get amenities
+			if ($property != 'ground') { // @file annonce.js, for view all property lists
+				$taxonomy_amenities = 'amenities';
+				$amenities = wp_get_post_terms($id, $taxonomy_amenities, ["fields" => "names"]);
+				$product->amenities = empty($amenities) ? [] : $amenities;
+			}
+
 		}
 
 		/**
@@ -135,9 +174,9 @@ if (!class_exists('msServices')) :
 				$formObject = (object)$form;
 				$product = wc_get_product($formObject->post_id);
 				$args = [
-					'admin_url' => admin_url('post.php?post='. $product->ID .'&action=edit'),
+					'admin_url' => admin_url('post.php?post='. $product->get_id() .'&action=edit'),
 					'title' => $product->post_title . ' (Ref: ' . $product->get_sku() .')',
-					'description' => apply_filters('the_content', $product->post_content),
+					'description' => apply_filters('the_content', $product->get_description()),
 					'template_dir_uri' => get_template_directory_uri(),
 					'logo_url' => get_template_directory_uri() . '/img/logo.png',
 				];
@@ -146,6 +185,8 @@ if (!class_exists('msServices')) :
 				/* Prepare to send mail */
 				$subject = "Annonce en attente - " . $product->get_title() . ' | ' . $product->get_sku();
 				$to = get_option('admin_email');
+				$headers = [];
+				$headers[] = 'Content-Type: text/html; charset=UTF-8';
 				$headers[] = 'From: Managna Immo <webmaster@managna-immo.com>';
 				if (wp_mail($to, $subject, $content, $headers)) {
 					$callback = 'Votre message a étés bien envoyer';

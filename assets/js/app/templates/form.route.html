@@ -1,20 +1,28 @@
 <div layout="column" ng-cloak>
   <div class="ui two column centered stackable grid">
-    <div class="column">
+    <div class="column container-form">
       <form name="annonceForm" ng-submit="annonceFormSubmit(annonceForm.$valid)" novalidate>
-
+        <md-content class="mb-20">
+          <h2 class="md-title mb-20">
+            Déposer une annonce
+          </h2>
+        </md-content>
         <md-content class="md-no-momentum">
 
           <!-- Titre -->
           <md-input-container class="md-icon-float md-block">
-            <label>Titre</label>
-            <input ng-model="form.title" type="text" ng-required="true">
+            <label>Titre de votre annonce</label>
+            <input ng-model="form.title" name="title" type="text" ng-required="true">
+            <div class="hint">Maison ou Terrain dit: «Touraine Loir et Cher»</div>
+            <div ng-messages="annonceForm.title.$error">
+              <div ng-message="required">Veuillez donner un titre à votre annonce.</div>
+            </div>
           </md-input-container>
 
           <!-- Louer ou Vendre? -->
           <md-input-container class="md-icon-float md-block">
             <label>Louer ou Vendre?</label>
-            <md-select ng-model="form.type">
+            <md-select ng-model="form.type" ng-required="true">
               <md-option ng-value="Type.slug" ng-repeat="Type in Types">
                 {{Type.name}}
               </md-option>
@@ -144,7 +152,7 @@
         <md-content>
           <md-input-container class="md-block">
             <label>Description</label>
-            <textarea ng-model="form.description" ng-required="true" md-maxlength="250" rows="5" md-select-on-focus></textarea>
+            <textarea ng-model="form.description" ng-required="true" md-maxlength="500" rows="5" md-select-on-focus></textarea>
           </md-input-container>
         </md-content>
 
@@ -270,7 +278,8 @@
         </md-content>
 
         <md-content>
-          <h2 class="md-title">Les tarifs</h2>
+          <h2 class="md-title" style="margin-bottom: 0">Les tarifs</h2>
+          <p>Les prix sont en ariary</p>
           <div layout-wrap layout-gt-sm="row">
             <div flex-gt-sm="50">
 
@@ -294,7 +303,7 @@
             <md-input-container class="md-icon-float md-icon-right md-block mt-20 mr-40">
               <label>Prix ({{form.property | propertyName}})</label>
               <input ng-model="form.price" type="number" step="1"  ng-required="form.default_rate != 'seasonal'">
-              <md-icon md-font-icon="local_atm">local_atm</md-icon>
+              <md-icon md-font-icon="attach_money">attach_money</md-icon>
               <div class="hint" ng-show="form.property != 'ground'">Ce prix est considéré comme le prix mensuel</div>
             </md-input-container>
 
@@ -304,7 +313,7 @@
               <input ng-model="form.price_seasonal" type="number" step="1"
                       ng-required="form.default_rate === 'seasonal'"
                       ng-disabled="form.property === 'ground'">
-              <md-icon md-font-icon="local_atm">local_atm</md-icon>
+              <md-icon md-font-icon="attach_money">attach_money</md-icon>
             </md-input-container>
           </div>
         </md-content>
