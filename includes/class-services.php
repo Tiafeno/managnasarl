@@ -122,20 +122,37 @@ if (!class_exists('msServices')) :
 				return;
 			}
 
+			/**
+			 * Envoyer une email de notification à l'administrateur pour l'informer
+			 * @filter send_email_annonce
+			 * @return {string} $callback
+			 */
 			add_filter('send_email_annonce', function ($callback) use ($form) {
-				global $twig, $managnaSarl;
+				global $twig;
 				if (empty($form['post_id'])) {
-					return $result = 'Post indentification non definie dans la formulaire';
+					return $callback = 'Post indentification non definie dans la formulaire';
 				}
 				$formObject = (object)$form;
+				$product = wc_get_product($formObject->post_id);
 				$args = [
-					'post_id' => $formObject->post_id,
+					'admin_url' => admin_url('post.php?post='. $product->ID .'&action=edit'),
+					'title' => $product->post_title . ' (Ref: ' . $product->get_sku() .')',
+					'description' => apply_filters('the_content', $product->post_content),
 					'template_dir_uri' => get_template_directory_uri(),
 					'logo_url' => get_template_directory_uri() . '/img/logo.png',
 				];
 				$content = $twig->render('@MAIL/annonce.html', $args);
-				// TODO: envoyer l'email
 
+				/* Prepare to send mail */
+				$subject = "Annonce en attente - " . $product->get_title() . ' | ' . $product->get_sku();
+				$to = get_option('admin_email');
+				$headers[] = 'From: Managna Immo <webmaster@managna-immo.com>';
+				if (wp_mail($to, $subject, $content, $headers)) {
+					$callback = 'Votre message a étés bien envoyer';
+				} else {
+					$callback = 'Une erreur est survenue lors de l\'envoi';
+				}
+				return $callback;
 			});
 
 			// Crée une filtre pour l'envoie et récuperer le resultat de cette envoie
