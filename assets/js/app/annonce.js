@@ -437,10 +437,12 @@ const adsRoute = angular.module('adsRoute', ['ngFileUpload'])
       $scope.annonceFormSubmit = (isValid) => {
         if (!isValid) return;
         const postForm = new FormData();
+        const productCat = _.findWhere($scope.Properties, {slug: $scope.form.property});
         postForm.append('action', 'ajax_insert_annonce');
         postForm.append('title', $scope.form.title);
         postForm.append('content', $scope.form.description);
         postForm.append('property', $scope.form.property); // ground, house & apartment
+        postForm.append('product_cat', JSON.stringify(productCat));
         postForm.append('price', $scope.form.price);
         postForm.append('deed', $scope.form.deed ? 1 : 0); // bool
         postForm.append('limited', $scope.form.limited ? 1 : 0); // bool
@@ -491,7 +493,7 @@ const adsRoute = angular.module('adsRoute', ['ngFileUpload'])
               return deferred.promise;
             };
 
-            let error = false;
+            let error = !1;
             let promiseFeatured = asyncUploadFeatured(featuredFile);
             let promiseGaleries = asyncUploadGaleries(galleryFiles);
             let updateForm = new FormData();
@@ -533,7 +535,7 @@ const adsRoute = angular.module('adsRoute', ['ngFileUpload'])
                 updateForm.append('amenities', JSON.stringify($scope.form.amenitieSelected));
                 break;
               default:
-                error = true;
+                error = !error;
             } // .end switch
 
             /** Superficie */

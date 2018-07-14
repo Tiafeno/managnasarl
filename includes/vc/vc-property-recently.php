@@ -38,6 +38,7 @@ class vcPropertyRecentlyBox extends WPBakeryShortCode {
 	 * @return array - List of posts
 	 */
 	private function getContents() {
+		// TODO: Ne pas afficher l'annonce que le visiteur vois à l'instant
 		$args  = [
 			'post_type'   => 'product',
 			'post_status' => 'publish',
@@ -52,6 +53,7 @@ class vcPropertyRecentlyBox extends WPBakeryShortCode {
 
 			$product      = wc_get_product( $value->ID );
 			$value->price = $product->get_price();
+			$value->sku = $product->get_sku();
 		} );
 
 		return msServices::acfParams( $posts );

@@ -98,13 +98,18 @@ class Ajax
 			update_field('limited', $limited, $post_id);
 		}
 
+		// Inserer une categorie a cette annonce
+		$product_cat = ManagnaSarl::getValue('product_cat', !1);
+		if (!$product_cat)
+			$managnaSarl->services->set_post_term_cat(json_decode($product_cat), $post_id);
+
 		/**
 		 * [V] - Vente
-		 * [L] - Loeur
+		 * [L] - Louer
 		 *
-		 * [V]DA - [Vente] d'appartement
-		 * [V]DM - [Vente] de maison
-		 * [V]DT - [Vente] de terrain
+		 * [V]A - [Vente] d'appartement
+		 * [V]M - [Vente] de maison
+		 * [V]T - [Vente] de terrain
 		 *
 		 * @ground
 		 * + BO - borné
@@ -175,9 +180,6 @@ class Ajax
 				['field' => 'owner_name', 'value' => ManagnaSarl::getValue('owner'), 'for' => 'all'],
 				['field' => 'address', 'value' => ManagnaSarl::getValue('address'), 'for' => 'all'],
 				['field' => 'city', 'value' => ManagnaSarl::getValue('city'), 'for' => 'all'],
-				//['field' => 'type', 'value' => ManagnaSarl::getValue('type'), 'for' => 'all'], // for_rent & for_sale?
-				//['field' => 'deed', 'value' => ManagnaSarl::getValue('deed'), 'for' => 'ground'], // bool
-				//['field' => 'limited', 'value' => ManagnaSarl::getValue('limited'), 'for' => 'ground'], // bool
 				['field' => 'area_surface', 'value' => ManagnaSarl::getValue('surface', 0), 'for' => 'all'], // group field
 				['field' => 'area_unit', 'value' => ManagnaSarl::getValue('unit'), 'for' => 'all'], // group field
 				['field' => 'details_bedroom', 'value' => ManagnaSarl::getValue('bedroom', null), 'for' => 'house'], // group field

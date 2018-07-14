@@ -29,9 +29,10 @@ if (!class_exists('ManagnaSarl')) :
 	class ManagnaSarl
 	{
 
+
 		public function __construct()
 		{
-			// TODO: Envoyer un email à l'utilisateur pour l'informer que sont annonce est publier dans le site.
+			//
 
 			add_action('wp_loaded', function () {
 
@@ -79,15 +80,25 @@ if (!class_exists('ManagnaSarl')) :
 
 			add_action(
 				'pending_to_publish', function ($post) {
+					// Envoyer l'annonce au abonnée
 					$this->send_newsletter($post);
+
+					// TODO: Envoyer l'annonce à son propriétaire
+
+
 			}, 10, 3);
 
 			add_action(
-				'publish_product', function ($post) {
-				// Envoyer un newsletter
-				// TODO: Modifier les sku apres avoir publier un produit dans la back-office.
-				$this->send_newsletter($post);
+				'draft_to_publish', function ($post) {
+				global $managnaSarl;
 
+				//Modifier les sku apres avoir publier un produit dans la back-office.
+				$skuG = $managnaSarl->services->generateSku($post->ID);
+				if (is_null($skuG)) return;
+				if ($managnaSarl->services->update_post_sku($post, $skuG)) {
+					$this->send_newsletter($post);
+					// TODO: Probabilité d'envoyer une deuxieme newsletter avec l'hook "pending_to_publish" (Doit être tester)
+				}
 			}, 10, 3);
 
 			// Change shop post product view per page

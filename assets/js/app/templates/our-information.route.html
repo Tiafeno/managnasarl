@@ -10,7 +10,10 @@
             <md-input-container class="md-icon-float md-block">
               <!-- Use floating label instead of placeholder -->
               <label>Votre nom</label>
-              <input ng-model="user.name" type="text" ng-required="true">
+              <input ng-model="user.name" name="firstname" type="text" ng-required="true">
+              <div ng-messages="userForm.firstname.$error" role="alert" multiple>
+                <div ng-message="required">Vous devez fournir votre nom.</div>
+              </div>
             </md-input-container>
 
             <md-input-container md-no-float class="md-block">

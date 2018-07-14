@@ -99,6 +99,15 @@ function embed_style_header() {
 		    color: #b01d36;
 	    }
 
+			li.bg-06afbe {
+				background-color: #06afbe;
+				padding-left: 10px;
+				padding-right: 10px;
+			}
+			li.bg-06afbe a {
+				color: #ffffff !important;
+			}
+
 
       /**
       Feature property
@@ -114,7 +123,6 @@ function embed_style_header() {
       .property-desc-top h4.price {
         color: #ffffff;
         font-size: 15px;
-        top: 38%;
       }
       .property-desc-top .mg-price {
         color: white;

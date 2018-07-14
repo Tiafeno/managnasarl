@@ -70,25 +70,51 @@ if (!class_exists('msServices')) :
 		}
 
 		/**
+		 * Ajouter une categorie a cette annonce
+		 * @param $cat_name {stdClass}
+		 * @param $post_id {int}
+		 */
+		public function set_post_term_cat($cat, $post_id)
+		{
+			$taxonomy = 'product_cat';
+			$isTerm = term_exists($cat->name, $taxonomy); // array is returned if taxonomy is given
+			if (is_null($isTerm)) {
+				$term = wp_insert_term(
+					$cat->name, // the term
+					$taxonomy, // the taxonomy
+					[
+						'description' => '',
+						'slug' => $cat->slug,
+						'parent' => ''  // get numeric term id
+					]
+				);
+				$term_id = &$term['term_id'];
+			} else {
+				$term_id = $isTerm['term_id'];
+			}
+			wp_set_post_terms($post_id, $term_id, $taxonomy);
+		}
+
+		/**
 		 * Retourne la valeur du reference pour l'annonce
 		 * @param null $post
 		 * @return null|string
 		 */
 		public function generateSku($post_id = null)
 		{
-			if (is_null($post_id) || ! is_numeric($post_id)) return null;
-			if ( ! function_exists('get_field')) return null;
+			if (is_null($post_id) || !is_numeric($post_id)) return null;
+			if (!function_exists('get_field')) return null;
 			$type = get_field('type', (int)$post_id);
 			$property = get_field('prop', $post_id);
 
 			$sku = ($type === 'for_sale') ? 'V' : 'L';
-			$sku .= ($property === 'ground') ? 'DT ' : ($property === 'house' ? 'DM ' : 'DA ');
+			$sku .= ($property === 'ground') ? 'T ' : ($property === 'house' ? 'M ' : 'A ');
 			if ($property == 'ground') {
 				// @link https://www.advancedcustomfields.com/resources/true-false/
 				$deed = get_field('deed', $post_id);
 				$limited = get_field('limited', $post_id);
 
-				$isDeed =  $deed ? 'TR ' : '';
+				$isDeed = $deed ? 'TTR ' : '';
 				$isLimited = $limited ? ' BO' : '';
 				$sku .= $isDeed . $post_id . $isLimited;
 			} else {
@@ -98,13 +124,26 @@ if (!class_exists('msServices')) :
 		}
 
 		/**
+		 * Mettre à jours le sku d'une annonce
+		 * @param $post {WP_Post}
+		 * @return bool
+		 */
+		public function update_post_sku($post, $sku = '')
+		{
+			// Modifier la référence d'une annonce
+			if (empty($sku) || !$post instanceof WP_Post) return false;
+			update_post_meta($post->ID, '_sku', $sku);
+			return true;
+		}
+
+		/**
 		 * Ajouter les champs dans la variable param
 		 *
 		 * @param $product
 		 */
-		public static function setACFFields( &$product )
+		public static function setACFFields(&$product)
 		{
-			$id = ($product instanceof stdClass) ? $product->product_id : (($product instanceof WC_Product_Simple) ? $product->get_id() :$product->ID);
+			$id = ($product instanceof stdClass) ? $product->product_id : (($product instanceof WC_Product_Simple) ? $product->get_id() : $product->ID);
 			$property = get_field('prop', $id);
 			$product->property = $property;
 			// Get condition ACF fields
@@ -147,7 +186,7 @@ if (!class_exists('msServices')) :
 		 *
 		 * @return array
 		 */
-		public static function acfParams( &$products )
+		public static function acfParams(&$products)
 		{
 			array_walk($products, function (&$product) {
 				self::setACFFields($product);
@@ -174,8 +213,8 @@ if (!class_exists('msServices')) :
 				$formObject = (object)$form;
 				$product = wc_get_product((int)$formObject->post_id);
 				$args = [
-					'admin_url' => admin_url('post.php?post='. $product->get_id() .'&action=edit'),
-					'title' => $product->post_title . ' (Ref: ' . $product->get_sku() .')',
+					'admin_url' => admin_url('post.php?post=' . $product->get_id() . '&action=edit'),
+					'title' => $product->post_title . ' (Ref: ' . $product->get_sku() . ')',
 					'description' => apply_filters('the_content', $product->get_description()),
 					'template_dir_uri' => get_template_directory_uri(),
 					'logo_url' => get_template_directory_uri() . '/img/logo.png',
@@ -188,7 +227,7 @@ if (!class_exists('msServices')) :
 				$headers = [];
 				$headers[] = 'Content-Type: text/html; charset=UTF-8';
 				$headers[] = 'From: Managna Immo <webmaster@managna-immo.com>';
-				// TODO: Doit être verifier
+				// TODO: Doit être verifier (Ajouter une annonce)
 				if (wp_mail($to, $subject, $content, $headers)) {
 					$callback = 'Votre message a étés bien envoyer';
 				} else {

@@ -34,17 +34,22 @@
           currency: 'MGA'
         }).format(ariaryNumber);
       });
-      var parent = $(element).parents('.property-desc-top');
-      parent
-        .find('.euroMoney')
+    });
+
+    // Convertir les tarifs
+    var convertElement = $('[data-convert]');
+    $.each(convertElement, function (key, el) {
+      var to = $(el).data('convert-to');
+      var number = $(el).data('convert');
+      $(el)
         .text(function () {
-          var curValue = ariaryNumber / jManagna.currency.rates.MGA;
+          var curValue = parseFloat(number) / jManagna.currency.rates.MGA;
           return new Intl.NumberFormat('de-DE', {
             style: 'currency',
-            currency: 'EUR'
+            currency: to
           }).format(curValue);
-        });
-    });
+        })
+    })
 
   })
 })(jQuery);

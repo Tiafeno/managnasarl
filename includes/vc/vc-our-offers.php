@@ -37,6 +37,7 @@ if ( ! class_exists( 'vcOurOffersBox' ) ) :
 
 				$product     = wc_get_product( $post->ID );
 				$post->price = $product->get_price();
+				$post->sku = $product->get_sku();
 			});
 		}
 

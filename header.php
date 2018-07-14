@@ -117,7 +117,7 @@
 		<div class="header-top sticky-header">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-2 col-sm-4 col-xs-6">
+					<div class="col-md-2 col-sm-4 col-xs-6" style="max-height: 53px">
 						<div class="logo">
 							<a href="<?= home_url( '/' ) ?>"><img src="<?= get_template_directory_uri() . '/img/logo.png' ?>" alt=""></a>
 						</div>
