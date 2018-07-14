@@ -51,7 +51,6 @@
 											dynamic_sidebar( 'footer-right' );
 										endif;
 										?>
-										<?php // TODO: Afficher les reseaux social disponible dans l'option du template ?>
 
 									</div>
 								</div>

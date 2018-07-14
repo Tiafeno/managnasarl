@@ -80,12 +80,30 @@ if (!class_exists('ManagnaSarl')) :
 
 			add_action(
 				'pending_to_publish', function ($post) {
+					global $twig;
 					// Envoyer l'annonce au abonnée
 					$this->send_newsletter($post);
 
-					// TODO: Envoyer l'annonce à son propriétaire
+					// Envoyer l'annonce à son propriétaire
+					$template = new stdClass();
+					$template->link = get_the_permalink($post->ID);
+					if (function_exists('get_field')) {
+						$template->author = get_field('advertiser_name', $post->ID);
+						$template->author_email = get_field('advertiser_email', $post->ID);
+					} else {
+						$template->author = "Propriétaire";
+					}
 
-
+					$args = [
+						'post' => $template,
+					];
+					$content = $twig->render('@MAIL/publish.html', $args);
+					$subject = "Publication | Managna Immo";
+					$to = $template->author_email;
+					$headers = [];
+					$headers[] = 'Content-Type: text/html; charset=UTF-8';
+					$headers[] = 'From: Managna Immo <webmaster@managna-immo.com>';
+					wp_mail($to, $subject, $content, $headers);
 			}, 10, 3);
 
 			add_action(
