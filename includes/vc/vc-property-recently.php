@@ -47,9 +47,10 @@ class vcPropertyRecentlyBox extends WPBakeryShortCode {
 		$posts = get_posts( $args );
 
 		// Ne pas afficher l'annonce dans le plugin "annonce recent" dans la page single property
-		$posts = array_filter($posts, function ($value, $key) use ($product) {
-			return $product->get_id() != $value->ID;
-		}, ARRAY_FILTER_USE_BOTH);
+		if (! is_null($product))
+			$posts = array_filter($posts, function ($value, $key) use ($product) {
+				return $product->get_id() != $value->ID;
+			}, ARRAY_FILTER_USE_BOTH);
 
 		array_walk( $posts, function ( &$value, $key ) {
 			$value->post_url = get_the_permalink( $value->ID );

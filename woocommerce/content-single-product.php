@@ -47,7 +47,10 @@ if ( post_password_required() ) {
 // TODO: Travailler sur la responsive
 ?>
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class(); ?>>
-	<div class="single-property-details">
+	<div class="single-property-details single-property">
+		<?php if ( $acfField->status ): ?>
+			<span class="<?= $acfField->status ?>"><?= getStatus($acfField->status) ?></span>
+		<?php endif; ?>
 		<div class="property-details-img">
 			<?php woocommerce_show_product_sale_flash() ?>
 			<?= do_shortcode('[property-carousel-image]') ?>

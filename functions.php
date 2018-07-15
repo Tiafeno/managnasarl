@@ -76,6 +76,11 @@ function convertUnit($value)
 	return $unit[$value];
 }
 
+function getStatus($value) {
+	$status = str_ireplace('_', ' ', $value);
+	return __(ucfirst($status), __SITENAME__);
+}
+
 try {
 
 	$loader = new Twig_Loader_Filesystem();
@@ -96,6 +101,10 @@ try {
 	/** Filtre pour l'unité de mesure */
 	$twig->addFilter(new Twig_SimpleFilter('Unit', function ($value) {
 		return convertUnit($value);
+	}));
+
+	$twig->addFilter(new Twig_SimpleFilter('propertyType', function ($value) {
+		return getStatus($value);
 	}));
 
 	/** Filtre pour récupéré l'image à la une de l'annonce */

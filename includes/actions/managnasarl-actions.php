@@ -244,6 +244,12 @@ function embed_style_header() {
 		    background: #575757 none repeat scroll 0 0;
 	    }
 
+			.social-media .fa {
+				font-size: 30px;
+				margin-top: 20px;
+				color: #cfcfcf;
+			}
+
     </style>
   <?php
 }

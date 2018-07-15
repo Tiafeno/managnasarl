@@ -170,7 +170,7 @@ if (!class_exists('msServices')) :
 			$address = get_field('address', $id);
 
 			$product->location = $zipcode . $address . ', ' . $city;
-			$product->status = get_field('form', $id);
+			$product->status = get_field('type', $id);
 
 			// Get amenities
 			if ($property != 'ground') { // @file annonce.js, for view all property lists
