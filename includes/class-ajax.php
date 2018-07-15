@@ -100,7 +100,7 @@ class Ajax
 
 		// Inserer une categorie a cette annonce
 		$product_cat = ManagnaSarl::getValue('product_cat', !1);
-		if (!$product_cat)
+		if ($product_cat)
 			$managnaSarl->services->set_post_term_cat(json_decode($product_cat), $post_id);
 
 		/**

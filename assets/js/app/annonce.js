@@ -442,6 +442,7 @@ const adsRoute = angular.module('adsRoute', ['ngFileUpload'])
         postForm.append('title', $scope.form.title);
         postForm.append('content', $scope.form.description);
         postForm.append('property', $scope.form.property); // ground, house & apartment
+        postForm.append('type', $scope.form.type);
         postForm.append('product_cat', JSON.stringify(productCat));
         postForm.append('price', $scope.form.price);
         postForm.append('deed', $scope.form.deed ? 1 : 0); // bool
@@ -499,7 +500,6 @@ const adsRoute = angular.module('adsRoute', ['ngFileUpload'])
             let updateForm = new FormData();
             updateForm.append('action', 'ajax_update_annonce');
             updateForm.append('post_id', post_id);
-            updateForm.append('type', $scope.form.type);
 
             /** Les adresses */
             updateForm.append('region', $scope.form.region); // taxonomy

@@ -40,6 +40,7 @@
 .header-menu ul li .dropdown_menu a {
   background: #b01d36 none repeat scroll 0 0;
   color: #ffffff !important;
+  font-size: 12px !important;
 }
 
 .header-menu ul li .dropdown_menu a:hover {

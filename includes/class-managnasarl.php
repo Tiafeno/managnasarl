@@ -93,7 +93,6 @@ if (!class_exists('ManagnaSarl')) :
 					} else {
 						$template->author = "Propriétaire";
 					}
-
 					$args = [
 						'post' => $template,
 					];
@@ -102,7 +101,7 @@ if (!class_exists('ManagnaSarl')) :
 					$to = $template->author_email;
 					$headers = [];
 					$headers[] = 'Content-Type: text/html; charset=UTF-8';
-					$headers[] = 'From: Managna Immo <webmaster@managna-immo.com>';
+					$headers[] = 'From: Managna Immo <no-reply@managna-immo.com>';
 					wp_mail($to, $subject, $content, $headers);
 			}, 10, 3);
 
@@ -110,7 +109,7 @@ if (!class_exists('ManagnaSarl')) :
 				'draft_to_publish', function ($post) {
 				global $managnaSarl;
 
-				//Modifier les sku apres avoir publier un produit dans la back-office.
+				// Modifier les sku apres avoir publier un produit dans la back-office.
 				$skuG = $managnaSarl->services->generateSku($post->ID);
 				if (is_null($skuG)) return;
 				if ($managnaSarl->services->update_post_sku($post, $skuG)) {

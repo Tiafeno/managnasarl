@@ -44,7 +44,7 @@ if ( post_password_required() ) {
 
 	return;
 }
-
+// TODO: Travailler sur la responsive
 ?>
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class(); ?>>
 	<div class="single-property-details">
@@ -56,25 +56,24 @@ if ( post_password_required() ) {
 		<div class="property-desc">
 			<div class="property-desc-top">
 					<div class="property-spec">
-						<div class="row">
-							<div class="col-md-6">
+						<div class="row pl-20 pr-20">
+							<div class="col-6">
 								<h6>
 										<?= $product->get_title() ?>
 								</h6>
 							</div>
-							<div class="col-md-6">
+							<div class="col-6">
 								<h4 class="price ariary text-right" style="font-size: 25px">
 									<?= $product->get_price() ?>
-									<?php echo ($acfField->property != 'ground') ? '/mois':''; ?>
 								</h4>
 							</div>
 						</div>
 
-						<div class="row">
-							<div class="col-md-6">
+						<div class="row pl-20 pr-20">
+							<div class="col-6">
 								<h6 class="float-left">Réf: <?= $product->get_sku() ?></h6>
 							</div>
-							<div class="col-md-6">
+							<div class="col-6">
 								<h6 data-convert="<?= $product->get_price() ?>" data-convert-to="EUR" class="text-right"></h6>
 							</div>
 						</div>

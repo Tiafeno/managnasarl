@@ -104,7 +104,7 @@ if (!class_exists('msServices')) :
 		{
 			if (is_null($post_id) || !is_numeric($post_id)) return null;
 			if (!function_exists('get_field')) return null;
-			$type = get_field('type', (int)$post_id);
+			$type = get_field('type', $post_id);
 			$property = get_field('prop', $post_id);
 
 			$sku = ($type === 'for_sale') ? 'V' : 'L';
@@ -214,10 +214,7 @@ if (!class_exists('msServices')) :
 				$product = wc_get_product((int)$formObject->post_id);
 				$args = [
 					'admin_url' => admin_url('post.php?post=' . $product->get_id() . '&action=edit'),
-					'title' => $product->post_title . ' (Ref: ' . $product->get_sku() . ')',
-					'description' => apply_filters('the_content', $product->get_description()),
-					'template_dir_uri' => get_template_directory_uri(),
-					'logo_url' => get_template_directory_uri() . '/img/logo.png',
+					'sku' => $product->get_sku()
 				];
 				$content = $twig->render('@MAIL/annonce.html', $args);
 
@@ -226,7 +223,7 @@ if (!class_exists('msServices')) :
 				$to = get_option('admin_email');
 				$headers = [];
 				$headers[] = 'Content-Type: text/html; charset=UTF-8';
-				$headers[] = 'From: Managna Immo <webmaster@managna-immo.com>';
+				$headers[] = 'From: Managna Immo <no-reply@managna-immo.com>';
 				// TODO: Doit être verifier (Ajouter une annonce)
 				if (wp_mail($to, $subject, $content, $headers)) {
 					$callback = 'Votre message a étés bien envoyer';
