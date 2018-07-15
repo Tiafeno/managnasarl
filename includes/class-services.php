@@ -143,7 +143,8 @@ if (!class_exists('msServices')) :
 		 */
 		public static function setACFFields(&$product)
 		{
-			$id = ($product instanceof stdClass) ? $product->product_id : (($product instanceof WC_Product_Simple) ? $product->get_id() : $product->ID);
+			$id = ($product instanceof stdClass) ? $product->product_id :
+				(($product instanceof WC_Product_Simple) ? $product->get_id() : $product->ID);
 			$property = get_field('prop', $id);
 			$product->property = $property;
 			// Get condition ACF fields

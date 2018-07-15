@@ -93,6 +93,7 @@ const adsRoute = angular.module('adsRoute', ['ngFileUpload'])
         'name': 'Louer'
       }
     ];
+
     this.Regions = () => {
       return new Promise((resolve) => {
         request
@@ -103,7 +104,6 @@ const adsRoute = angular.module('adsRoute', ['ngFileUpload'])
           })
       })
     };
-
     this.Zipcode = () => {
       return new Promise((resolve) => {
         request
@@ -114,7 +114,6 @@ const adsRoute = angular.module('adsRoute', ['ngFileUpload'])
           })
       })
     };
-
     this.amenities = () => {
       return request.getAmenities();
     }
@@ -137,6 +136,7 @@ const adsRoute = angular.module('adsRoute', ['ngFileUpload'])
   .directive('preUpload', [function () {
     return {
       restrict: 'AE',
+      scope: true,
       link: (scope, element, attrs) => {
         const selector = attrs.preUpload;
         element
@@ -182,7 +182,7 @@ const adsRoute = angular.module('adsRoute', ['ngFileUpload'])
       link: (scope, element, attrs) => {
         let onChangeHandler = scope.$eval(attrs.inputOnChange);
         element.on("change", onChangeHandler);
-        element.on('$destroy', function() {
+        element.on('$destroy', function () {
           element.off();
         });
       }
@@ -333,27 +333,27 @@ const adsRoute = angular.module('adsRoute', ['ngFileUpload'])
       };
 
       $scope.previewFeaturedFile = (event) => {
-          const element = event.target;
-          if (element.files.length === 0) {
-            $scope.$apply(() => {
-              $scope.form.featuredImage = {};
-            });
+        const element = event.target;
+        if (element.files.length === 0) {
+          $scope.$apply(() => {
+            $scope.form.featuredImage = {};
+          });
+          return;
+        }
+        angular.forEach(element.files, file => {
+          if (!fileFilter.test(file.type)) {
             return;
           }
-          angular.forEach(element.files, file => {
-            if (!fileFilter.test(file.type)) {
-              return;
-            }
-            imgPromise(file)
-              .then(result => {
-                $scope.$apply(() => {
-                  $scope.form.featuredImage = angular.copy(result);
-                });
-              })
-              .catch(e => {
-                alert(e);
-              })
-          })
+          imgPromise(file)
+            .then(result => {
+              $scope.$apply(() => {
+                $scope.form.featuredImage = angular.copy(result);
+              });
+            })
+            .catch(e => {
+              alert(e);
+            })
+        })
       };
 
       $scope.previewGalleryFile = (event) => {
@@ -428,10 +428,10 @@ const adsRoute = angular.module('adsRoute', ['ngFileUpload'])
             .ariaLabel('Notification')
             .ok('Valider')
         )
-        .finally(() => {
-          const shopUrl = successCallback.redirect;
-          $window.location.href = shopUrl;
-        });
+          .finally(() => {
+            const shopUrl = successCallback.redirect;
+            $window.location.href = shopUrl;
+          });
       };
 
       $scope.annonceFormSubmit = (isValid) => {
@@ -448,10 +448,10 @@ const adsRoute = angular.module('adsRoute', ['ngFileUpload'])
         postForm.append('deed', $scope.form.deed ? 1 : 0); // bool
         postForm.append('limited', $scope.form.limited ? 1 : 0); // bool
 
-        if ( ! _.isUndefined($scope.form.default_rate))
-          postForm.append('default_rate',  $scope.form.default_rate); // seasonal & monthly
+        if (!_.isUndefined($scope.form.default_rate))
+          postForm.append('default_rate', $scope.form.default_rate); // seasonal & monthly
 
-        if ( ! _.isUndefined($scope.form.price_seasonal))
+        if (!_.isUndefined($scope.form.price_seasonal))
           postForm.append('price_seasonal', $scope.form.price_seasonal);
 
         request
@@ -515,7 +515,7 @@ const adsRoute = angular.module('adsRoute', ['ngFileUpload'])
             const userForm = {
               phone: $scope.user.phone,
               email: $scope.user.email,
-              name:  $scope.user.name
+              name: $scope.user.name
             };
             updateForm.append('user', JSON.stringify(userForm));
 
@@ -542,7 +542,7 @@ const adsRoute = angular.module('adsRoute', ['ngFileUpload'])
             updateForm.append('surface', $scope.form.surface);
             updateForm.append('unit', $scope.form.unit);
 
-            if ( ! error)
+            if (!error)
               $http({
                 url: annonceOptions.ajax_url,
                 method: "POST",
@@ -552,7 +552,7 @@ const adsRoute = angular.module('adsRoute', ['ngFileUpload'])
                 .then(response => {
                   promiseFeatured
                     .then((featuredSuccess) => {
-                      if ( ! _.isString(featuredSuccess)) {
+                      if (!_.isString(featuredSuccess)) {
                         if (_.isNull(featuredSuccess) || featuredSuccess.success) {
                           if (_.isObject(featuredSuccess)) {
                             if (featuredSuccess.success)
@@ -560,7 +560,10 @@ const adsRoute = angular.module('adsRoute', ['ngFileUpload'])
                           }
 
                           promiseGaleries.then(gallerySuccess => {
-                            if (_.isString(gallerySuccess)) { $log.error(gallerySuccess); return; }
+                            if (_.isString(gallerySuccess)) {
+                              $log.error(gallerySuccess);
+                              return;
+                            }
                             if (_.isObject(gallerySuccess)) {
                               if (gallerySuccess.success)
                                 $log.info('Gallery upload without error');
@@ -624,7 +627,7 @@ const ANNONCE = angular.module('annonceModule',
     $scope.form = {};
 
     $scope.$watch('form', (newvalue, oldvalue) => {
-        $log.info(newvalue);
-    },true);
+      $log.info(newvalue);
+    }, true);
 
   }]);

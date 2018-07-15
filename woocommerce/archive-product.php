@@ -90,7 +90,7 @@ woocommerce_output_content_wrapper();
 					</div>
 				</div>
 				<!-- Offering sidebar -->
-				<div class="col-md-4 col-sm-6 col-xs-12">
+				<div class="col-md-4 col-sm-12 col-xs-12">
 					<div class="sidebar right-side">
 						<?php get_sidebar( 'offering' ); ?>
 					</div>

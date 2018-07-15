@@ -104,16 +104,7 @@ class Ajax
 			$managnaSarl->services->set_post_term_cat(json_decode($product_cat), $post_id);
 
 		/**
-		 * [V] - Vente
-		 * [L] - Louer
-		 *
-		 * [V]A - [Vente] d'appartement
-		 * [V]M - [Vente] de maison
-		 * [V]T - [Vente] de terrain
-		 *
-		 * @ground
-		 * + BO - borné
-		 * + TTR - Titré
+		 * Generate Sku
 		 */
 		$sku = $managnaSarl->services->generateSku($post_id);
 

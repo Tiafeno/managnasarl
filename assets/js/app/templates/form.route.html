@@ -22,11 +22,14 @@
           <!-- Louer ou Vendre? -->
           <md-input-container class="md-icon-float md-block">
             <label>Louer ou Vendre?</label>
-            <md-select ng-model="form.type" ng-required="true">
+            <md-select ng-model="form.type" name="formtype" ng-required="true">
               <md-option ng-value="Type.slug" ng-repeat="Type in Types">
                 {{Type.name}}
               </md-option>
             </md-select>
+            <div ng-messages="annonceForm.formtype.$error">
+              <div ng-message="required">Vous voulez louer ou vendre un bien?</div>
+            </div>
           </md-input-container>
 
         </md-content>
@@ -55,8 +58,12 @@
             <!-- Ville -->
             <md-input-container class="md-block" flex-gt-sm="column">
               <label>Ville</label>
-              <input ng-model="form.city" type="text" ng-required="true">
+              <input ng-model="form.city" name="city" type="text" ng-required="true">
+              <div ng-messages="annonceForm.city.$error">
+                <div ng-message="required">Veuillez s'il vous plait informer la ville qui se trouve cette annonce.</div>
+              </div>
             </md-input-container>
+
           </div>
         </md-content>
 
@@ -66,12 +73,15 @@
             <!-- Adresse -->
             <md-input-container class="md-block" flex-gt-sm="column">
               <label>Adresse</label>
-              <input ng-model="form.address" type="text" ng-required="true">
+              <input ng-model="form.address" name="address" type="text" ng-required="true">
+              <div ng-messages="annonceForm.address.$error">
+                <div ng-message="required">Veuillez s'il vous plait informer l'adresse.</div>
+              </div>
             </md-input-container>
 
             <!-- Code postal -->
             <md-autocomplete flex=""
-                             required=""
+                             required="true"
                              md-input-name="zipcode"
                              md-input-minlength="3"
                              md-input-maxlength="3"
@@ -101,7 +111,7 @@
           <div layout-wrap layout-gt-sm="row">
             <div flex-gt-sm="50">
               <label>Type de bien?</label>
-              <md-select ng-model="form.property" ng-required="true" placeholder="Type de bien">
+              <md-select ng-model="form.property" name="property" ng-required="true" placeholder="Type de bien">
                 <md-option ng-value="Property.slug"
                            ng-repeat="Property in Properties | orderBy: '_id'">
                   {{Property.name}}
@@ -143,8 +153,12 @@
               <!-- Nom du propriétaire -->
               <md-input-container class="md-icon-float md-block">
                 <label>Nom du propriétaire</label>
-                <input ng-model="form.owner_name" type="text" ng-required="true">
+                <input ng-model="form.owner_name" name="owner_name" type="text" ng-required="true">
+                <div ng-messages="annonceForm.owner_name.$error">
+                  <div ng-message="required">Veuillez préciser ici le nom du propriétaire du bien.</div>
+                </div>
               </md-input-container>
+
             </div>
           </div>
         </md-content>
@@ -177,7 +191,7 @@
                      ng-model="form.bedroom" />
 
               <div ng-messages="annonceForm.bedroom.$error">
-                <div ng-message="required">Bedroom is required.</div>
+                <div ng-message="required">Veuillez donner un chiffre exact du nombre de chambre.</div>
                 <div ng-message="pattern">Ce champ doit être des chiffres.</div>
               </div>
             </md-input-container>
@@ -196,6 +210,7 @@
                      ng-pattern="/^[0-9]/" />
 
               <div ng-messages="annonceForm.kitchen.$error">
+                <div ng-message="required">Veuillez donner un chiffre exact du nombre de cuisine.</div>
                 <div ng-message="pattern">Ce champ doit être des chiffres.</div>
               </div>
             </md-input-container>
@@ -214,9 +229,8 @@
                      ng-pattern="/^[0-9]/"/>
 
               <div ng-messages="annonceForm.garage.$error">
-                <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
-                  Your email must be between 10 and 100 characters long and look like an e-mail address.
-                </div>
+                <div ng-message="required">Veuillez donner un chiffre exact du nombre de garage.</div>
+                <div ng-message="pattern">Ce champ doit être des chiffres.</div>
               </div>
             </md-input-container>
 
@@ -234,6 +248,7 @@
                      ng-pattern="/^[0-9]/"/>
 
               <div ng-messages="annonceForm.bathroom.$error">
+                <div ng-message="required">Veuillez donner un chiffre exact du nombre du salle de bains.</div>
                 <div ng-message="pattern">Ce champ doit être des chiffres.</div>
               </div>
             </md-input-container>
@@ -252,9 +267,10 @@
                 <label>Surface</label>
                 <input ng-model="form.surface" name="surface" type="text" ng-required="true" ng-pattern="/^[0-9]/"/>
                 <div ng-messages="annonceForm.surface.$error">
-                  <div ng-message-exp="['pattern']">
+                  <div ng-message="pattern">
                     Ce champ doit être des chiffres.
                   </div>
+                  <div ng-message="required">Veuillez donner un chiffre exact du surface.</div>
                 </div>
               </md-input-container>
             </div>
@@ -264,7 +280,7 @@
               <!-- Unité -->
               <md-input-container class="md-block">
                 <label>Unité</label>
-                <md-select ng-model="form.unit">
+                <md-select ng-model="form.unit" name="unit" ng-required="true">
                   <md-option ng-value="Unit.slug" ng-repeat="Unit in [
                     {slug: 'sqft', name: 'm²'},
                     {slug: 'ha', name: 'Ha'}
@@ -272,6 +288,9 @@
                     {{Unit.name}}
                   </md-option>
                 </md-select>
+                <div ng-messages="annonceForm.unit.$error">
+                  <div ng-message="required">Le champ unité est obligatoire.</div>
+                </div>
               </md-input-container>
             </div>
           </div>
@@ -371,7 +390,7 @@
                 </div>
               </div>
 
-              <div pre-upload="gallery" class="add-new-picture">
+              <div pre-upload="gallery" ng-if="form.galeries.length <= 5" class="add-new-picture">
                 <div style="display: none">
                   <input class="gallery" input-on-change="previewGalleryFile" name="gallery" type="file" multiple/>
                 </div>
