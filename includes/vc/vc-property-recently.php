@@ -38,22 +38,28 @@ class vcPropertyRecentlyBox extends WPBakeryShortCode {
 	 * @return array - List of posts
 	 */
 	private function getContents() {
-		// TODO: Ne pas afficher l'annonce que le visiteur vois à l'instant
+		global $product;
 		$args  = [
 			'post_type'   => 'product',
 			'post_status' => 'publish',
 			'numberposts' => 10
 		];
 		$posts = get_posts( $args );
+
+		// Ne pas afficher l'annonce dans le plugin "annonce recent" dans la page single property
+		$posts = array_filter($posts, function ($value, $key) use ($product) {
+			return $product->get_id() != $value->ID;
+		}, ARRAY_FILTER_USE_BOTH);
+
 		array_walk( $posts, function ( &$value, $key ) {
 			$value->post_url = get_the_permalink( $value->ID );
 
 			// @links https://docs.woocommerce.com/document/image-sizes-theme-developers/
 			$value->post_thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $value->ID ), 'woocommerce_thumbnail' );
 
-			$product      = wc_get_product( $value->ID );
-			$value->price = $product->get_price();
-			$value->sku = $product->get_sku();
+			$annonce      = wc_get_product( $value->ID );
+			$value->price = $annonce->get_price();
+			$value->sku = $annonce->get_sku();
 		} );
 
 		return msServices::acfParams( $posts );
