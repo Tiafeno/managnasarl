@@ -203,6 +203,7 @@ const adsRoute = angular.module('adsRoute', ['ngFileUpload'])
     '$scope', "$mdDialog", "$q", "$http", "$log", '$window',
     '$location', '$window', '$route', 'request', 'Property', 'Upload',
     function ($scope, $mdDialog, $q, $http, $log, $window, $location, $window, $route, request, Property, Upload) {
+      $scope.loading = !1;
       $scope.Types = angular.copy(Property.Types);
       $scope.Regions = [];
       $scope.Zipcode = [];
@@ -436,6 +437,15 @@ const adsRoute = angular.module('adsRoute', ['ngFileUpload'])
 
       $scope.annonceFormSubmit = (isValid) => {
         if (!isValid) return;
+        /**
+         * Loading
+         */
+        $scope.loading = !$scope.loading;
+        /**
+         * Une formulaire pour l'insertion de l'annonce
+         * @type {FormData}
+         */
+
         const postForm = new FormData();
         const productCat = _.findWhere($scope.Properties, {slug: $scope.form.property});
         postForm.append('action', 'ajax_insert_annonce');
@@ -568,7 +578,7 @@ const adsRoute = angular.module('adsRoute', ['ngFileUpload'])
                               if (gallerySuccess.success)
                                 $log.info('Gallery upload without error');
                             }
-
+                            $scope.loading = !$scope.loading;
                             // Update without error
                             sendSuccess(response.data);
                           }, reason => {

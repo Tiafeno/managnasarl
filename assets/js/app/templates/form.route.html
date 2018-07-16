@@ -128,7 +128,7 @@
               <md-checkbox ng-model="form.deed"
                            ng-disabled="form.property != 'ground'"
                            aria-label="Titre de propriété ou acte de propriété">
-                Titre de propriété ou acte de propriété
+                Avec un titre de propriété ou acte de propriété
               </md-checkbox>
             </div>
           </div>
@@ -402,10 +402,11 @@
         </md-content>
 
         <md-content class="mt-40">
+          <md-progress-linear md-mode="indeterminate" ng-if="loading"></md-progress-linear>
           <div layout-wrap layout-gt-sm="row">
             <div flex-gt-sm="50">
 
-              <md-button class="md-raised md-primary" type="submit">Ajouter mon annonce</md-button>
+              <md-button class="md-raised md-primary" ng-disabled="loading" type="submit">Ajouter mon annonce</md-button>
 
             </div>
           </div>
