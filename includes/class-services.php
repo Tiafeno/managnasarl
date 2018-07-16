@@ -234,7 +234,10 @@ if (!class_exists('msServices')) :
 				return $callback;
 			});
 
-			// Crée une filtre pour l'envoie et récuperer le resultat de cette envoie
+			/**
+			 * Envoyer une message à l'administrateur pour une demande de contact.
+			 * Envoyer un newsletter.
+			 */
 			add_filter('managna_send_email', function ($result) use ($form, $template) {
 				global $twig, $managnaSarl;
 				if (empty($form['post_id'])) {
@@ -311,11 +314,28 @@ if (!class_exists('msServices')) :
 							'headers' => $headers
 						]);
 					}
+
+					/**
+					 * Verifier si le visiteur veux s'abonnée
+					 */
+					if ((int)$form['subscribe']) {
+						if (class_exists('vcNewsletterBox')) {
+							if ( ! vcNewsletterBox::isRegister( $form['email'] ) ) {
+								if ( ! vcNewsletterBox::added_newsletter($form['email'])) {
+									$result .= "Newsletter - Une erreur s'est produite pendant l'ajout de votre email. \n\t";
+								} else {
+									$result .= "Newsletter - Vous êtes abonnée à notre newsletter \n\t";
+								}
+							} else {
+								$result .= "Vous êtes déjà abonnée à notre newsletter. \n\t";
+							}
+						}
+					}
 				endif;
 
 				foreach ($senders as $sender) {
 					if (wp_mail($sender['to'], $subject, $body, $sender['headers'])) {
-						$result = 'Votre message a étés bien envoyer';
+						$result .= 'Votre message a étés bien envoyer';
 
 						if (isset($isSubscriber)) {
 							if (!$isSubscriber) {
@@ -328,7 +348,7 @@ if (!class_exists('msServices')) :
 						}
 
 					} else {
-						$result = 'Une erreur est survenue lors de l\'envoi \n\t';
+						$result .= 'Une erreur est survenue lors de l\'envoi \n\t';
 						$result .= 'Details: ' . implode(' X ', $sender['headers']);
 						break;
 					}

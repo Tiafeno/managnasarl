@@ -13,6 +13,20 @@
 <script type="text/javascript">
   (function ($) {
     $(document).ready(function () {
+      var inputCheck = document.querySelector('input[name="newsletter"]');
+      $('.checkbox')
+        .first().checkbox({
+        onChecked: function() {
+          inputCheck.value = 1;
+        },
+        onUnchecked: function() {
+          inputCheck.value = 0;
+        },
+        onChange: function() {
+          console.log('onChange called<br>');
+        }
+      });
+
       $('#contactformproperty')
         .form({
           fields: {
@@ -88,14 +102,13 @@
     </div>
   </div>
 
-
   <div class="inline field">
     <div class="message-editor" id="message-editor"></div>
   </div>
 
   <div class="inline field ">
     <div class="ui toggle checkbox">
-      <input type="checkbox" name="newsletter">
+      <input type="checkbox" name="newsletter" value="0" class="checkbox">
       <label>Je m'abonne à la newsletter</label>
     </div>
   </div>

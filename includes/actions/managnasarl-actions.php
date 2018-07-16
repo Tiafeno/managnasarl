@@ -148,7 +148,7 @@ function embed_style_header() {
 	    }
 			.property-img a img {
 				position: relative;
-				height: 100%;
+				height: auto;
 			}
       .google-map-title > h5 {
 	      color: #303030;

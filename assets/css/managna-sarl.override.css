@@ -139,3 +139,13 @@
   margin-top: 15px;
   margin-bottom: 40px;
 }
+
+@media only screen and (max-width: 767px) and (min-width: 480px) {
+  .property-desc-top h4.price {
+    position: static !important;
+    right: 0 !important;
+    top: 0 !important;
+    transform: none !important;
+    padding: 0;
+  }
+}
