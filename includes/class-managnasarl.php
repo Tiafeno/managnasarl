@@ -86,10 +86,9 @@ if (!class_exists('ManagnaSarl')) :
 			}, 10, 1);
 
 			// Remove woocommerce filter in admin page
-			add_filter( 'woocommerce_product_filters', function($options) {
-				$options = "";
-				return $options;
-			}, 10, 1 );
+			add_filter( 'woocommerce_product_filters', function() {
+				return "";
+			}, 10);
 
 
 			// Add class name in body
