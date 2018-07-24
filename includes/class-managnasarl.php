@@ -75,34 +75,51 @@ if (!class_exists('ManagnaSarl')) :
 				register_widget('ContactPropertyFormWidget');
 			});
 
+			/**
+			 * @filter manage_posts_columns
+			 * Remove column in product admin page
+			 */
+			add_filter('manage_edit-product_columns', function ($columns) {
+				unset($columns['product_tag']);
+				unset($columns['product_type']);
+				return $columns;
+			}, 10, 1);
+
+			// Remove woocommerce filter in admin page
+			add_filter( 'woocommerce_product_filters', function($options) {
+				$options = "";
+				return $options;
+			}, 10, 1 );
+
+
 			// Add class name in body
 			add_filter('body_class', array($this, 'body_classes'));
 
 			add_action(
 				'pending_to_publish', function ($post) {
-					global $twig;
-					// Envoyer l'annonce au abonnée
-					$this->send_newsletter($post);
+				global $twig;
+				// Envoyer l'annonce au abonnée
+				$this->send_newsletter($post);
 
-					// Envoyer l'annonce à son propriétaire
-					$template = new stdClass();
-					$template->link = get_the_permalink($post->ID);
-					if (function_exists('get_field')) {
-						$template->author = get_field('advertiser_name', $post->ID);
-						$template->author_email = get_field('advertiser_email', $post->ID);
-					} else {
-						$template->author = "Propriétaire";
-					}
-					$args = [
-						'post' => $template,
-					];
-					$content = $twig->render('@MAIL/publish.html', $args);
-					$subject = "Publication | Managna Immo";
-					$to = $template->author_email;
-					$headers = [];
-					$headers[] = 'Content-Type: text/html; charset=UTF-8';
-					$headers[] = 'From: Managna Immo <no-reply@managna-immo.com>';
-					wp_mail($to, $subject, $content, $headers);
+				// Envoyer l'annonce à son propriétaire
+				$template = new stdClass();
+				$template->link = get_the_permalink($post->ID);
+				if (function_exists('get_field')) {
+					$template->author = get_field('advertiser_name', $post->ID);
+					$template->author_email = get_field('advertiser_email', $post->ID);
+				} else {
+					$template->author = "Propriétaire";
+				}
+				$args = [
+					'post' => $template,
+				];
+				$content = $twig->render('@MAIL/publish.html', $args);
+				$subject = "Publication | Managna Immo";
+				$to = $template->author_email;
+				$headers = [];
+				$headers[] = 'Content-Type: text/html; charset=UTF-8';
+				$headers[] = 'From: Managna Immo <no-reply@managna-immo.com>';
+				wp_mail($to, $subject, $content, $headers);
 			}, 10, 3);
 
 			add_action(
@@ -120,14 +137,14 @@ if (!class_exists('ManagnaSarl')) :
 
 			// Change shop post product view per page
 			add_filter(
-				'loop_shop_per_page', function($cols) {
+				'loop_shop_per_page', function ($cols) {
 				$cols = 6;
 				return $cols;
 			}, 20);
 
 			/** Supprimer les deux colones (categories, tags) dans product*/
-			add_action( 'admin_init' , function() {
-				add_filter('manage_product_posts_columns', function($columns) {
+			add_action('admin_init', function () {
+				add_filter('manage_product_posts_columns', function ($columns) {
 					unset($columns['product_tag']);
 					unset($columns['product_cat']);
 					return $columns;
@@ -157,8 +174,9 @@ if (!class_exists('ManagnaSarl')) :
 			return !is_string($returnValue) ? $returnValue : stripslashes($returnValue);
 		}
 
-		public function send_newsletter($post) {
-			if (! $post instanceof WP_Post) return;
+		public function send_newsletter($post)
+		{
+			if (!$post instanceof WP_Post) return;
 			$message = null;
 			$form = [
 				'post_id' => $post->ID
@@ -248,8 +266,8 @@ if (!class_exists('ManagnaSarl')) :
 			//unregister_taxonomy('product_tag');
 			//unregister_taxonomy('product_cat');
 
-			add_filter( 'manage_taxonomies_for_product_columns', 'product_type_columns' );
-			function product_type_columns( $taxonomies )
+			add_filter('manage_taxonomies_for_product_columns', 'product_type_columns');
+			function product_type_columns($taxonomies)
 			{
 				return $taxonomies;
 			}
