@@ -85,7 +85,12 @@ if ( ! class_exists( 'vcNewsletterBox' ) ):
 			if ( empty( $newsletters ) ) {
 				return false;
 			}
-			// TODO: Supprimer une adresse email d'un abonné
+
+			$new_newsletters = array_filter( $newsletters, function ( $value, $key ) use ( $mail ) {
+				return $value->mail != $mail;
+			}, ARRAY_FILTER_USE_BOTH );
+
+			update_option('managna_newsletter', $new_newsletters);
 		}
 
 		/**
