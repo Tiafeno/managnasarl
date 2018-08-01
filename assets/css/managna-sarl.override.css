@@ -149,3 +149,16 @@
     padding: 0;
   }
 }
+
+.property-desc h6.property-title {
+  font-size: 17px;
+}
+h6.price-convert {
+  left: 14px;
+}
+h6.property-sku {
+  margin-bottom: 0;
+}
+.property-location {
+  margin-bottom: 10px;
+}

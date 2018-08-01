@@ -117,9 +117,12 @@ function embed_style_header() {
       }
       .property-desc-top h6 {
         line-height: 17px !important;
-        margin-bottom: 6px;
         font-size: 14px;
       }
+			h6.text-right.price-convert {
+				color: #f9c322;
+				font-size: 12px;
+			}
       .property-desc-top h4.price {
         color: #ffffff;
         font-size: 15px;

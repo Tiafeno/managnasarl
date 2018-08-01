@@ -49,29 +49,34 @@
 
                     <div class="property-spec">
                       <div class="row">
-                        <div class="col-xs-6">
-                          <h6>
+                        <div class="col-md-12">
+                          <h6 class="property-title">
                             <a href="{{post.post_url}}" title="{{post.post_title}}">
-                              {{post.post_title[:30]}}
+                              {{post.post_title[:39]}}
                             </a>
                           </h6>
-                        </div>
-                        <div class="col-xs-6">
-                          <h4 class="price ariary text-right">{{post.price}}</h4>
                         </div>
                       </div>
 
                       <div class="row">
-                        <div class="col-xs-6">
-                          <h6 class="float-left">Réf: {{post.sku}}</h6>
-                        </div>
-                        <div class="col-xs-6">
-                          <h6 data-convert="{{post.price}}" data-convert-to="EUR" class="text-right"></h6>
+                        <div class="col-md-12">
+                          <h6 class="float-left property-sku"><i class="fa fa-bookmark"></i> {{post.sku}}</h6>
                         </div>
                       </div>
                     </div>
                     <div class="property-location">
-                      <p><img src="{{get_template_directory_uri}}/img/icons/icon-5.png" alt="">{{post.location}}</p>
+                      <p>
+                        <i class="fa fa-map-marker"></i>
+                        {{post.location}}
+                      </p>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-6">
+                        <h4 class="price ariary text-left">{{post.price}}</h4>
+                      </div>
+                      <div class="col-xs-6">
+                        <h6 data-convert="{{post.price}}" data-convert-to="EUR" class="text-right price-convert"></h6>
+                      </div>
                     </div>
                   </div>
                   <div class="property-desc-bottom">
