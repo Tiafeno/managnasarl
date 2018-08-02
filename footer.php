@@ -84,7 +84,7 @@
 					<!--Footer bottom end-->
 				</div>
 			</footer>
-			<style type="text/css">
+	<style type="text/css">
 		footer.footer .footer-top {
 			background-color: #3C3C3C;
 		}

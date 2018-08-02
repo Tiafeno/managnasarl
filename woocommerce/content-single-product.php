@@ -46,10 +46,12 @@ if ( post_password_required() ) {
 }
 ?>
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class(); ?>>
-	<div class="single-property-details single-property">
+	<div class="single-property-details">
+		<div class="single-property">
 		<?php if ( $acfField->status ): ?>
 			<span class="<?= $acfField->status ?>"><?= getStatus($acfField->status) ?></span>
 		<?php endif; ?>
+		</div>
 		<div class="property-details-img">
 			<?php woocommerce_show_product_sale_flash() ?>
 			<?= do_shortcode('[property-carousel-image]') ?>
@@ -60,7 +62,7 @@ if ( post_password_required() ) {
 					<div class="property-spec">
 						<div class="row">
 							<div class="col-xs-6">
-								<h6>
+								<h6 class="property-title">
 										<?= $product->get_title() ?>
 								</h6>
 							</div>
@@ -73,7 +75,7 @@ if ( post_password_required() ) {
 
 						<div class="row">
 							<div class="col-xs-6">
-								<h6 class="float-left">Réf: <?= $product->get_sku() ?></h6>
+								<h6 class="float-left property-sku"><i class="fa fa-bookmark"></i> <?= $product->get_sku() ?></h6>
 							</div>
 							<div class="col-xs-6">
 								<h6 data-convert="<?= $product->get_price() ?>" data-convert-to="EUR" class="text-right"></h6>
@@ -81,7 +83,10 @@ if ( post_password_required() ) {
 						</div>
 					</div>
 				<div class="property-location">
-					<p><img src="<?= get_template_directory_uri() . '/img/icons/icon-5.png' ?>" alt=""><?= $acfField->location ?></p>
+					<p>
+						<i class="fa fa-map-marker"></i>
+						<?= $acfField->location ?>
+					</p>
 				</div>
 			</div>
 		</div>
@@ -94,7 +99,7 @@ if ( post_password_required() ) {
 						<div class="condtion-title">
 							<h5>Condition</h5>
 						</div>
-						<div class="property-condition-list">
+						<div class="<?= ($acfField->property === 'ground') ? '' : 'property-condition-list'  ?>">
 							<ul>
 								<li>
 									<img src="<?= get_template_directory_uri() . '/img/icons/icon-6.png' ?>" alt="">

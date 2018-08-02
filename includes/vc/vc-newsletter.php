@@ -91,6 +91,7 @@ if ( ! class_exists( 'vcNewsletterBox' ) ):
 			}, ARRAY_FILTER_USE_BOTH );
 
 			update_option('managna_newsletter', $new_newsletters);
+			return $new_newsletters;
 		}
 
 		/**

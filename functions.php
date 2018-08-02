@@ -66,8 +66,7 @@ require 'vendor/autoload.php';
  * @param {string} $value
  * @return string
  */
-function convertUnit($value)
-{
+function convertUnit($value) {
 	$unit = [
 		'sqft' => 'm<sup>2</sup>',
 		'ha' 	 => 'Ha'
@@ -75,7 +74,6 @@ function convertUnit($value)
 	if ( ! in_array($value, array_keys($unit))) return $value;
 	return $unit[$value];
 }
-
 function getStatus($value) {
 	$status = str_ireplace('_', ' ', $value);
 	return __(ucfirst($status), __SITENAME__);
@@ -145,6 +143,3 @@ add_action('after_setup_theme', function () {
 		'menu-footer' => __('Footer Menu', __SITENAME__),
 	));
 });
-
-
-
