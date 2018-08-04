@@ -65,7 +65,7 @@ class vcStickerBox extends WPBakeryShortCode {
           'title' => '',
           'category' => ''
         ),
-        $attrsS
+        $attrs
       )
     );
 
