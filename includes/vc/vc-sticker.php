@@ -56,7 +56,7 @@ class vcStickerBox extends WPBakeryShortCode {
     );
   }
 
-  public function vc_sticker_html() {
+  public function vc_sticker_html($attrs) {
     global $twig;
     // Params extraction
     extract(
@@ -65,7 +65,7 @@ class vcStickerBox extends WPBakeryShortCode {
           'title' => '',
           'category' => ''
         ),
-        $attrs
+        $attrsS
       )
     );
 
