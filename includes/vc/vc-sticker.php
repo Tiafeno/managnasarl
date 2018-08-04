@@ -83,3 +83,5 @@ class vcStickerBox extends WPBakeryShortCode {
     }
   }
 }
+
+new vcStickerBox();
