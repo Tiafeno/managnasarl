@@ -1,28 +1,39 @@
 <script type="text/javascript">
-  function stickersLoad() {
-    jQ = jQuery.noConflict();
-    jQ(function ($) {
+  jQ = jQuery.noConflict();
+  jQ(function ($) {
+
+    $(document).ready(function() {
       console.log('Ready!');
       var sticker_container = $('#stickers');
       var sticker = $('.list-stickers');
+      var list_count = sticker.find('li');
       var right = function () {
         sticker.hide();
+        posMouseEnter = null;
         sticker.animate({
           left: sticker_container.innerWidth()
         }, 600, left);
-      };
 
+      };
       var left = function () {
         sticker.show();
         var bond = sticker.innerWidth();
         sticker.animate({
           left: -bond
-        }, 600, right);
-      };
+        }, 6000 * list_count.length, "linear", right);
 
+      };
+      sticker
+        .on('mouseenter', function () {
+          $(this).stop();
+        })
+        .on('mouseleave', function () {
+          left();
+        });
       right();
     });
-  }
+    
+  });
 </script>
 
 <style type="text/css">
@@ -31,17 +42,32 @@
     left: 0;
   }
 
+  div#stickers {
+    overflow: hidden;
+  }
+
+  ul.list-stickers {
+    position: relative;
+    display: inline;
+    width: inherit;
+  }
+
+  ul.list-stickers li {
+    display: inline-block;
+    margin-left: 30px;
+  }
+
   div.news-sticker {
     position: relative;
-    width: 500px;
-    height: 20px;
+    width: 100%;
+    min-height: 20px;
     margin: 0 auto;
     background-color: #333;
     color: #eee;
   }
 </style>
 
-<div class="news-sticker" onload="stickersLoad()">
+<div class="news-sticker">
   <div id="stickers">
     <ul class="list-stickers">
       <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
