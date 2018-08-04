@@ -1,0 +1,52 @@
+<script type="text/javascript">
+  function stickersLoad() {
+    jQ = jQuery.noConflict();
+    jQ(function ($) {
+      console.log('Ready!');
+      var sticker_container = $('#stickers');
+      var sticker = $('.list-stickers');
+      var right = function () {
+        sticker.hide();
+        sticker.animate({
+          left: sticker_container.innerWidth()
+        }, 600, left);
+      };
+
+      var left = function () {
+        sticker.show();
+        var bond = sticker.innerWidth();
+        sticker.animate({
+          left: -bond
+        }, 600, right);
+      };
+
+      right();
+    });
+  }
+</script>
+
+<style type="text/css">
+  #list-stickers {
+    position: absolute;
+    left: 0;
+  }
+
+  div.news-sticker {
+    position: relative;
+    width: 500px;
+    height: 20px;
+    margin: 0 auto;
+    background-color: #333;
+    color: #eee;
+  }
+</style>
+
+<div class="news-sticker" onload="stickersLoad()">
+  <div id="stickers">
+    <ul class="list-stickers">
+      <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+      <li>Praesent id pellentesque purus.</li>
+      <li>Sed sit amet mi pretium, iaculis nibh sit amet, aliquet turpis.</li>
+    </ul>
+  </div>
+</div>

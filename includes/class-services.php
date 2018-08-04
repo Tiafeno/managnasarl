@@ -195,6 +195,21 @@ if (!class_exists('msServices')) :
 			return $products;
 		}
 
+		// Retourne les contenues d'une taxonomie s'il existe
+		public static function getTaxonomyContents ( $taxonomy )
+		{
+			if (taxonomy_exists($taxonomy)) {
+				return get_terms([
+					'taxonomy' => $taxonomy,
+					'parent' => 0,
+					'posts_per_page' => -1,
+					'hide_empty' => false
+				]);
+			} else {
+				return [];
+			}
+		}
+
 		public static function sendMessage($form, $template = 'index')
 		{
 			if (!is_array($form)) {

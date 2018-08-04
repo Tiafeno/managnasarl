@@ -441,7 +441,6 @@ if (!class_exists('ManagnaSarl')) :
 					'src' => get_template_directory_uri() . '/libs/node_modules/angular-sanitize/angular-sanitize.min.js',
 					'addiction' => ['angular']
 				],
-
 			];
 
 			foreach ($Scripts as $script):
@@ -562,7 +561,6 @@ if (!class_exists('ManagnaSarl')) :
 		public function body_classes($classes)
 		{
 			$classes[] = 'wide-layout';
-
 			return $classes;
 		}
 	}
