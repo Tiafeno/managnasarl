@@ -45,7 +45,7 @@ class vcStickerBox extends WPBakeryShortCode {
             'class'       => 'category',
             'heading'     => __( 'Categorie', __SITENAME__ ),
             'param_name'  => 'title',
-            'value'       => $dropdown_value,
+            'value'       => $this->getContents(),
             'description' => __( 'Ajouter une titre', __SITENAME__ ),
             'admin_label' => true,
             'weight'      => 0
