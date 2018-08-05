@@ -55,7 +55,7 @@
             <div class="single-property">
               <div class="property-img">
                 <a href="{{ sale.post_url }}">
-                  <img src="{{ sale.post_thumbnail[0] }}" alt="">
+                  {{sale.ID|thumbnail|raw}}
                 </a>
               </div>
               <div class="property-desc">
@@ -127,7 +127,7 @@
             <div class="single-property">
               <div class="property-img">
                 <a href="{{ rent.post_url }}">
-                  <img src="{{ rent.post_thumbnail[0] }}" alt="">
+                  {{rent.ID|thumbnail|raw}}
                 </a>
               </div>
               <div class="property-desc">
