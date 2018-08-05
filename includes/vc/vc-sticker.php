@@ -10,7 +10,7 @@ class vcStickerBox extends WPBakeryShortCode {
     $dropdown_value = [];
     $categories = msServices::getTaxonomyContents('category');
     foreach ($categories as $categorie) {
-      $dropdown_value = array_merge($dropdown_value, ["$categorie->slug" => ucfirst($categorie->name)]);
+      $dropdown_value = array_merge($dropdown_value, [ucfirst($categorie->name) => $categorie->slug]);
     }
     return $dropdown_value;
   }
@@ -63,8 +63,8 @@ class vcStickerBox extends WPBakeryShortCode {
             'heading'     => __( 'Categorie', __SITENAME__ ),
             'param_name'  => 'category',
             'value'       => $this->getContents(),
-            'description' => __( 'Ajouter une titre', __SITENAME__ ),
-            'admin_label' => true,
+            'description' => __( 'Ajouter une categorie', __SITENAME__ ),
+            'admin_label' => false,
             'weight'      => 0
           )
 
@@ -79,19 +79,20 @@ class vcStickerBox extends WPBakeryShortCode {
     extract(
       shortcode_atts(
         array(
-          'title' => '',
+          'title' => 'Actualités',
           'category' => ''
         ),
         $attrs
       )
-    );
+    , EXTR_OVERWRITE);
     wp_enqueue_script( 'webticker' );
     /** @var string $title */
     /** @var string $category */
+    $category = empty($category) ? 'news' : $category;
     try {
       return $twig->render( '@VC/sticker.html.twig', [
         'news' => $this->getNews($category),
-        'title'    => $title
+        'title'=> $title
       ] );
     } catch ( Twig_Error_Loader $e ) {
     } catch ( Twig_Error_Runtime $e ) {
