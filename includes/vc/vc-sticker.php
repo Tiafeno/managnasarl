@@ -68,7 +68,7 @@ class vcStickerBox extends WPBakeryShortCode {
         $attrs
       )
     );
-
+    wp_enqueue_script( 'webticker' );
     /** @var string $title */
     /** @var string $category */
     try {

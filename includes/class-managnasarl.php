@@ -465,6 +465,7 @@ if (!class_exists('ManagnaSarl')) :
 		{
 			global $managnaSarl;
 			$version = $managnaSarl->version;
+			wp_register_script('webticker', get_template_directory_uri() . '/assets/js/jquery/jquery.webticker.min.js', ['jquery'], $version, true);
 			wp_register_script('bluebird', get_template_directory_uri() . '/assets/js/bluebird.min.js', [], $version, true);
 			wp_register_script('semantic', get_template_directory_uri() . '/libs/semantic/semantic.min.js', ['jquery'], $version, true);
 			wp_register_script('semantic-checkbox', get_template_directory_uri() . '/libs/semantic/components/checkbox.min.js', ['jquery'], $version, true);
