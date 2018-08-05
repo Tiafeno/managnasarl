@@ -101,6 +101,10 @@ try {
 		return convertUnit($value);
 	}));
 
+	$twig->addFilter(new Twig_SimpleFilter('get_permalink', function ($post_id) {
+		return get_the_permalink((int)$post_id);
+	}));
+
 	$twig->addFilter(new Twig_SimpleFilter('propertyType', function ($value) {
 		return getStatus($value);
 	}));

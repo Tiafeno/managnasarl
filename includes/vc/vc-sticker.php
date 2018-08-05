@@ -15,6 +15,23 @@ class vcStickerBox extends WPBakeryShortCode {
     return $dropdown_value;
   }
 
+  public function getNews($category) {
+    $args = [
+      'post_type' => 'post',
+      'posts_per_page' => -1,
+      'tax_query' => [
+        [
+          'taxonomy' => 'category',
+          'field' => 'slug',
+          'terms' => $category
+        ]
+      ]
+    ];
+    $news_query = new WP_Query( $args );
+    wp_reset_postdata();
+    return $news_query->posts;
+  }
+
   public function vc_sticker_mapping() {
     // Stop all if VC is not enabled
     if ( ! defined( 'WPB_VC_VERSION' ) ) {
@@ -72,8 +89,9 @@ class vcStickerBox extends WPBakeryShortCode {
     /** @var string $title */
     /** @var string $category */
     try {
-      return $twig->render( '@VC/sticker.html', [
+      return $twig->render( '@VC/sticker.html.twig', [
         'category' => $category,
+        'news' => $this->getNews('news'),
         'title'    => $title
       ] );
     } catch ( Twig_Error_Loader $e ) {
