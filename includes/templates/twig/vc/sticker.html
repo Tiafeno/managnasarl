@@ -4,15 +4,13 @@
 
     $(document).ready(function () {
       console.log('Ready!');
-      $('#webTicker').webTicker(
-        {
-          duplicate: true,
-          rssfrequency: 0,
-          startEmpty: false,
-          hoverpause: false,
-          transition: "linear"
-        }
-      );
+      $('#webTicker').webTicker({
+        duplicate: true,
+        rssfrequency: 0,
+        startEmpty: false,
+        hoverpause: true,
+        transition: "linear"
+      });
     });
 
   });
@@ -26,6 +24,7 @@
 
   div#stickers {
     overflow: hidden;
+    padding: 7px 0;
   }
 
   ul.list-stickers {
@@ -44,6 +43,8 @@
 
   .list-stickers li a {
     color: #eee;
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 12px;
   }
 
   div.news-sticker {
@@ -59,8 +60,7 @@
     background-color: #00b5ad;
   }
 
-  .sticker-title,
-  div#stickers {
+  .sticker-title {
     padding: 15px 0;
   }
 
