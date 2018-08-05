@@ -90,8 +90,7 @@ class vcStickerBox extends WPBakeryShortCode {
     /** @var string $category */
     try {
       return $twig->render( '@VC/sticker.html.twig', [
-        'category' => $category,
-        'news' => $this->getNews('news'),
+        'news' => $this->getNews($category),
         'title'    => $title
       ] );
     } catch ( Twig_Error_Loader $e ) {
