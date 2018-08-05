@@ -2,7 +2,7 @@
   jQ = jQuery.noConflict();
   jQ(function ($) {
 
-    $(document).ready(function() {
+    $(document).ready(function () {
       console.log('Ready!');
       var sticker_container = $('#stickers');
       var sticker = $('.list-stickers');
@@ -30,9 +30,9 @@
         .on('mouseleave', function () {
           left();
         });
-      right();
+      //right();
     });
-    
+
   });
 </script>
 
@@ -48,31 +48,68 @@
 
   ul.list-stickers {
     position: relative;
-    display: inline;
+    display: flex;
     width: inherit;
+
   }
 
   ul.list-stickers li {
     display: inline-block;
     margin-left: 30px;
+    word-wrap: unset;
+    white-space: nowrap;
   }
+ .list-stickers li a {
+   color: #eee;
+ }
 
   div.news-sticker {
     position: relative;
     width: 100%;
-    min-height: 20px;
     margin: 0 auto;
-    background-color: #333;
     color: #eee;
+    margin: 30px 0;
+    /*padding: 15px 0*/
+  }
+
+  div.news-sticker .container {
+    background-color: #00b5ad;
+  }
+
+  .sticker-title,
+  div#stickers {
+    padding: 15px 0;
+  }
+
+  .sticker-title {
+    font-weight: bold;
+    letter-spacing: 1.6px;
+  }
+
+  .news-sticker .bg-title {
+    background: #9e1a30;
   }
 </style>
 
 <div class="news-sticker">
-  <div id="stickers">
-    <ul class="list-stickers">
-      <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-      <li>Praesent id pellentesque purus.</li>
-      <li>Sed sit amet mi pretium, iaculis nibh sit amet, aliquet turpis.</li>
-    </ul>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-1 bg-title">
+        <div class="sticker-title">
+          Actualités
+        </div>
+      </div>
+      <div class="col-md-11">
+        <div id="stickers">
+          <ul class="list-stickers">
+            <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
+            <li><a href="#">Praesent id pellentesque purus.</a></li>
+            <li><a href="#">Sed sit amet mi pretium, iaculis nibh sit amet, aliquet turpis.</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
+
+
 </div>

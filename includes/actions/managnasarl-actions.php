@@ -202,7 +202,7 @@ function embed_style_header() {
 				background: #b01d36 none repeat scroll 0 0;
 			}
 			.find-home {
-				padding: 50px 0;
+				padding: 10px 0;
 			}
 			.find_home-box .price_filter {
 				width: 100%;
