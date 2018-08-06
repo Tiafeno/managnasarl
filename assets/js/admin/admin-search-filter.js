@@ -40,8 +40,6 @@
         $("#amount").val(ui.values[0] + "MGA - " + ui.values[1] + "MGA");
       }
     });
-    $("#amount").val(echelle.slider("values", 0) +
-      "MGA - " + echelle.slider("values", 1) + "MGA");
 
   });
 })(jQuery);
