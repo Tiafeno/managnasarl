@@ -147,3 +147,12 @@ add_action('after_setup_theme', function () {
 		'menu-footer' => __('Footer Menu', __SITENAME__),
 	));
 });
+
+if (function_exists('acf_add_options_page')) {
+	$parent = acf_add_options_page(array(
+		'page_title' 	=> 'Paramètres Généraux',
+		'menu_title' 	=> 'Managna Immo Paramètres',
+		'capability' => 'edit_posts',
+		'redirect' 		=> false
+	));
+}
