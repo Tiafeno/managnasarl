@@ -175,7 +175,7 @@ if ( post_password_required() ) {
 			<div class="row">
 				<div class="col-md-12">
 					<?php
-					if ( ! empty( $location ) ):
+					if ( ! empty( $acfField->location ) ):
 						$location = get_field( 'map', $product->get_id() );
 						?>
 						<div class="google-map">
