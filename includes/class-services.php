@@ -223,6 +223,7 @@ if (!class_exists('msServices')) :
 			 */
 			add_filter('send_email_annonce', function ($callback) use ($form) {
 				global $twig;
+				if (emprty($form)) return false;
 				if (empty($form['post_id'])) {
 					return $callback = 'Post indentification non definie dans la formulaire';
 				}
@@ -255,6 +256,7 @@ if (!class_exists('msServices')) :
 			 */
 			add_filter('managna_send_email', function ($result) use ($form, $template) {
 				global $twig, $managnaSarl;
+				if (empty($form)) return false;
 				if (empty($form['post_id'])) {
 					return $result = 'Post indentification non definie dans la formulaire';
 				}
@@ -268,6 +270,7 @@ if (!class_exists('msServices')) :
 
 				$post_id = &$form['post_id'];
 				$product = wc_get_product($post_id);
+				if (! $product instanceof WC_Product) return false;
 				$product_thumbnail = wp_get_attachment_image_src(get_post_thumbnail_id($post_id), 'woocommerce_thumbnail');
 
 				$content = $twig->render('@MAIL/' . $template . '.html', [
