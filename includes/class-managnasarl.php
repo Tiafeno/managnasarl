@@ -37,7 +37,7 @@ if (!class_exists('ManagnaSarl')) :
 
     add_action('wp_loaded', function () {
 
-				// Rennomer les étiquettes d'Woocommerce (product) en "Annonce"
+			// Rennomer les étiquettes d'Woocommerce (product) en "Annonce"
       $p_object = get_post_type_object('product');
       if ($p_object) {
 				// see get_post_type_labels()
@@ -54,7 +54,9 @@ if (!class_exists('ManagnaSarl')) :
         $p_object->labels->not_found_in_trash = 'Aucune annonce trouvée dans la corbeille';
         $p_object->labels->search_items = 'Trouver une annonce';
         $p_object->labels->view_item = 'Afficher l\'annonce';
-      }
+			}
+			
+			// Modifier le nom de l'article (post) en "Actualité"
       $a_object = get_post_type_object('post');
       if ($a_object) {
         $a_object->labels->name = 'Actualités';
