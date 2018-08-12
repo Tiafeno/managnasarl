@@ -84,14 +84,16 @@ class vcStickerBox extends WPBakeryShortCode {
         ),
         $attrs
       )
-    , EXTR_OVERWRITE);
+		, EXTR_OVERWRITE);
+		$category = empty($category) ? 'news' : $category;
+		$news = $this->getNews($category);
+		if (empty($news)) return;
     wp_enqueue_script( 'webticker' );
     /** @var string $title */
     /** @var string $category */
-    $category = empty($category) ? 'news' : $category;
     try {
       return $twig->render( '@VC/sticker.html.twig', [
-        'news' => $this->getNews($category),
+        'news' => $news,
         'title'=> $title
       ] );
     } catch ( Twig_Error_Loader $e ) {
