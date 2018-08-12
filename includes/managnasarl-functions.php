@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (c) 2018 Tiafeno Finel
  *
@@ -21,11 +22,12 @@
  * SOFTWARE.
  */
 
-function managna_alert() {
+function managna_alert()
+{
 	$messageAlert = null;
 	// Return null si la filtre n'est pas ajouter dans le site
-	$messageAlert = apply_filters( 'add_message_alert', $messageAlert );
-	if ( is_null( $messageAlert ) ) {
+	$messageAlert = apply_filters('add_message_alert', $messageAlert);
+	if (is_null($messageAlert)) {
 		return;
 	}
 
@@ -46,30 +48,32 @@ function managna_alert() {
  *
  * @return string
  */
-function strLimite( $text = '', $limite = 30) {
+function strLimite($text = '', $limite = 30)
+{
 	if (empty($text)) return $text;
-	return strlen($text) > $limite ? substr($text , 0, $limite) . '...' : $text;
+	return strlen($text) > $limite ? substr($text, 0, $limite) . '...' : $text;
 }
 
 /**
  * Envoyer un message à l'administrateur pour un message de client
  */
-function managna_contact_property() {
+function managna_contact_property()
+{
 	$result = null;
-	$inputForm     = ManagnaSarl::getValue( 'form' );
-	if ( $inputForm ) {
-		if ( $inputForm == 'contact_form' ) {
+	$inputForm = ManagnaSarl::getValue('form');
+	if ($inputForm) {
+		if ($inputForm == 'contact_form') {
 			$form = [
-				'message'   => ManagnaSarl::getValue( 'message-editor' ),
-				'firstname' => ManagnaSarl::getValue( 'firstname' ),
-				'email'     => ManagnaSarl::getValue( 'email' ),
-				'phone'     => ManagnaSarl::getValue('phone'),
+				'message' => ManagnaSarl::getValue('message-editor'),
+				'firstname' => ManagnaSarl::getValue('firstname'),
+				'email' => ManagnaSarl::getValue('email'),
+				'phone' => ManagnaSarl::getValue('phone'),
 				'subscribe' => ManagnaSarl::getValue('newsletter', 0),
-				'post_id'   => (int) ManagnaSarl::getValue( 'post_id' )
+				'post_id' => (int)ManagnaSarl::getValue('post_id')
 			];
-			msServices::sendMessage( $form, 'contact' );
-			$result = apply_filters( 'managna_send_email', $result );
-			if ( is_null( $result ) ) {
+			msServices::sendMessage($form, 'contact');
+			$result = apply_filters('managna_send_email', $result);
+			if (is_null($result)) {
 				return;
 			}
 

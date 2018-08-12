@@ -28,7 +28,7 @@
     $.each(ariarySelectors, function (key, element) {
       $(element).text(function () {
         ariaryNumber = parseInt($(element).text());
-        if (isNaN(ariaryNumber)) return 'Le prix n\'est pas informer';
+        if (isNaN(ariaryNumber)) return 'Nous contacter';
         return new Intl.NumberFormat('de-DE', {
           style: 'currency',
           currency: 'MGA'
@@ -41,6 +41,9 @@
     $.each(convertElement, function (key, el) {
       var to = $(el).data('convert-to');
       var number = $(el).data('convert');
+      if (typeof number === 'string') {
+        if (_.isEmpty(number)) return;
+      }
       $(el)
         .text(function () {
           var curValue = parseFloat(number) / jManagna.currency.rates.MGA;
@@ -48,8 +51,8 @@
             style: 'currency',
             currency: to
           }).format(curValue);
-        })
-    })
+        });
+    });
 
   })
 })(jQuery);
