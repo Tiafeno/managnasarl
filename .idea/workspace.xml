@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="07a8c7fa-cc04-4767-bec4-dd0111f3c9d8" name="Default" comment="Supprimer une adresse email d'un abonné">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes/vc/vc-newsletter.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/vc/vc-newsletter.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/includes/managnasarl-functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/managnasarl-functions.php" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -35,7 +34,7 @@
       <file leaf-file-name="functions.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/functions.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="594">
+            <state relative-caret-position="648">
               <caret line="56" column="29" selection-start-line="56" selection-start-column="29" selection-end-line="56" selection-end-column="29" />
             </state>
           </provider>
@@ -44,7 +43,7 @@
       <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
+            <state relative-caret-position="108">
               <caret line="6" column="20" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
             </state>
           </provider>
@@ -53,18 +52,8 @@
       <file leaf-file-name="class-managnasarl.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/includes/class-managnasarl.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1218">
-              <caret line="164" column="32" selection-start-line="164" selection-start-column="27" selection-end-line="164" selection-end-column="32" />
-              <folding>
-                <element signature="e#1276#2263#1#PHP" />
-                <element signature="e#2495#2666#1#PHP" />
-                <element signature="e#2806#2926#1#PHP" />
-                <element signature="e#3029#3061#1#PHP" />
-                <element signature="e#3200#4059#1#PHP" />
-                <element signature="e#4109#4545#1#PHP" />
-                <element signature="e#4642#4698#1#PHP" />
-                <element signature="e#4863#4986#1#PHP" />
-              </folding>
+            <state relative-caret-position="3492">
+              <caret line="194" column="32" selection-start-line="194" selection-start-column="32" selection-end-line="194" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -81,7 +70,7 @@
       <file leaf-file-name="template-unsubscribe.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/template-unsubscribe.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-19">
+            <state relative-caret-position="90">
               <caret line="5" column="18" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
             </state>
           </provider>
@@ -90,8 +79,8 @@
       <file leaf-file-name="404.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/404.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="42" column="6" lean-forward="true" selection-start-line="42" selection-start-column="6" selection-end-line="53" selection-end-column="12" />
+            <state relative-caret-position="396">
+              <caret line="42" column="6" selection-start-line="42" selection-start-column="6" selection-end-line="53" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -250,77 +239,45 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="managnasarl" type="b2602c69:ProjectViewProjectNode" />
-              <item name="managnasarl" type="462c0819:PsiDirectoryNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
             <path>
               <item name="managnasarl" type="b2602c69:ProjectViewProjectNode" />
-              <item name="managnasarl" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="PHP" type="20ee2d1f:SyntheticLibraryElementNode" />
             </path>
             <path>
               <item name="managnasarl" type="b2602c69:ProjectViewProjectNode" />
-              <item name="managnasarl" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
+              <item name="Scratches and Consoles" type="1a2a3e82:ScratchProjectViewPane$MyProjectNode" />
             </path>
             <path>
               <item name="managnasarl" type="b2602c69:ProjectViewProjectNode" />
-              <item name="managnasarl" type="462c0819:PsiDirectoryNode" />
-              <item name="includes" type="462c0819:PsiDirectoryNode" />
+              <item name="Scratches and Consoles" type="1a2a3e82:ScratchProjectViewPane$MyProjectNode" />
+              <item name="Extensions" type="d62648e6:ScratchProjectViewPane$MyRootNode" />
             </path>
             <path>
               <item name="managnasarl" type="b2602c69:ProjectViewProjectNode" />
-              <item name="managnasarl" type="462c0819:PsiDirectoryNode" />
-              <item name="includes" type="462c0819:PsiDirectoryNode" />
-              <item name="actions" type="462c0819:PsiDirectoryNode" />
+              <item name="Scratches and Consoles" type="1a2a3e82:ScratchProjectViewPane$MyProjectNode" />
+              <item name="Extensions" type="d62648e6:ScratchProjectViewPane$MyRootNode" />
+              <item name="com.intellij.database" type="1e004dc1:ScratchProjectViewPane$MyRootNode$1$1" />
             </path>
             <path>
               <item name="managnasarl" type="b2602c69:ProjectViewProjectNode" />
-              <item name="managnasarl" type="462c0819:PsiDirectoryNode" />
-              <item name="includes" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="managnasarl" type="b2602c69:ProjectViewProjectNode" />
-              <item name="managnasarl" type="462c0819:PsiDirectoryNode" />
-              <item name="includes" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="twig" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="managnasarl" type="b2602c69:ProjectViewProjectNode" />
-              <item name="managnasarl" type="462c0819:PsiDirectoryNode" />
-              <item name="includes" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="twig" type="462c0819:PsiDirectoryNode" />
-              <item name="mail" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="managnasarl" type="b2602c69:ProjectViewProjectNode" />
-              <item name="managnasarl" type="462c0819:PsiDirectoryNode" />
-              <item name="includes" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="twig" type="462c0819:PsiDirectoryNode" />
-              <item name="vc" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="managnasarl" type="b2602c69:ProjectViewProjectNode" />
-              <item name="managnasarl" type="462c0819:PsiDirectoryNode" />
-              <item name="includes" type="462c0819:PsiDirectoryNode" />
-              <item name="vc" type="462c0819:PsiDirectoryNode" />
+              <item name="Scratches and Consoles" type="1a2a3e82:ScratchProjectViewPane$MyProjectNode" />
+              <item name="IDEA Consoles" type="d62648e6:ScratchProjectViewPane$MyRootNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -328,7 +285,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
-    <property name="last_opened_file_path" value="H:/CREA/JP Motors/wp_jpmotors" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../itjob" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.prettier" value="true" />
     <property name="node.js.path.for.package.prettier" value="project" />
@@ -338,7 +295,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
+    <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
     <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/includes/acf.php" />
   </component>
   <component name="RecentsManager">
@@ -521,6 +478,7 @@
       <workItem from="1532421643186" duration="8681000" />
       <workItem from="1532440823116" duration="2000" />
       <workItem from="1533110946742" duration="21083000" />
+      <workItem from="1534002783110" duration="159000" />
     </task>
     <task id="LOCAL-00021" summary="Fix search page">
       <created>1529444100489</created>
@@ -869,7 +827,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="584939000" />
+    <option name="totallyTimeSpent" value="585098000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -891,15 +849,13 @@
       <window_info anchor="bottom" id="Event Log" order="0" side_tool="true" weight="0.32872927" />
       <window_info anchor="right" id="Maven Projects" order="0" weight="0.3295129" />
       <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
-      <window_info anchor="bottom" id="File Transfer" order="13" weight="0.30506155" />
       <window_info anchor="bottom" id="Version Control" order="1" weight="0.46922025" />
       <window_info anchor="bottom" id="Run" order="5" weight="0.26213592" />
       <window_info anchor="bottom" id="Terminal" order="2" weight="0.32551724" />
       <window_info id="Capture Tool" order="7" />
       <window_info anchor="right" id="Designer" order="1" />
-      <window_info content_ui="combo" id="Project" order="4" sideWeight="0.7462406" visible="true" weight="0.1747851" />
+      <window_info active="true" content_ui="combo" id="Project" order="4" sideWeight="0.7462406" visible="true" weight="0.1769341" />
       <window_info anchor="right" id="Database" order="2" weight="0.3295129" />
-      <window_info anchor="bottom" id="Find" order="4" weight="0.32963988" />
       <window_info id="Structure" order="5" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="5" weight="0.25" />
       <window_info id="UI Designer" order="1" />
@@ -910,11 +866,13 @@
       <window_info anchor="bottom" id="Inspection" order="8" weight="0.4" />
       <window_info anchor="right" id="Commander" order="4" weight="0.4" />
       <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Find" order="4" weight="0.32963988" />
       <window_info anchor="bottom" id="Cvs" order="7" weight="0.25" />
       <window_info id="npm" order="0" sideWeight="0.25375938" side_tool="true" weight="0.25" />
       <window_info anchor="right" x="0" y="0" width="294" height="554" id="Documentation" order="9" side_tool="true" weight="0.32978722" />
       <window_info anchor="bottom" id="Message" order="3" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="6" weight="0.25" />
+      <window_info anchor="bottom" id="File Transfer" order="13" weight="0.30506155" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -963,6 +921,13 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/includes/vc/vc-newsletter.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1314">
+          <caret line="93" column="30" selection-start-line="93" selection-start-column="30" selection-end-line="93" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/includes/acf.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-8020">
@@ -1197,10 +1162,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="608">
           <caret line="166" column="46" selection-start-line="166" selection-start-column="46" selection-end-line="166" selection-end-column="46" />
-          <folding>
-            <element signature="n#ul#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#div#0;n#!!top" />
-            <element signature="n#ul#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#2;n#div#0;n#div#0;n#!!top" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1222,16 +1183,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18">
           <caret line="1" selection-start-line="1" selection-end-line="6" selection-end-column="3" />
-          <folding>
-            <element signature="e#6#165#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/404.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="42" column="6" lean-forward="true" selection-start-line="42" selection-start-column="6" selection-end-line="53" selection-end-column="12" />
+        <state relative-caret-position="396">
+          <caret line="42" column="6" selection-start-line="42" selection-start-column="6" selection-end-line="53" selection-end-column="12" />
         </state>
       </provider>
     </entry>
@@ -1242,9 +1200,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/includes/vc/vc-function-managnasarl.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/includes/class-services.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3546">
@@ -1254,38 +1209,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/functions.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
+        <state relative-caret-position="648">
           <caret line="56" column="29" selection-start-line="56" selection-start-column="29" selection-end-line="56" selection-end-column="29" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/includes/class-managnasarl.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1218">
-          <caret line="164" column="32" selection-start-line="164" selection-start-column="27" selection-end-line="164" selection-end-column="32" />
-          <folding>
-            <element signature="e#1276#2263#1#PHP" />
-            <element signature="e#2495#2666#1#PHP" />
-            <element signature="e#2806#2926#1#PHP" />
-            <element signature="e#3029#3061#1#PHP" />
-            <element signature="e#3200#4059#1#PHP" />
-            <element signature="e#4109#4545#1#PHP" />
-            <element signature="e#4642#4698#1#PHP" />
-            <element signature="e#4863#4986#1#PHP" />
-          </folding>
+        <state relative-caret-position="3492">
+          <caret line="194" column="32" selection-start-line="194" selection-start-column="32" selection-end-line="194" selection-end-column="32" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
+        <state relative-caret-position="108">
           <caret line="6" column="20" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/template-unsubscribe.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-19">
+        <state relative-caret-position="90">
           <caret line="5" column="18" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
         </state>
       </provider>

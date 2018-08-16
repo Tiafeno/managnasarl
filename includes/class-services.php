@@ -223,7 +223,7 @@ if (!class_exists('msServices')) :
 			 */
 			add_filter('send_email_annonce', function ($callback) use ($form) {
 				global $twig;
-				if (emprty($form)) return false;
+				if (empty($form)) return false;
 				if (empty($form['post_id'])) {
 					return $callback = 'Post indentification non definie dans la formulaire';
 				}
