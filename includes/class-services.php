@@ -317,8 +317,6 @@ if (!class_exists('msServices')) :
 						'headers' => $headers
 					]);
 				else:
-
-					$admin_email = get_option('admin_email');
 					/**
 					 * Declared vc-newsletter.php
 					 * vcNewsletterBox::get_subscribers_email()
