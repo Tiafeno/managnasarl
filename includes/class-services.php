@@ -307,7 +307,7 @@ if (!class_exists('msServices')) :
 				$headers[] = 'Content-Type: text/html; charset=UTF-8';
 				if ($template != 'newsletter'):
 					$isSubscriber = &$form['subscribe'];
-					$to = $admin_email;
+					$to = "managna.immo2013@gmail.com";
 					$headers[] = 'From: ' . esc_html($form['firstname']) . ' <' . $form['email'] . '>';
 					foreach ($users as $user) {
 						$headers[] = 'Cc: ' . $user->user_email;
