@@ -111,7 +111,7 @@ if (!class_exists('msServices')) :
 
 			$sku = ($type === 'for_sale') ? 'S' : 'R';
 			$sku .= ($property === 'ground') ? 'L' : 'H';
-			if (!$paid) {
+			if ($paid) {
 				$sku .= $paid === 'monthly' ? 'Y' : ($paid === 'seasonal' ? 'S' : '');
 			}
 			$sku .= '-'.$post_id;
