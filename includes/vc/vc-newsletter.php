@@ -29,6 +29,8 @@ if ( ! class_exists( 'vcNewsletterBox' ) ):
 
 			add_action( 'wp_ajax_ajax_action_added_newsletter', [ $this, 'ajax_action_added_newsletter' ] );
 			add_action( 'wp_ajax_nopriv_ajax_action_added_newsletter', [ $this, 'ajax_action_added_newsletter' ] );
+			add_action( 'wp_ajax_get_subscriber', [ $this, 'get_subscriber' ] );
+			add_action( 'wp_ajax_nopriv_get_subscriber', [ $this, 'get_subscriber' ] );
 		}
 
 		/**
@@ -112,6 +114,17 @@ if ( ! class_exists( 'vcNewsletterBox' ) ):
 			update_option( 'managna_newsletter', $newsletters );
 
 			return true;
+		}
+
+		/**
+		 * Récuperer les mails des abonnées au newsletter
+		 */
+		public function get_subscriber() {
+			$newsletters = get_option( "managna_newsletter", [] );
+			if ( empty( $newsletters ) ) {
+				return false;
+			}
+			return $newsletters;
 		}
 
 		/**

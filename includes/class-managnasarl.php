@@ -54,7 +54,7 @@ if (!class_exists('ManagnaSarl')) :
         $p_object->labels->not_found_in_trash = 'Aucune annonce trouvée dans la corbeille';
         $p_object->labels->search_items = 'Trouver une annonce';
         $p_object->labels->view_item = 'Afficher l\'annonce';
-			}
+      }
 			
 			// Modifier le nom de l'article (post) en "Actualité"
       $a_object = get_post_type_object('post');
@@ -113,63 +113,54 @@ if (!class_exists('ManagnaSarl')) :
 			// Add class name in body
     add_filter('body_class', array($this, 'body_classes'));
 
-    add_action(
-      'pending_to_publish',
-      function ($post) {
-        global $twig;
-				// Envoyer l'annonce au abonnée
+    // Publier une annonce en attente (annonce ajouter par les visiteurs)
+    add_action('transition_post_status', function ($newStatus, $oldStatus, $post) {
+      global $twig;
+      if ($post->post_status != 'product') return;
+      if ($oldStatus != 'pending'  &&  $newStatus != 'publish') return;
+
+			// Envoyer l'annonce au abonnée
+      $this->send_newsletter($post);
+
+			// Envoyer l'annonce à son propriétaire
+      $template = new stdClass();
+      $template->link = get_the_permalink($post->ID);
+      if (function_exists('get_field')) {
+        $template->author = get_field('advertiser_name', $post->ID);
+        $template->author_email = get_field('advertiser_email', $post->ID);
+      } else {
+        $template->author = "Propriétaire";
+      }
+      $args = [
+        'post' => $template,
+      ];
+      $content = $twig->render('@MAIL/publish.html', $args);
+      $subject = "Publication | Managna Immo";
+      $to = $template->author_email;
+      $headers = [];
+      $headers[] = 'Content-Type: text/html; charset=UTF-8';
+      $headers[] = 'From: Managna Immo <no-reply@managna-immo.com>';
+      
+      wp_mail($to, $subject, $content, $headers);
+    }, 10, 3);
+
+    // Crée une nouvelle annonce depuis la BO
+    add_action('save_post', function ($post_id, $post) {
+      global $managnaSarl;
+      if ($post->post_type != 'product') return;
+			// Modifier les sku apres avoir publier un produit dans la back-office.
+      $skuG = $managnaSarl->services->generateSku($post->ID);
+      if (is_null($skuG)) return;
+      if ($managnaSarl->services->update_post_sku($post, $skuG)) {
         $this->send_newsletter($post);
-
-				// Envoyer l'annonce à son propriétaire
-        $template = new stdClass();
-        $template->link = get_the_permalink($post->ID);
-        if (function_exists('get_field')) {
-          $template->author = get_field('advertiser_name', $post->ID);
-          $template->author_email = get_field('advertiser_email', $post->ID);
-        } else {
-          $template->author = "Propriétaire";
-        }
-        $args = [
-          'post' => $template,
-        ];
-        $content = $twig->render('@MAIL/publish.html', $args);
-        $subject = "Publication | Managna Immo";
-        $to = $template->author_email;
-        $headers = [];
-        $headers[] = 'Content-Type: text/html; charset=UTF-8';
-        $headers[] = 'From: Managna Immo <no-reply@managna-immo.com>';
-        wp_mail($to, $subject, $content, $headers);
-      },
-      10,
-      3
-    );
-
-    add_action(
-      'draft_to_publish',
-      function ($post) {
-        global $managnaSarl;
-
-				// Modifier les sku apres avoir publier un produit dans la back-office.
-        $skuG = $managnaSarl->services->generateSku($post->ID);
-        if (is_null($skuG)) return;
-        if ($managnaSarl->services->update_post_sku($post, $skuG)) {
-          $this->send_newsletter($post);
-					// TODO: Probabilité d'envoyer une deuxieme newsletter avec l'hook "pending_to_publish" (Doit être tester)
-        }
-      },
-      10,
-      3
-    );
+      }
+    }, 10, 2);
 
 			// Change shop post product view per page
-    add_filter(
-      'loop_shop_per_page',
-      function ($cols) {
-        $cols = 6;
-        return $cols;
-      },
-      20
-    );
+    add_filter('loop_shop_per_page', function ($cols) {
+      $cols = 6;
+      return $cols;
+    }, 20);
 
     /** Supprimer les deux colones (categories, tags) dans product*/
     add_action('admin_init', function () {
@@ -295,11 +286,9 @@ if (!class_exists('ManagnaSarl')) :
 			//unregister_taxonomy('product_tag');
 			//unregister_taxonomy('product_cat');
 
-    add_filter('manage_taxonomies_for_product_columns', 'product_type_columns');
-    function product_type_columns($taxonomies)
-    {
+    add_filter('manage_taxonomies_for_product_columns', function ($taxonomies) {
       return $taxonomies;
-    }
+    });
 
     $amenities = array(
       'name' => _x('Equipements', 'taxonomy general name'),

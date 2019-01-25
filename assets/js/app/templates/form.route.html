@@ -303,7 +303,7 @@
             <div flex-gt-sm="50">
 
               <!-- Prix par default -->
-              <md-input-container class="md-block">
+              <md-input-container class="md-block" ng-show="form.property !== 'ground'>
                 <label>Prix par default</label>
                 <md-select ng-model="form.default_rate" ng-disabled="form.property == 'ground'"
                            ng-required="form.property != 'ground'">
@@ -327,7 +327,7 @@
             </md-input-container>
 
             <!-- Prix saisonnière -->
-            <md-input-container class="md-icon-float md-icon-right md-block mt-20">
+            <md-input-container class="md-icon-float md-icon-right md-block mt-20" ng-show="form.property !== 'ground'">
               <label>Prix saisonniére</label>
               <input ng-model="form.price_seasonal" type="number" step="1"
                       ng-required="form.default_rate === 'seasonal'"

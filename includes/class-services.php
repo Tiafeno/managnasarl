@@ -106,20 +106,15 @@ if (!class_exists('msServices')) :
 			if (!function_exists('get_field')) return null;
 			$type = get_field('type', $post_id);
 			$property = get_field('prop', $post_id);
+			$tarif = get_field('tarif', $post_id);
+			$paid = $tarif['paid'];
 
-			$sku = ($type === 'for_sale') ? 'V' : 'L';
-			$sku .= ($property === 'ground') ? 'T ' : ($property === 'house' ? 'M ' : 'A ');
-			if ($property == 'ground') {
-				// @link https://www.advancedcustomfields.com/resources/true-false/
-				$deed = get_field('deed', $post_id);
-				$limited = get_field('limited', $post_id);
-
-				$isDeed = $deed ? 'TTR ' : '';
-				$isLimited = $limited ? ' BO' : '';
-				$sku .= $isDeed . $post_id . $isLimited;
-			} else {
-				$sku .= $post_id;
+			$sku = ($type === 'for_sale') ? 'S' : 'R';
+			$sku .= ($property === 'ground') ? 'L' : 'H';
+			if (!$paid) {
+				$sku .= $paid === 'monthly' ? 'Y' : ($paid === 'seasonal' ? 'S' : '');
 			}
+			$sku .= '-'.$post_id;
 			return $sku;
 		}
 
